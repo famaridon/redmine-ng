@@ -6,11 +6,13 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarNavComponent } from './sidebar-nav/sidebar-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    SidebarNavComponent
   ],
   imports: [
     BrowserModule,
