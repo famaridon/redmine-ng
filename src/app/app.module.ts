@@ -5,17 +5,17 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import { AlertModule } from 'ngx-bootstrap';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    AlertModule.forRoot()
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
