@@ -2,6 +2,9 @@
   <ul class="section-nav">
     <li *ngFor="let entry of entries;" class="toc-entry toc-h2">
       {{entry.label}}
+      <ul>
+        <li *ngFor="let link of entry.links;"><a href="{{link.href}}">{{link.label}}</a></li>
+      </ul>
     </li>
   </ul>
 </nav>
