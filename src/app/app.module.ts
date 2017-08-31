@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { SidebarNavService} from './sidebar-nav.service'
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarNavComponent } from './sidebar-nav/sidebar-nav.component';
@@ -19,7 +20,10 @@ import { SidebarNavComponent } from './sidebar-nav/sidebar-nav.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    SidebarNavService
+  ],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
