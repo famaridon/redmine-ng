@@ -1,10 +1,12 @@
-<nav class="sidebar-nav" style="height: 570px;">
-  <ul class="section-nav">
-    <li *ngFor="let entry of entries;" class="toc-entry toc-h2">
-      {{entry.label}}
-      <ul>
-        <li *ngFor="let link of entry.links;"><a href="{{link.href}}">{{link.label}}</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+<div class="card">
+  <div class="card-body">
+    <nav class="nav nav-pills flex-column">
+      <ng-container *ngFor="let entry of entries;">
+        <span class="nav-link my-1">{{entry.label}}</span>
+        <nav class="nav nav-pills flex-column pl-3">
+          <a *ngFor="let link of entry.links;" class="nav-link ml-3 my-1" href="{{link.href}}">{{link.label}}</a>
+        </nav>
+      </ng-container>
+    </nav>
+  </div>
+</div>

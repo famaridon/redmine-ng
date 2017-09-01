@@ -6,18 +6,14 @@ export class SidebarNavService {
   public entries : Array<Entry> = new Array();
 
   constructor() {
-    this.entries.push(new Entry("Queries"));
-    let dashboard : Entry = new Entry("Dashboard");
-    let burndown : Link = new Link();
-    burndown.href = "#";
-    burndown.label = "burndown";
-    let burnup : Link = new Link();
-    burnup.href = "#";
-    burnup.label = "burnup";
+    
+  }
 
-    dashboard.links.push(burndown);
-    dashboard.links.push(burnup);
-    this.entries.push(dashboard);
+  public addEntry(label: string) : Entry {
+    let entry: Entry = new Entry("",label);
+
+    this.entries.push(entry);
+    return entry;
   }
 
 }
@@ -28,7 +24,8 @@ export class Entry {
   id: string;
   public readonly links: Array<Link> = new Array();
 
-  constructor(label:string) {
+  constructor(id: string,label:string) {
+    this.id = id;
     this.label = label;
   }
 
