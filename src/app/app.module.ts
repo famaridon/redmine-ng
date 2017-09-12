@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { SidebarNavService} from './sidebar-nav.service'
+import { SidebarNavService} from './sidebar-nav.service';
+import { SettingsService} from './settings.service';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarNavComponent } from './sidebar-nav/sidebar-nav.component';
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     )
   ],
   providers: [
-    SidebarNavService
+    SidebarNavService,
+    SettingsService
   ],
   entryComponents: [],
   bootstrap: [AppComponent]

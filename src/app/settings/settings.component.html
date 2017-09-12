@@ -1,3 +1,15 @@
-<p>
-  settings works!
-</p>
+
+
+<div class="card">
+  <div class="card-body">
+    <h1>Settings</h1>
+    <h2 class="card-title">Server</h2>
+    <div>
+      <div class="form-group">
+        <label for="redmineAPIKey">Redmine API Key</label>
+        <input type="text" class="form-control" id="redmineAPIKey" placeholder="Enter your redmine API key" [(ngModel)]="apiKey" >
+        <small class="form-text text-muted">Redmine API key can be found in your redmine profile</small>
+      </div>
+    </div>
+  </div>
+</div>

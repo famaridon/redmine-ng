@@ -8,20 +8,21 @@ import { SidebarNavService, Entry, Link } from '../sidebar-nav.service';
 })
 export class SettingsComponent implements OnInit {
 
-  private sidebarNavService: SidebarNavService
+  private sidebarNavService: SidebarNavService;
+  private apiKey: string;
 
   constructor(sidebarNavService: SidebarNavService) {
     this.sidebarNavService = sidebarNavService;
-    let queries = this.sidebarNavService.addEntry("Queries");
-    let dashboard = this.sidebarNavService.addEntry("Dashboard");
+    const queries = this.sidebarNavService.addEntry('Queries');
+    const dashboard = this.sidebarNavService.addEntry('Dashboard');
 
     // TODO only test
-    let burndown : Link = new Link();
-    burndown.href = "#";
-    burndown.label = "burndown";
-    let burnup : Link = new Link();
-    burnup.href = "#";
-    burnup.label = "burnup";
+    const burndown : Link = new Link();
+    burndown.href = '#';
+    burndown.label = 'burndown';
+    const burnup : Link = new Link();
+    burnup.href = '#';
+    burnup.label = 'burnup';
     setTimeout(() => {
       dashboard.links.push(burndown);
       dashboard.links.push(burnup);

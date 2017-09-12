@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-import { SidebarNavService, Entry, Link } from '../sidebar-nav.service'
+import { Component, OnInit } from '@angular/core';
+import { SidebarNavService, Entry, Link } from '../sidebar-nav.service';
 
 @Component({
   selector: 'app-sidebar-nav',
@@ -8,7 +8,7 @@ import { SidebarNavService, Entry, Link } from '../sidebar-nav.service'
 })
 export class SidebarNavComponent implements OnInit {
 
-  sidebarNavService : SidebarNavService
+  sidebarNavService : SidebarNavService;
   public entries : Array<Entry>;
 
   constructor(sidebarNavService : SidebarNavService) {
