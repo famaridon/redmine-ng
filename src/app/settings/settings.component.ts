@@ -17,10 +17,10 @@ export class SettingsComponent implements OnInit {
     const dashboard = this.sidebarNavService.addEntry('Dashboard');
 
     // TODO only test
-    const burndown : Link = new Link();
+    const burndown: Link = new Link();
     burndown.href = '#';
     burndown.label = 'burndown';
-    const burnup : Link = new Link();
+    const burnup: Link = new Link();
     burnup.href = '#';
     burnup.label = 'burnup';
     setTimeout(() => {

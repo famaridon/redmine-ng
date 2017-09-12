@@ -3,15 +3,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SidebarNavService {
 
-  public entries : Array<Entry> = new Array();
+  public entries: Array<Entry> = new Array();
 
   constructor() {
-
   }
 
-  public addEntry(label: string) : Entry {
+  public addEntry(label: string): Entry {
     const entry: Entry = new Entry('', label);
-
     this.entries.push(entry);
     return entry;
   }

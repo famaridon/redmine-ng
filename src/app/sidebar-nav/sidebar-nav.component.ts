@@ -8,10 +8,10 @@ import { SidebarNavService, Entry, Link } from '../sidebar-nav.service';
 })
 export class SidebarNavComponent implements OnInit {
 
-  sidebarNavService : SidebarNavService;
-  public entries : Array<Entry>;
+  sidebarNavService: SidebarNavService;
+  public entries: Array<Entry>;
 
-  constructor(sidebarNavService : SidebarNavService) {
+  constructor(sidebarNavService: SidebarNavService) {
     this.sidebarNavService = sidebarNavService;
     this.entries = this.sidebarNavService.entries;
   }
