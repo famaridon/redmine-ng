@@ -34,12 +34,12 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiKey = this.settingsServcie.getString("apiKey");
+    this.apiKey = this.settingsServcie.getString('apiKey');
   }
 
-  public save():void {
-    this.settingsServcie.setString("apiKey", this.apiKey);
-    
+  public save(): void {
+    this.settingsServcie.setString('apiKey', this.apiKey);
+
   }
 
 }

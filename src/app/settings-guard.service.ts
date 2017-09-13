@@ -14,9 +14,8 @@ export class SettingsGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let url = state.url;
-    debugger;
-    if (this.settingsService.isValide() || url == "/settings") { return true; }
+    const url = state.url;
+    if (this.settingsService.isValide() || url === '/settings') { return true; }
     // Navigate to the settings page
     this.router.navigate(['/settings']);
     return false;

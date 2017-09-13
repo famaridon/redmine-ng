@@ -54,8 +54,8 @@ export class SettingsService {
   }
 
   public isValide(): boolean {
-    let apiKey = this.getString("apiKey")
-    return (apiKey !== "" && apiKey != null);
+    const apiKey = this.getString('apiKey');
+    return (apiKey !== '' && apiKey != null);
   }
 
 }
