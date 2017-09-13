@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarNavService, Entry, Link } from '../sidebar-nav.service';
+import { SettingsService } from '../settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -9,9 +10,11 @@ import { SidebarNavService, Entry, Link } from '../sidebar-nav.service';
 export class SettingsComponent implements OnInit {
 
   private sidebarNavService: SidebarNavService;
+  private settingsServcie: SettingsService;
   private apiKey: string;
 
-  constructor(sidebarNavService: SidebarNavService) {
+  constructor(settingsServcie: SettingsService, sidebarNavService: SidebarNavService) {
+    this.settingsServcie = settingsServcie;
     this.sidebarNavService = sidebarNavService;
     const queries = this.sidebarNavService.addEntry('Queries');
     const dashboard = this.sidebarNavService.addEntry('Dashboard');
@@ -31,6 +34,12 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.apiKey = this.settingsServcie.getString("apiKey");
+  }
+
+  public save():void {
+    this.settingsServcie.setString("apiKey", this.apiKey);
+    
   }
 
 }
