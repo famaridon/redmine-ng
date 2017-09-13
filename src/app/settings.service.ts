@@ -53,5 +53,9 @@ export class SettingsService {
     return loadedValue;
   }
 
+  public isValide(): boolean {
+    let apiKey = this.getString("apiKey")
+    return (apiKey !== "" && apiKey != null);
+  }
 
 }

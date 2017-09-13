@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SidebarNavService} from './sidebar-nav.service';
 import { SettingsService} from './settings.service';
+import { SettingsGuardService} from './settings-guard.service';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarNavComponent } from './sidebar-nav/sidebar-nav.component';
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
     redirectTo: '/settings',
     pathMatch: 'full'
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', canActivate: [SettingsGuardService], component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     SidebarNavService,
-    SettingsService
+    SettingsService,
+    SettingsGuardService
   ],
   entryComponents: [],
   bootstrap: [AppComponent]
