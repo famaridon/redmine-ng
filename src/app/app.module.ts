@@ -25,7 +25,7 @@ import {AsideToggleDirective} from "./directives/aside/aside.directive";
 import {SidebarOffCanvasCloseDirective, BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDirective, SidebarToggleDirective} from "./directives/sidebar/sidebar.directive";
 
 import {SettingsComponent} from './settings/settings.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
   {path: 'settings', component: SettingsComponent},
@@ -67,7 +67,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing: true} // <-- debugging purposes only
+      {enableTracing: false} // <-- debugging purposes only
     )
   ],
   providers: [
