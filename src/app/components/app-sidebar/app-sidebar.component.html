@@ -1,0 +1,12 @@
+<div class="sidebar">
+  <app-sidebar-header></app-sidebar-header>
+  <nav class="sidebar-nav">
+    <ul class="nav">
+      <li *ngFor="let entry of entries;" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="[entry.link]"><i class="fa fa-{{entry.icon}}"></i>{{entry.label}}</a>
+      </li>
+    </ul>
+  </nav>
+  <app-sidebar-footer></app-sidebar-footer>
+  <app-sidebar-minimizer></app-sidebar-minimizer>
+</div>
