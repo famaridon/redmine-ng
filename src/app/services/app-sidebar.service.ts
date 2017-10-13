@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class SidebarNavService {
+export class AppSidebarService {
 
   public entries: Array<Entry> = new Array();
 
@@ -20,7 +20,8 @@ export class Entry {
 
   public readonly label: string;
   id: string;
-  public readonly links: Array<Link> = new Array();
+  icon: string;
+  public readonly links: Array<Link> = [];
 
   constructor(id: string, label: string) {
     this.id = id;

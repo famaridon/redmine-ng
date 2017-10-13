@@ -5,9 +5,11 @@ import {HttpModule} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
-import {SidebarNavService} from './services/sidebar-nav.service';
+
 import {SettingsService} from './services/settings.service';
 import {SettingsGuardService} from './services/settings-guard.service';
+
+import {AppSidebarService} from './services/app-sidebar.service';
 
 /* CoreUI components */
 import {AppHeader} from './components/app-header/app-header.component';
@@ -21,7 +23,7 @@ import {AppBreadcrumbs} from './components/app-breadcrumbs/app-breadcrumbs.compo
 import {AppAside} from './components/app-aside/app-aside.component';
 
 /* CoreUI directive */
-import {AsideToggleDirective} from "./directives/aside/aside.directive";
+import {AsideToggleDirective} from './directives/aside/aside.directive';
 import {SidebarOffCanvasCloseDirective, BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDirective, SidebarToggleDirective} from "./directives/sidebar/sidebar.directive";
 
 import {SettingsComponent} from './settings/settings.component';
@@ -71,7 +73,7 @@ const appRoutes: Routes = [
     )
   ],
   providers: [
-    SidebarNavService,
+    AppSidebarService,
     SettingsService,
     SettingsGuardService
   ],
