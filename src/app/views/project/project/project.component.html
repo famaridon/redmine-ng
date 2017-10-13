@@ -1,0 +1,16 @@
+<ng-container *ngIf="projectId;else no_project">
+  <div class="card mt-4">
+    <div class="card-header">
+      <h1>{{projectId}}</h1>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Special title treatment</h4>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #no_project>
+  No project selected!
+</ng-template>

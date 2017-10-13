@@ -8,9 +8,11 @@ import {AppComponent} from './app.component';
 
 import {SettingsService} from './services/settings.service';
 import {SettingsGuardService} from './services/settings-guard.service';
-
+/* Views */
+import {ProjectComponent} from './views/project/project/project.component';
+import {SettingsComponent} from './settings/settings.component';
+/* Services  */
 import {AppSidebarService} from './services/app-sidebar.service';
-
 /* CoreUI components */
 import {AppHeader} from './components/app-header/app-header.component';
 import {AppSidebar} from './components/app-sidebar/app-sidebar.component';
@@ -21,16 +23,17 @@ import {AppFooter} from './components/app-footer/app-footer.component';
 import {AppSidebarFooter} from './components/app-sidebar-footer/app-sidebar-footer.component';
 import {AppBreadcrumbs} from './components/app-breadcrumbs/app-breadcrumbs.component';
 import {AppAside} from './components/app-aside/app-aside.component';
-
 /* CoreUI directive */
 import {AsideToggleDirective} from './directives/aside/aside.directive';
-import {SidebarOffCanvasCloseDirective, BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDirective, SidebarToggleDirective} from "./directives/sidebar/sidebar.directive";
+import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDirective, SidebarOffCanvasCloseDirective, SidebarToggleDirective} from "./directives/sidebar/sidebar.directive";
 
-import {SettingsComponent} from './settings/settings.component';
+
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
+
 
 const appRoutes: Routes = [
   {path: 'settings', component: SettingsComponent},
+  {path: 'project/:project', component: ProjectComponent},
   {
     path: '',
     redirectTo: '/settings',
@@ -61,7 +64,8 @@ const appRoutes: Routes = [
     AsideToggleDirective,
 
     SettingsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,

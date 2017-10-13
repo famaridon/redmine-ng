@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppSidebarService, Entry, Link } from '../services/app-sidebar.service';
 import { SettingsService } from '../services/settings.service';
-import {logger} from "codelyzer/util/logger";
 
 @Component({
   selector: 'app-settings',
@@ -10,17 +8,14 @@ import {logger} from "codelyzer/util/logger";
 })
 export class SettingsComponent implements OnInit {
 
-  private sidebarNavService: AppSidebarService;
   private settingsServcie: SettingsService;
   private apiKey: string;
 
-  constructor(settingsServcie: SettingsService, sidebarNavService: AppSidebarService) {
+  constructor(settingsServcie: SettingsService) {
     this.settingsServcie = settingsServcie;
-    this.sidebarNavService = sidebarNavService;
   }
 
   ngOnInit() {
-  console.log('Hello');
     this.apiKey = this.settingsServcie.getString('apiKey');
   }
 

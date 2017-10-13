@@ -21,7 +21,7 @@ export class Entry {
   public readonly label: string;
   id: string;
   icon: string;
-  public readonly links: Array<Link> = [];
+  link: string;
 
   constructor(id: string, label: string) {
     this.id = id;
@@ -30,7 +30,3 @@ export class Entry {
 
 }
 
-export class Link {
-  label: string;
-  href: string;
-}
