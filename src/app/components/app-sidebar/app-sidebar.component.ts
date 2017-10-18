@@ -5,21 +5,21 @@ import {AppSidebarService, Entry} from "../../services/app-sidebar.service";
   selector: 'app-sidebar',
   templateUrl: './app-sidebar.component.html'
 })
-export class AppSidebar implements OnInit {
+export class AppSidebarComponent implements OnInit {
 
-  private el: ElementRef
-  private sidebarNavService: AppSidebarService;
+  private el: ElementRef;
+  private appSidebarNavService: AppSidebarService;
   public entries: Array<Entry>;
 
-  constructor(sidebarNavService: AppSidebarService, el: ElementRef) {
-    this.sidebarNavService = sidebarNavService;
+  constructor(appSidebarNavService: AppSidebarService, el: ElementRef) {
+    this.appSidebarNavService = appSidebarNavService;
     this.el = el;
-    this.entries = this.sidebarNavService.entries;
+    this.entries = this.appSidebarNavService.entries;
   }
 
   // wait for the component to render completely
   public ngOnInit(): void {
-    var nativeElement: HTMLElement = this.el.nativeElement,
+    const nativeElement: HTMLElement = this.el.nativeElement,
       parentElement: HTMLElement = nativeElement.parentElement;
     // move all children out of the element
     while (nativeElement.firstChild) {

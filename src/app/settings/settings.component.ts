@@ -10,16 +10,19 @@ export class SettingsComponent implements OnInit {
 
   private settingsServcie: SettingsService;
   private apiKey: string;
+  private server: string;
 
   constructor(settingsServcie: SettingsService) {
     this.settingsServcie = settingsServcie;
   }
 
   ngOnInit() {
+    this.server = this.settingsServcie.getString('server');
     this.apiKey = this.settingsServcie.getString('apiKey');
   }
 
   public save(): void {
+    this.settingsServcie.setString('server', this.server);
     this.settingsServcie.setString('apiKey', this.apiKey);
 
   }
