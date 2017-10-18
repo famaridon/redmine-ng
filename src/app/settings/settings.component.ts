@@ -8,9 +8,9 @@ import { SettingsService } from '../services/settings.service';
 })
 export class SettingsComponent implements OnInit {
 
-  private settingsServcie: SettingsService;
-  private apiKey: string;
-  private server: string;
+  protected settingsServcie: SettingsService;
+  public apiKey: string;
+  public server: string;
 
   constructor(settingsServcie: SettingsService) {
     this.settingsServcie = settingsServcie;

@@ -28,3 +28,15 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Update gh-pages
+
+To get gh-pages site up to date you need to install [angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpages).
+
+Run 
+```
+ng build --prod --base-href "https://famaridon.github.io/redmine-ng/"
+angular-cli-ghpages
+```
+
+to build production site and upload it to github gh-pages branch.

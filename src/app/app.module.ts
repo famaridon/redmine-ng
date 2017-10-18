@@ -30,7 +30,7 @@ import {AppAsideComponent} from './components/app-aside/app-aside.component';
 /* CoreUI directive */
 import {AsideToggleDirective} from './directives/aside/aside.directive';
 import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDirective, SidebarOffCanvasCloseDirective, SidebarToggleDirective} from './directives/sidebar/sidebar.directive';
-
+import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav-dropdown/nav-dropdown.directive';
 
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
 
@@ -66,6 +66,9 @@ const appRoutes: Routes = [
     SidebarToggleDirective,
 
     AsideToggleDirective,
+
+    NavDropdownDirective,
+    NavDropdownToggleDirective,
 
     SettingsComponent,
     PageNotFoundComponent,
