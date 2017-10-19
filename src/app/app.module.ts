@@ -17,6 +17,11 @@ import {SettingsGuardService} from './services/settings-guard.service';
 import {AddAPIKeyHeaderInterceptor, RedmineService} from './services/redmine.service';
 import {ProjectsService} from './services/redmine/projects.service';
 import {IssuesService} from './services/redmine/issues.service';
+
+/* Pipe */
+import {NameFilterPipe} from './services/redmine/beans';
+
+
 /* CoreUI components */
 import {AppHeader} from './components/app-header/app-header.component';
 import {AppSidebarComponent} from './components/app-sidebar/app-sidebar.component';
@@ -33,6 +38,7 @@ import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDir
 import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav-dropdown/nav-dropdown.directive';
 
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
+
 
 
 const appRoutes: Routes = [
@@ -69,6 +75,8 @@ const appRoutes: Routes = [
 
     NavDropdownDirective,
     NavDropdownToggleDirective,
+
+    NameFilterPipe,
 
     SettingsComponent,
     PageNotFoundComponent,

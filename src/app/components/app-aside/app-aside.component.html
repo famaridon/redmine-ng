@@ -1,3 +1,8 @@
 <aside class="aside-menu">
-  
+  <input type="text" class="form-control" [(ngModel)]="search" placeholder="Search">
+  <ul class="list-group" *ngIf="projects">
+    <li class="list-group-item" [ngClass]="{active: selected == project}" *ngFor="let project of projects | nameFilter: search">
+      <button class="btn btn-link" (click)="select(project);">{{project.name}}</button>
+    </li>
+  </ul>
 </aside>

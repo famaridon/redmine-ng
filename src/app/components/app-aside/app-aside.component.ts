@@ -4,7 +4,8 @@ import {Project} from '../../services/redmine/beans';
 
 @Component({
   selector: 'app-aside',
-  templateUrl: './app-aside.component.html'
+  templateUrl: './app-aside.component.html',
+  styleUrls: ['./app-aside.component.css']
 })
 export class AppAsideComponent implements OnInit {
 
@@ -12,14 +13,16 @@ export class AppAsideComponent implements OnInit {
   private redmine: RedmineService;
 
   public projects: Array<Project>;
+  public selected: Project;
 
   constructor(el: ElementRef, redmine: RedmineService) {
     this.el = el;
     this.redmine = redmine;
+    this.projects = [];
   }
 
   public ngOnInit(): void {
-    var nativeElement: HTMLElement = this.el.nativeElement,
+    const nativeElement: HTMLElement = this.el.nativeElement,
       parentElement: HTMLElement = nativeElement.parentElement;
     // move all children out of the element
     while (nativeElement.firstChild) {
@@ -27,6 +30,22 @@ export class AppAsideComponent implements OnInit {
     }
     // remove the empty element(the host)
     parentElement.removeChild(nativeElement);
-    this.redmine.projects.findAll();
+    this.loadAll();
   }
+
+  public async loadAll(): Promise<void> {
+    let paginable = await this.redmine.projects.findAll(0, 100).toPromise();
+    this.projects = this.projects.concat(paginable.elements);
+    while (paginable.elements.length === 100) {
+      paginable = await this.redmine.projects.findAll(paginable.offset + paginable.elements.length, 100).toPromise();
+      this.projects = this.projects.concat(paginable.elements);
+    }
+  }
+
+  public select(selected: Project): void {
+    console.log("change project");
+    console.dir(selected);
+    this.selected = selected;
+  }
+
 }

@@ -1,3 +1,5 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
 export class Paginable<T> {
   public total_count: number;
   public offset: number;
@@ -19,4 +21,23 @@ export class Project {
   public created_on: string; // TODO : this is a date
   public updated_on: string; // TODO : this is a date
   public parent: Project;
+}
+
+
+@Pipe({
+  name: 'nameFilter'
+})
+export class NameFilterPipe implements PipeTransform {
+  transform(items: any[], searchText: string): any[] {
+    if(!items) {
+      return [];
+    }
+    if(!searchText) {
+      return items;
+    }
+    searchText = searchText.toLowerCase();
+    return items.filter( it => {
+      return it.name.toLowerCase().includes(searchText);
+    });
+  }
 }
