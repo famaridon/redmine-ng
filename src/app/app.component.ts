@@ -14,7 +14,7 @@ export class AppComponent {
     this.sidebarService = sidebarService;
     let projectEntry: Entry = this.sidebarService.addEntry('Project');
     projectEntry.icon = 'building';
-    projectEntry.link= '/project/moovapps-process-team'
+    projectEntry.link= '/project'
     let settingsEntry: Entry = this.sidebarService.addEntry('Settings');
     settingsEntry.link = '/settings';
     settingsEntry.icon = 'cogs';
