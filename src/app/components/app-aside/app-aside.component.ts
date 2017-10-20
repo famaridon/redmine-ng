@@ -43,9 +43,8 @@ export class AppAsideComponent implements OnInit {
   }
 
   public select(selected: Project): void {
-    console.log("change project");
-    console.dir(selected);
     this.selected = selected;
+    this.redmine.projects.switchWorkingProject(this.selected);
   }
 
 }

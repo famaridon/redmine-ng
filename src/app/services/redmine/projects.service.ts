@@ -6,9 +6,13 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class ProjectsService {
+
+
+  private currentProject = new Subject<Project>();
 
   private http: HttpClient
   private settings: SettingsService;
@@ -20,7 +24,13 @@ export class ProjectsService {
     this.server = this.settings.getString('server');
   }
 
-  public findAll(offset = 0 , limit = 50): Observable<Paginable<Project>> {
+  public find(id: number): Observable<Project> {
+    return this.http.get(this.server + `/projects/${id}.json`).retry(3).map((data: any) => {
+      return <Project>data.project;
+    });
+  }
+
+  public findAll(offset = 0, limit = 50): Observable<Paginable<Project>> {
     return this.http.get(this.server + `/projects.json?offset=${offset}&limit=${limit}`).retry(3).map((data: any) => {
       const paginable = new Paginable<Project>();
       paginable.total_count = data.total_count;
@@ -29,6 +39,20 @@ export class ProjectsService {
       paginable.elements = data.projects;
       return paginable;
     });
+  }
+
+  public switchWorkingProject(project: Project | number): void {
+    if (typeof project === 'number') {
+      this.find(project).subscribe((loadedProject) => {
+        this.switchWorkingProject(loadedProject);
+      });
+    } else {
+      this.currentProject.next(project);
+    }
+  }
+
+  public getWorkingProject(): Observable<Project> {
+    return this.currentProject.asObservable();
   }
 
 }

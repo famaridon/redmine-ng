@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {RedmineService} from '../../../services/redmine.service';
+import {Project} from '../../../services/redmine/beans';
 
 @Component({
   selector: 'app-project',
@@ -8,18 +10,25 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ProjectComponent implements OnInit {
 
+  public project: Project;
+  private redmine: RedmineService;
   protected route: ActivatedRoute;
-  public projectId: string;
 
-  constructor(route: ActivatedRoute) {
+  constructor(route: ActivatedRoute, redmine: RedmineService) {
     this.route = route;
-    this.route.params.subscribe( params => this.switchProject(params['project']));
+    this.redmine = redmine;
+    this.route.params.subscribe((params) => {
+      this.redmine.projects.switchWorkingProject(+params['project']);
+    });
+    this.redmine.projects.getWorkingProject().subscribe((project) => {
+      this.switchProject(project);
+    });
   }
 
   ngOnInit() {
   }
 
-  private switchProject(projectId: string) {
-    this.projectId = projectId;
+  private switchProject(project: Project) {
+    this.project = project;
   }
 }
