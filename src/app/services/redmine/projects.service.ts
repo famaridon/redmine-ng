@@ -22,6 +22,10 @@ export class ProjectsService {
     this.http = http;
     this.settings = settings;
     this.server = this.settings.getString('server');
+    const projectId = this.settings.getNumber('currentProject');
+    if (projectId) {
+      this.switchWorkingProject(projectId);
+    }
   }
 
   public find(id: number): Observable<Project> {
@@ -47,6 +51,7 @@ export class ProjectsService {
         this.switchWorkingProject(loadedProject);
       });
     } else {
+      this.settings.setNumber('currentProject', project.id);
       this.currentProject.next(project);
     }
   }
