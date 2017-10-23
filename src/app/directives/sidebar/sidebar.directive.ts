@@ -97,10 +97,21 @@ export class SidebarOffCanvasCloseDirective {
   }
 }
 
-export const SIDEBAR_TOGGLE_DIRECTIVES = [
-    SidebarToggleDirective,
-    SidebarMinimizeDirective,
-    BrandMinimizeDirective,
-    SidebarOffCanvasCloseDirective,
-    MobileSidebarToggleDirective
-];
+@Directive({
+  selector: '[appSidebarDropdownToggler]'
+})
+export class SidebarDropdownToggleDirective {
+  constructor() { }
+
+  @HostListener('click', ['$event'])
+  toggleOpen($event: MouseEvent) {
+    $event.preventDefault();
+    const element = <Element>$event.target;
+    if(element.parentElement.classList.contains('open')) {
+      element.parentElement.classList.remove('open');
+    } else {
+      element.parentElement.classList.add('open', 'active');
+    }
+
+  }
+}

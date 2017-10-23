@@ -2,8 +2,18 @@
   <app-sidebar-header></app-sidebar-header>
   <nav class="sidebar-nav">
     <ul class="nav">
-      <li *ngFor="let entry of entries;" class="nav-item">
-        <a class="nav-link" routerLinkActive="active" [routerLink]="[entry.link]"><i class="fa fa-{{entry.icon}}"></i>{{entry.label}}</a>
+      <li *ngFor="let entry of entries;" class="nav-item nav-dropdown ">
+        <a class="nav-link  nav-dropdown-toggle" appSidebarDropdownToggler routerLinkActive="active" [routerLink]="[entry.link]"><i class="fa fa-{{entry.icon}}"></i>{{entry.label}}</a>
+        <ul class="nav-dropdown-items">
+          <li *ngFor="let subentry of entry.entries;" class="nav-item">
+            <ng-container *ngIf="subentry.link;else divider">
+              <a class="nav-link" href="#"><i class="fa fa-{{subentry.icon}}" aria-hidden="true"></i>{{subentry.label}}</a>
+            </ng-container>
+            <ng-template #divider>
+              {{subentry.label}}
+            </ng-template>
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>

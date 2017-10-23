@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RedmineService} from '../../../services/redmine.service';
-import {Project} from '../../../services/redmine/beans';
+import {Project, Query} from '../../../services/redmine/beans';
+import {AppSidebarService, Entry} from '../../../services/app-sidebar.service';
 
 @Component({
   selector: 'app-project',
@@ -13,10 +14,12 @@ export class ProjectComponent implements OnInit {
   public project: Project;
   private redmine: RedmineService;
   protected route: ActivatedRoute;
+  protected sidebarService: AppSidebarService;
 
-  constructor(route: ActivatedRoute, redmine: RedmineService) {
+  constructor(sidebarService: AppSidebarService,route: ActivatedRoute, redmine: RedmineService) {
     this.route = route;
     this.redmine = redmine;
+    this.sidebarService = sidebarService;
     this.route.params.subscribe((params) => {
       this.redmine.projects.switchWorkingProject(+params['project']);
     });
@@ -30,5 +33,16 @@ export class ProjectComponent implements OnInit {
 
   private switchProject(project: Project) {
     this.project = project;
+    this.redmine.queries.findByProject(this.project.id).then((queries) => {
+      const queriesEntry = [];
+
+      queries.forEach((query) => {
+        const queryEntry = new Entry(String(query.id), query.name);
+        queryEntry.link = `/project/${this.project.id}/query/${query.id}`;
+        queriesEntry.push(queryEntry);
+      });
+
+      this.sidebarService.findEntry('project').entries = queriesEntry;
+    });
   }
 }

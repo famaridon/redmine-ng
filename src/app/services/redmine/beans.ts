@@ -8,13 +8,13 @@ export class Paginable<T> {
   public elements: Array<T>;
 }
 
-
-export class Project {
-
+export abstract class AbstractRedmineBean {
   public id: number;
-  public identifier: string;
-
   public name: string;
+}
+
+export class Project extends AbstractRedmineBean{
+  public identifier: string;
   public description: string;
   public status: number;
   public is_public: boolean;
@@ -23,6 +23,10 @@ export class Project {
   public parent: Project;
 }
 
+export class Query extends AbstractRedmineBean {
+  public is_public: boolean;
+  public project_id: number;
+}
 
 @Pipe({
   name: 'nameFilter'

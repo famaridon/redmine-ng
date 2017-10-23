@@ -7,21 +7,15 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import {Subject} from 'rxjs/Subject';
+import {AbstractRedmineService} from "./abstract.redmine.service";
 
 @Injectable()
-export class ProjectsService {
-
+export class ProjectsService extends AbstractRedmineService {
 
   private currentProject = new Subject<Project>();
 
-  private http: HttpClient
-  private settings: SettingsService;
-  private server: string;
-
   constructor(http: HttpClient, settings: SettingsService) {
-    this.http = http;
-    this.settings = settings;
-    this.server = this.settings.getString('server');
+    super(http, settings);
     const projectId = this.settings.getNumber('currentProject');
     if (projectId) {
       this.switchWorkingProject(projectId);

@@ -22,7 +22,7 @@ export class AppComponent {
 
     this.redmine.projects.getWorkingProject().subscribe((project) => {
       if (!this.projectEntry) {
-        this.projectEntry = this.sidebarService.addEntry('Project');
+        this.projectEntry = this.sidebarService.addEntry('Project', 'project');
       }
 
       this.projectEntry.icon = 'building';
@@ -30,7 +30,7 @@ export class AppComponent {
     });
 
 
-    const settingsEntry: Entry = this.sidebarService.addEntry('Settings');
+    const settingsEntry: Entry = this.sidebarService.addEntry('Settings', 'settings');
     settingsEntry.link = '/settings';
     settingsEntry.icon = 'cogs';
   }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class AppSidebarService {
@@ -8,10 +8,16 @@ export class AppSidebarService {
   constructor() {
   }
 
-  public addEntry(label: string): Entry {
-    const entry: Entry = new Entry('', label);
+  public addEntry(label: string, id?: string): Entry {
+    const entry: Entry = new Entry(id ? id : '', label);
     this.entries.push(entry);
     return entry;
+  }
+
+  public findEntry(id: string): Entry | null {
+    return this.entries.find((element) => {
+      return element.id === id;
+    });
   }
 
 }
@@ -22,6 +28,7 @@ export class Entry {
   id: string;
   icon: string;
   link: string;
+  entries: Entry[];
 
   constructor(id: string, label: string) {
     this.id = id;

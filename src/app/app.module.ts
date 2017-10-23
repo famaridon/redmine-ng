@@ -17,6 +17,7 @@ import {SettingsGuardService} from './services/settings-guard.service';
 import {AddAPIKeyHeaderInterceptor, RedmineService} from './services/redmine.service';
 import {ProjectsService} from './services/redmine/projects.service';
 import {IssuesService} from './services/redmine/issues.service';
+import {QueriesService} from './services/redmine/queries.service';
 
 /* Pipe */
 import {NameFilterPipe} from './services/redmine/beans';
@@ -34,7 +35,7 @@ import {AppBreadcrumbs} from './components/app-breadcrumbs/app-breadcrumbs.compo
 import {AppAsideComponent} from './components/app-aside/app-aside.component';
 /* CoreUI directive */
 import {AsideToggleDirective} from './directives/aside/aside.directive';
-import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDirective, SidebarOffCanvasCloseDirective, SidebarToggleDirective} from './directives/sidebar/sidebar.directive';
+import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDirective, SidebarOffCanvasCloseDirective, SidebarToggleDirective,SidebarDropdownToggleDirective} from './directives/sidebar/sidebar.directive';
 import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav-dropdown/nav-dropdown.directive';
 
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
     MobileSidebarToggleDirective,
     SidebarMinimizeDirective,
     SidebarToggleDirective,
+    SidebarDropdownToggleDirective,
 
     AsideToggleDirective,
 
@@ -98,6 +100,7 @@ const appRoutes: Routes = [
     SettingsGuardService,
     RedmineService,
     ProjectsService,
+    QueriesService,
     IssuesService,
     [{
       provide: HTTP_INTERCEPTORS,
