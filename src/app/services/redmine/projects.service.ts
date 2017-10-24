@@ -6,13 +6,15 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
-import {Subject} from 'rxjs/Subject';
-import {AbstractRedmineService} from "./abstract.redmine.service";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {AbstractRedmineService} from './abstract.redmine.service';
+
 
 @Injectable()
 export class ProjectsService extends AbstractRedmineService {
 
-  private currentProject = new Subject<Project>();
+  private currentProject: BehaviorSubject<Project> = new BehaviorSubject<Project>(null);
+  private currentLoadedProject: Project ;
 
   constructor(http: HttpClient, settings: SettingsService) {
     super(http, settings);
@@ -46,6 +48,7 @@ export class ProjectsService extends AbstractRedmineService {
       });
     } else {
       this.settings.setNumber('currentProject', project.id);
+      this.currentLoadedProject = project;
       this.currentProject.next(project);
     }
   }

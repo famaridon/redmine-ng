@@ -47,7 +47,7 @@ const appRoutes: Routes = [
   {path: 'project/:project', component: ProjectComponent},
   {
     path: '',
-    redirectTo: '/settings',
+    redirectTo: 'project/last',
     pathMatch: 'full'
   },
   {path: '**', canActivate: [SettingsGuardService], component: PageNotFoundComponent}

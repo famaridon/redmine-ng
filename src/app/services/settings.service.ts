@@ -41,7 +41,7 @@ export class SettingsService {
   }
 
   public getNumber(key: string): number | null {
-    return <number | null>this.getItem(key);
+    return <number | null>+this.getItem(key);
   }
 
   public getObject(key: string): object | null {
@@ -55,6 +55,9 @@ export class SettingsService {
       value = JSON.parse(loadedValue);
     } catch (e) {
 
+    }
+    if (loadedValue === 'undefined') {
+      return null;
     }
     return loadedValue;
   }

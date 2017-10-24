@@ -21,12 +21,14 @@ export class AppComponent {
 
 
     this.redmine.projects.getWorkingProject().subscribe((project) => {
-      if (!this.projectEntry) {
-        this.projectEntry = this.sidebarService.addEntry('Project', 'project');
-      }
+      if(project) {
+        if (!this.projectEntry) {
+          this.projectEntry = this.sidebarService.addEntry('Project', 'project');
+        }
 
-      this.projectEntry.icon = 'building';
-      this.projectEntry.link = `/project/${project.id}`;
+        this.projectEntry.icon = 'building';
+        this.projectEntry.link = `/project/${project.id}`;
+      }
     });
 
 
