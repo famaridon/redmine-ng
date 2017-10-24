@@ -8,7 +8,7 @@ import {Project} from '../../services/redmine/beans';
 })
 export class AppHeaderComponent implements OnInit {
 
-  private project: Project;
+  public project: Project;
 
   constructor(private el: ElementRef, private redmine: RedmineService) {
     this.project = new Project();

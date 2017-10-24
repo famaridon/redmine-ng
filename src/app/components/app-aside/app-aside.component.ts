@@ -14,6 +14,7 @@ export class AppAsideComponent implements OnInit {
 
   public projects: Array<Project>;
   public selected: Project;
+  public search: string;
 
   constructor(el: ElementRef, redmine: RedmineService) {
     this.el = el;
