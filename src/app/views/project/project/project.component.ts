@@ -52,7 +52,7 @@ export class ProjectComponent implements OnInit {
 
       queries.forEach((query) => {
         const queryEntry = new Entry(String(query.id), query.name);
-        queryEntry.link = `/project/${this.project.id}/query/${query.id}`;
+        queryEntry.link = `/project/${this.project.id}/issues/${query.id}`;
         queriesEntry.push(queryEntry);
       });
 

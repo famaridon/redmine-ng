@@ -7,8 +7,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 /* Components */
 import {AppComponent} from './app.component';
+import {RedmineIssuesComponent} from './component/redmine-issues/redmine-issues.component';
 /* Views */
 import {ProjectComponent} from './views/project/project/project.component';
+import {ProjectQueryIssuesComponent} from './views/project/issues/issues.component';
 import {SettingsComponent} from './settings/settings.component';
 /* Services  */
 import {AppSidebarService} from './services/app-sidebar.service';
@@ -18,11 +20,8 @@ import {AddAPIKeyHeaderInterceptor, RedmineService} from './services/redmine.ser
 import {ProjectsService} from './services/redmine/projects.service';
 import {IssuesService} from './services/redmine/issues.service';
 import {QueriesService} from './services/redmine/queries.service';
-
 /* Pipe */
 import {NameFilterPipe} from './services/redmine/beans';
-
-
 /* CoreUI components */
 import {AppHeaderComponent} from './components/app-header/app-header.component';
 import {AppSidebarComponent} from './components/app-sidebar/app-sidebar.component';
@@ -35,16 +34,20 @@ import {AppBreadcrumbs} from './components/app-breadcrumbs/app-breadcrumbs.compo
 import {AppAsideComponent} from './components/app-aside/app-aside.component';
 /* CoreUI directive */
 import {AsideToggleDirective} from './directives/aside/aside.directive';
-import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarMinimizeDirective, SidebarOffCanvasCloseDirective, SidebarToggleDirective,SidebarDropdownToggleDirective} from './directives/sidebar/sidebar.directive';
+import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarDropdownToggleDirective, SidebarMinimizeDirective, SidebarOffCanvasCloseDirective, SidebarToggleDirective} from './directives/sidebar/sidebar.directive';
 import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav-dropdown/nav-dropdown.directive';
 
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
 
 
-
 const appRoutes: Routes = [
   {path: 'settings', component: SettingsComponent},
-  {path: 'project/:project', component: ProjectComponent},
+  {
+    path: 'project/:project', component: ProjectComponent,
+    children: [
+      {path: 'issues/:query', component: ProjectQueryIssuesComponent}
+    ]
+  },
   {
     path: '',
     redirectTo: 'project/last',
@@ -82,7 +85,9 @@ const appRoutes: Routes = [
 
     SettingsComponent,
     PageNotFoundComponent,
-    ProjectComponent
+    ProjectComponent,
+    RedmineIssuesComponent,
+    ProjectQueryIssuesComponent
   ],
   imports: [
     BrowserModule,
