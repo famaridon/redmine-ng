@@ -24,7 +24,7 @@ import {NameFilterPipe} from './services/redmine/beans';
 
 
 /* CoreUI components */
-import {AppHeader} from './components/app-header/app-header.component';
+import {AppHeaderComponent} from './components/app-header/app-header.component';
 import {AppSidebarComponent} from './components/app-sidebar/app-sidebar.component';
 import {AppSidebarHeader} from './components/app-sidebar-header/app-sidebar-header.component';
 import {AppSidebarForm} from './components/app-sidebar-form/app-sidebar-form.component';
@@ -56,7 +56,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AppHeader,
+    AppHeaderComponent,
     AppSidebarComponent,
     AppSidebarHeader,
     AppSidebarForm,
