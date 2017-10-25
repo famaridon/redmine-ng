@@ -1,14 +1,1 @@
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Subject</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let issue of issues;">
-    <th scope="row">{{issue.id}}</th>
-    <td>{{issue.subject}}</td>
-  </tr>
-  </tbody>
-</table>
+<app-redmine-issue-tree-table [tree]="tree"></app-redmine-issue-tree-table>

@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 export class Paginable<T> {
   public total_count: number;
@@ -13,7 +13,7 @@ export abstract class AbstractRedmineBean {
   public name: string;
 }
 
-export class Project extends AbstractRedmineBean{
+export class Project extends AbstractRedmineBean {
   public identifier: string;
   public description: string;
   public status: number;
@@ -28,19 +28,67 @@ export class Query extends AbstractRedmineBean {
   public project_id: number;
 }
 
+export class Issue extends AbstractRedmineBean {
+
+  public project: Project;
+  public tracker: Tracker;
+  public status: Status;
+  public priority: Priority;
+  public author: User;
+  public category: Category;
+  public fixed_version: Version;
+  public parent: Issue;
+  public subject: string;
+  public description: string;
+  public start_date: string;
+  public done_ratio: number;
+  public custom_fields: CustomField[];
+  public created_on: string;
+  public updated_on: string;
+}
+
+export class CustomField extends AbstractRedmineBean {
+  public value: string;
+}
+
+export class User extends AbstractRedmineBean {
+
+}
+
+export class Tracker extends AbstractRedmineBean {
+
+}
+
+export class Status extends AbstractRedmineBean {
+
+}
+
+export class Priority extends AbstractRedmineBean {
+
+}
+
+export class Category extends AbstractRedmineBean {
+
+}
+
+export class Version extends AbstractRedmineBean {
+
+}
+
+
 @Pipe({
   name: 'nameFilter'
 })
 export class NameFilterPipe implements PipeTransform {
   transform(items: any[], searchText: string): any[] {
-    if(!items) {
+    if (!items) {
       return [];
     }
-    if(!searchText) {
+    if (!searchText) {
       return items;
     }
     searchText = searchText.toLowerCase();
-    return items.filter( it => {
+    return items.filter(it => {
       return it.name.toLowerCase().includes(searchText);
     });
   }

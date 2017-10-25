@@ -2,6 +2,5 @@
   <button class="navbar-toggler d-lg-none" type="button" appMobileSidebarToggler>&#9776;</button>
   <a class="navbar-brand d-md-down-none" href="#"></a>
   <button class="navbar-toggler d-md-down-none" type="button" appSidebarToggler>&#9776;</button>
-  <h2 class="m-auto"><ng-template *ngIf="project">{{project.name}}</ng-template> <button class="navbar-toggler" type="button" appAsideMenuToggler><i class="fa fa-exchange" aria-hidden="true"></i></button></h2>
-
+  <h2 class="m-auto"><span *ngIf="project">{{project.name}}</span> <button class="navbar-toggler" type="button" appAsideMenuToggler><i class="fa fa-exchange" aria-hidden="true"></i></button></h2>
 </header>

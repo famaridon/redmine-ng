@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AbstractRedmineService} from './abstract.redmine.service';
 import {SettingsService} from '../settings.service';
 import {HttpClient} from '@angular/common/http';
-import {Paginable, Query} from './beans';
+import {Issue, Paginable} from './beans';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
@@ -12,9 +12,15 @@ export class IssuesService extends AbstractRedmineService {
     super(http, settings);
   }
 
-  public findByQuery(project: number, query: number, offset = 0, limit = 50): Observable<Paginable<any>> {
-    return this.http.get(this.server + `/issues.json?query_id=${query}&project_id=${project}&offset=${offset}&limit=${limit}`).retry(3).map((data: any) => {
-      const paginable = new Paginable<Query>();
+  public findByQuery(query: number, project?: number, offset = 0, limit = 50): Observable<Paginable<Issue>> {
+    let url = this.server;
+    url += `/issues.json?query_id=${query}`;
+    if (project) {
+      url += `&project_id=${project}`;
+    }
+    url += `&offset=${offset}&limit=${limit}`;
+    return this.http.get(url).retry(3).map((data: any) => {
+      const paginable = new Paginable<Issue>();
       paginable.total_count = data.total_count;
       paginable.offset = data.offset;
       paginable.limit = data.limit;

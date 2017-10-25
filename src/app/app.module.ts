@@ -38,6 +38,8 @@ import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarDropdownTog
 import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav-dropdown/nav-dropdown.directive';
 
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
+import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-table/redmine-issue-tree-table.component';
+import {RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
 
 
 const appRoutes: Routes = [
@@ -87,7 +89,9 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     ProjectComponent,
     RedmineIssuesComponent,
-    ProjectQueryIssuesComponent
+    ProjectQueryIssuesComponent,
+    RedmineIssueComponent,
+    RedmineIssueTreeTableComponent
   ],
   imports: [
     BrowserModule,

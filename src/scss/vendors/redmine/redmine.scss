@@ -1,0 +1,42 @@
+.redmine-subject{
+  max-width: 500px;
+}
+
+.redmine-priority i {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.redmine-priority-3:before {
+  @extend .text-secondary;
+  font-size: $font-size-lg;
+  content: "\f2cb";
+}
+
+.redmine-priority-4:before {
+  @extend .text-success;
+  font-size: $font-size-lg;
+  content: "\f2ca";
+}
+
+.redmine-priority-5:before {
+  @extend .text-info;
+  font-size: $font-size-lg;
+  content: "\f2c9";
+}
+
+.redmine-priority-6:before {
+  @extend .text-warning;
+  font-size: $font-size-lg;
+  content: "\f2c8";
+}
+
+.redmine-priority-7:before {
+  @extend .text-danger;
+  font-size: $font-size-lg;
+  content: "\f2c7";
+}

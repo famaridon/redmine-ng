@@ -1,0 +1,13 @@
+<th scope="row" class="level-{{level}}">{{node.element.id}}</th>
+<td class="redmine-subject">{{node.element.subject}}</td>
+<td class="redmine-status redmine-status-{{node.element.status.id}}">{{node.element.status.name}}</td>
+<td class="redmine-priority">
+  <i class="redmine-priority-{{node.element.priority.id}}"></i>
+</td>
+<td class="redmine-user">{{node.element.author.name}}</td>
+<td class="redmine-done_ratio">
+  <div class="progress">
+    <div class="progress-bar w-{{node.element.done_ratio}}" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</td>
+

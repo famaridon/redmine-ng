@@ -1,0 +1,15 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Subject</th>
+    <th scope="col">Status</th>
+    <th scope="col">Priority</th>
+    <th scope="col">Assignee</th>
+    <th scope="col">% Done</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr app-redmine-issue *ngFor="let node of tree;" [node]="node" [level]="0"></tr>
+  </tbody>
+</table>
