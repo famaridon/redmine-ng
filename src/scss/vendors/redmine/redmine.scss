@@ -40,3 +40,10 @@
   font-size: $font-size-lg;
   content: "\f2c7";
 }
+
+@for $i from 1 through 10 {
+  .tt-level-#{$i} > th {
+    padding-left: $i+1 * 1em;
+  }
+}
+

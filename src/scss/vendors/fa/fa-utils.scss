@@ -1,0 +1,22 @@
+$fa-base-font-size: 1em;
+$fa-base-width: 12px;
+$fa-base-height: 14px;
+
+.fa.fa-empty {
+  display: inline-block;
+  width: $fa-base-width;
+  height: $fa-base-height;
+  @for $i from 2 through 6 {
+    .fa-#{$i} {
+      width: $fa-base-width * $i;
+      height: $fa-base-height * $i;
+    }
+  }
+}
+
+@for $i from 2 through 6 {
+  .fa-#{$i} {
+    font-size: $fa-base-font-size * $i;
+  }
+}
+

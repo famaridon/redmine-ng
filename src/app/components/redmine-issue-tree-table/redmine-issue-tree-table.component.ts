@@ -25,7 +25,7 @@ export class RedmineIssueTreeTableComponent implements OnInit, OnChanges {
 export class Node<T> {
 
   public element: T;
-  public children: T[];
+  public children: Node<T>[];
 
   constructor(element: T) {
     this.element = element;
