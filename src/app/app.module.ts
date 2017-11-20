@@ -20,8 +20,11 @@ import {AddAPIKeyHeaderInterceptor, RedmineService} from './services/redmine.ser
 import {ProjectsService} from './services/redmine/projects.service';
 import {IssuesService} from './services/redmine/issues.service';
 import {QueriesService} from './services/redmine/queries.service';
+import {UsersService} from './services/redmine/users.service';
 /* Pipe */
 import {NameFilterPipe} from './services/redmine/beans';
+/* Gravatar */
+import {GravatarModule} from 'ng2-gravatar-directive';
 /* CoreUI components */
 import {AppHeaderComponent} from './components/app-header/app-header.component';
 import {AppSidebarComponent} from './components/app-sidebar/app-sidebar.component';
@@ -98,6 +101,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     HttpClientModule,
+    GravatarModule,
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: false} // <-- debugging purposes only
@@ -110,6 +114,7 @@ const appRoutes: Routes = [
     RedmineService,
     ProjectsService,
     QueriesService,
+    UsersService,
     IssuesService,
     [{
       provide: HTTP_INTERCEPTORS,

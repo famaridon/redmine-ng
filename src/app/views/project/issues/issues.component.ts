@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RedmineService} from '../../../services/redmine.service';
 import {Subscription} from 'rxjs/Subscription';
@@ -11,7 +11,7 @@ import {Node} from '../../../components/redmine-issue-tree-table/redmine-issue-t
   templateUrl: './issues.component.html',
   styleUrls: ['./issues.component.css']
 })
-export class ProjectQueryIssuesComponent implements OnInit, OnDestroy {
+export class ProjectQueryIssuesComponent implements OnInit, OnDestroy, OnChanges {
 
   public tree: Array<Node<Issue>> = [];
   private flatTree: Array<Node<Issue>> = [];
@@ -29,6 +29,9 @@ export class ProjectQueryIssuesComponent implements OnInit, OnDestroy {
         this.loadIssues(query, project);
       });
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
   }
 
   private loadIssues(query: number, project: number) {

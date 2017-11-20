@@ -25,13 +25,13 @@ export class ProjectsService extends AbstractRedmineService {
   }
 
   public find(id: number): Observable<Project> {
-    return this.http.get(this.server + `/projects/${id}.json`).retry(3).map((data: any) => {
+    return this.http.get(this.server + `/projects/${id}`).retry(3).map((data: any) => {
       return <Project>data.project;
     });
   }
 
   public findAll(offset = 0, limit = 50): Observable<Paginable<Project>> {
-    return this.http.get(this.server + `/projects.json?offset=${offset}&limit=${limit}`).retry(3).map((data: any) => {
+    return this.http.get(this.server + `/projects?offset=${offset}&limit=${limit}`).retry(3).map((data: any) => {
       const paginable = new Paginable<Project>();
       paginable.total_count = data.total_count;
       paginable.offset = data.offset;

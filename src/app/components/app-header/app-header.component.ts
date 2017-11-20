@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {RedmineService} from '../../services/redmine.service';
-import {Project} from '../../services/redmine/beans';
+import {Project, User} from '../../services/redmine/beans';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +9,13 @@ import {Project} from '../../services/redmine/beans';
 export class AppHeaderComponent implements OnInit {
 
   public project: Project;
+  public loggedOnUser: User;
 
   constructor(private el: ElementRef, private redmine: RedmineService) {
     this.project = new Project();
     this.project.name = 'Select a project.';
+    this.loggedOnUser = new User();
+    this.loggedOnUser.mail = 'anonymous@gmail.com';
   }
 
   ngOnInit(): void {
@@ -27,6 +30,9 @@ export class AppHeaderComponent implements OnInit {
 
     this.redmine.projects.getWorkingProject().subscribe((project) => {
       this.project = project;
+    });
+    this.redmine.users.findLoggedOnUser().subscribe((user) => {
+      this.loggedOnUser = user;
     });
   }
 }

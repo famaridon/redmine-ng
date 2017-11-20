@@ -14,7 +14,7 @@ export class IssuesService extends AbstractRedmineService {
 
   public findByQuery(query: number, project?: number, offset = 0, limit = 50): Observable<Paginable<Issue>> {
     let url = this.server;
-    url += `/issues.json?query_id=${query}`;
+    url += `/issues?query_id=${query}`;
     if (project) {
       url += `&project_id=${project}`;
     }

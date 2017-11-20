@@ -5,6 +5,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/co
 import {Observable} from 'rxjs/Observable';
 import {SettingsService} from "./settings.service";
 import {QueriesService} from "./redmine/queries.service";
+import {UsersService} from "./redmine/users.service";
 
 /**
  * this is simply a service aggregator
@@ -15,7 +16,8 @@ export class RedmineService {
   constructor(private settings: SettingsService,
               public projects: ProjectsService,
               public issues: IssuesService,
-              public queries: QueriesService) {
+              public queries: QueriesService,
+              public users: UsersService) {
   }
 
 }

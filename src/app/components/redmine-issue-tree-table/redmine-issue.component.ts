@@ -3,7 +3,7 @@ import {Issue} from '../../services/redmine/beans';
 import {Node} from './redmine-issue-tree-table.component';
 
 @Component({
-  selector: 'app-redmine-issue',
+  selector: 'app-redmine-issue,[app-redmine-issue]',
   templateUrl: './redmine-issue.component.html',
   styleUrls: ['./redmine-issue.component.css']
 })
@@ -18,14 +18,17 @@ export class RedmineIssueComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const nativeElement: HTMLElement = this.el.nativeElement,
-      parentElement: HTMLElement = nativeElement.parentElement;
-    // move all children out of the element
-    while (nativeElement.firstChild) {
-      parentElement.insertBefore(nativeElement.firstChild, nativeElement);
+    const nativeElement: HTMLElement = this.el.nativeElement;
+    const parentElement: HTMLElement = nativeElement.parentElement;
+
+    if ( parentElement.tagName === 'TR' ) { // my parent is a tr i move to table
+      parentElement.removeChild(nativeElement);
+      parentElement.parentElement.insertBefore(nativeElement, parentElement.nextSibling);
     }
-    // remove the empty element(the host)
-    parentElement.removeChild(nativeElement);
+
+    nativeElement.classList.add(`tt-level-${this.level}`);
+    nativeElement.setAttribute('data-rm-status', this.node.element.status.id.toString());
+    nativeElement.setAttribute('data-rm-priority', this.node.element.priority.id.toString());
   }
 
 }
@@ -34,7 +37,8 @@ export class RedmineIssueComponent implements OnInit {
   selector: '[appNodeExpander]'
 })
 export class SidebarToggleDirective {
-  constructor() { }
+  constructor() {
+  }
 
   @HostListener('click', ['$event'])
   toggleOpen($event: any) {

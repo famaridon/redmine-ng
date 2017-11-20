@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Issue} from '../../services/redmine/beans';
 
 @Component({
@@ -11,14 +11,13 @@ export class RedmineIssueTreeTableComponent implements OnInit, OnChanges {
   @Input()
   public tree: Node<Issue>[];
 
-  constructor() {
+  constructor(private ref: ElementRef) {
   }
 
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.dir(changes);
   }
 }
 

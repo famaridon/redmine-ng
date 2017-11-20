@@ -52,7 +52,14 @@ export class CustomField extends AbstractRedmineBean {
 }
 
 export class User extends AbstractRedmineBean {
-
+  public login: string;
+  public firstname: string;
+  public lastname: string;
+  public mail: string;
+  public created_on: string;
+  public last_login_on: string;
+  public api_key: string;
+  public custom_fields: CustomField[];
 }
 
 export class Tracker extends AbstractRedmineBean {

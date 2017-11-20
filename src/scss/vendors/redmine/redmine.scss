@@ -42,7 +42,7 @@
 }
 
 @for $i from 1 through 10 {
-  .tt-level-#{$i} > th {
+  .tt-level-#{$i} > td:first-of-type {
     padding-left: $i+1 * 1em;
   }
 }
