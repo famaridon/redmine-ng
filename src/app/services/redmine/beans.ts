@@ -41,6 +41,7 @@ export class Issue extends AbstractRedmineBean {
   public subject: string;
   public description: string;
   public start_date: string;
+  public due_date: string;
   public done_ratio: number;
   public custom_fields: CustomField[];
   public created_on: string;

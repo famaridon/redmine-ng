@@ -1,5 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {Status} from '../../../services/redmine/beans';
+import {RedmineService} from '../../../services/redmine.service';
 
 @Component({
   selector: 'app-status',
@@ -12,7 +13,7 @@ export class StatusComponent implements OnInit {
   @Output()
   public status: Status;
 
-  constructor() {
+  constructor(private redmine: RedmineService) {
   }
 
   ngOnInit() {

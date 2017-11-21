@@ -7,13 +7,49 @@
         <div class="form-group col-sm-12 col-md-6 row">
           <label for="status" class="col-sm-2 col-form-label">Status</label>
           <div class="col-sm-10">
-            <app-status [status]="issue.status"></app-status>
+            <app-status id="status" [status]="issue.status"></app-status>
           </div>
         </div>
         <div class="form-group col-sm-12 col-md-6 row">
-          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <label for="start_date" class="col-sm-2 col-form-label">Start date</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            <input type="date" class="form-control" id="start_date" value="{{issue.start_date}}">
+          </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 row">
+          <label for="start_date" class="col-sm-2 col-form-label">Priority</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="start_date" value="TODO">
+          </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 row">
+          <label for="due_date" class="col-sm-2 col-form-label">Due date</label>
+          <div class="col-sm-10">
+            <input type="date" class="form-control" id="due_date" value="{{issue.due_date}}">
+          </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 row">
+          <label for="Assignee" class="col-sm-2 col-form-label">Assignee</label>
+          <div class="col-sm-10">
+            TODO user input
+          </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 row">
+          <label for="done_ration" class="col-sm-2 col-form-label">% Done</label>
+          <div class="col-sm-10">
+            <progress id="done_ration" [value]="issue.done_ratio"></progress>
+          </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 row">
+          <label for="category" class="col-sm-2 col-form-label">Category</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="category" value="{{issue.category.name}}">
+          </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6 row">
+          <label for="fixed_version" class="col-sm-2 col-form-label">Target version</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="fixed_version" value="{{issue.fixed_version.name}}">
           </div>
         </div>
       </div>
