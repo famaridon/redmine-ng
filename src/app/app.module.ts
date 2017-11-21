@@ -47,6 +47,8 @@ import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-ta
 import {RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
 import { TrackerComponent } from './components/redmine/tracker/tracker.component';
 import { IssueIdComponent } from './components/redmine/issue-id/issue-id.component';
+import { AppLoaderComponent } from './components/app-loader/app-loader.component';
+import { StatusComponent } from './components/redmine/status/status.component';
 
 
 
@@ -103,7 +105,9 @@ const appRoutes: Routes = [
     RedmineIssueTreeTableComponent,
     IssueComponent,
     TrackerComponent,
-    IssueIdComponent
+    IssueIdComponent,
+    AppLoaderComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,

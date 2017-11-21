@@ -13,7 +13,7 @@ import {Node} from '../../../components/redmine-issue-tree-table/redmine-issue-t
 })
 export class ProjectQueryIssuesComponent implements OnInit, OnDestroy, OnChanges {
 
-  public tree: Array<Node<Issue>> = [];
+  public tree: Array<Node<Issue>>;
   private flatTree: Array<Node<Issue>> = [];
   public projectSubscription: Subscription;
   public querySubscription: Subscription;
