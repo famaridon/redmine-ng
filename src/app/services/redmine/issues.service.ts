@@ -29,4 +29,10 @@ export class IssuesService extends AbstractRedmineService {
     });
   }
 
+  public find(id: number): Observable<Issue> {
+    return this.http.get(this.server + `/issues/${id}`).retry(3).map((data: any) => {
+      return <Issue>data.issue;
+    });
+  }
+
 }

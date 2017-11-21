@@ -12,6 +12,8 @@ import {RedmineIssuesComponent} from './component/redmine-issues/redmine-issues.
 import {ProjectComponent} from './views/project/project/project.component';
 import {ProjectQueryIssuesComponent} from './views/project/issues/issues.component';
 import {SettingsComponent} from './settings/settings.component';
+import { IssueComponent } from './views/issue/issue.component';
+
 /* Services  */
 import {AppSidebarService} from './services/app-sidebar.service';
 import {SettingsService} from './services/settings.service';
@@ -43,6 +45,9 @@ import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
 import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-table/redmine-issue-tree-table.component';
 import {RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
+import { TrackerComponent } from './components/redmine/tracker/tracker.component';
+import { IssueIdComponent } from './components/redmine/issue-id/issue-id.component';
+
 
 
 const appRoutes: Routes = [
@@ -53,6 +58,7 @@ const appRoutes: Routes = [
       {path: 'issues/:query', component: ProjectQueryIssuesComponent}
     ]
   },
+  {path: 'issue/:id', component: IssueComponent},
   {
     path: '',
     redirectTo: 'project/last',
@@ -94,7 +100,10 @@ const appRoutes: Routes = [
     RedmineIssuesComponent,
     ProjectQueryIssuesComponent,
     RedmineIssueComponent,
-    RedmineIssueTreeTableComponent
+    RedmineIssueTreeTableComponent,
+    IssueComponent,
+    TrackerComponent,
+    IssueIdComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,26 @@
+<ng-container *ngIf="issue;else loading">
+  <h2><app-tracker [tracker]="issue.tracker"> </app-tracker> <app-issue-id [issue]="issue"></app-issue-id></h2>
+  <div class="card mt-4">
+    <div class="card-header"><h5>{{issue.subject}}</h5></div>
+    <div class="card-body">
+      <div class="form">
+        <div class="form-group row">
+          <label for="status" class="col-sm-2 col-form-label">Status</label>
+          <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="status" [(ngModel)]="issue.status.name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  TODO loader
+</ng-template>

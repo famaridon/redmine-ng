@@ -1,5 +1,5 @@
 <th scope="row">
-  <a [routerLink]="'/issue/'+node.element.id">#{{node.element.id}}</a>
+  <app-issue-id [issue]="node.element"></app-issue-id>
 </th>
 <td class="redmine-subject">
   <span class="fa mr-1 expender" [ngClass]="{'fa-plus-circle': node.children.length > 0, 'fa-empty': node.children.length === 0}"></span>{{node.element.subject}}
