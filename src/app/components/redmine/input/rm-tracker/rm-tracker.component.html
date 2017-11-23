@@ -1,0 +1,6 @@
+<ng-container [ngSwitch]="mode">
+  <select *ngSwitchCase="'write'" [(ngModel)]="issue.tracker" (ngModelChange)="valueChange($event)" appAutofocus (blur)="switchMode()" [compareWith]="compareFn" >
+    <option *ngFor="let tracker of availableTrackers"  [ngValue]="tracker">{{tracker.name}}</option>
+  </select>
+  <span *ngSwitchCase="'read'" (click)="switchMode()" >{{issue.tracker.name}}</span>
+</ng-container>

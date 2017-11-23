@@ -18,8 +18,8 @@ export class Project extends AbstractRedmineBean {
   public description: string;
   public status: number;
   public is_public: boolean;
-  public created_on: string; // TODO : this is a date
-  public updated_on: string; // TODO : this is a date
+  public created_on: Date; // TODO : this is a date
+  public updated_on: Date; // TODO : this is a date
   public parent: Project;
 }
 
@@ -40,8 +40,8 @@ export class Issue extends AbstractRedmineBean {
   public parent: Issue;
   public subject: string;
   public description: string;
-  public start_date: string;
-  public due_date: string;
+  public start_date: Date;
+  public due_date: Date;
   public done_ratio: number;
   public custom_fields: CustomField[];
   public created_on: string;

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Issue} from '../../services/redmine/beans';
 
 @Component({
@@ -25,10 +25,15 @@ export class Node<T> {
 
   public element: T;
   public children: Node<T>[];
+  public status: 'expended' | 'colapsed'
 
   constructor(element: T) {
     this.element = element;
     this.children = [];
+  }
+
+  public switchMode() {
+    this.status = this.status === 'expended' ? 'colapsed' : 'expended';
   }
 
 }

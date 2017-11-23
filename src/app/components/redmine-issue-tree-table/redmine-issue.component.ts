@@ -21,12 +21,13 @@ export class RedmineIssueComponent implements OnInit {
     const nativeElement: HTMLElement = this.el.nativeElement;
     const parentElement: HTMLElement = nativeElement.parentElement;
 
-    if ( parentElement.tagName === 'TR' ) { // my parent is a tr i move to table
+    if (parentElement.tagName === 'TR') { // my parent is a tr i move to table
       parentElement.removeChild(nativeElement);
       parentElement.parentElement.insertBefore(nativeElement, parentElement.nextSibling);
     }
 
     nativeElement.classList.add(`tt-level-${this.level}`);
+    nativeElement.setAttribute('data-tt-parent', this.node.element.id.toString());
     nativeElement.setAttribute('data-rm-status', this.node.element.status.id.toString());
     nativeElement.setAttribute('data-rm-priority', this.node.element.priority.id.toString());
   }
@@ -36,13 +37,15 @@ export class RedmineIssueComponent implements OnInit {
 @Directive({
   selector: '[appNodeExpander]'
 })
-export class SidebarToggleDirective {
+export class AppNodeExpanderDirective {
+  @Input()
+  public nodeExpanderNode: Node<any>;
+
   constructor() {
   }
 
   @HostListener('click', ['$event'])
-  toggleOpen($event: any) {
-    $event.preventDefault();
-    document.querySelector('body').classList.toggle('sidebar-hidden');
+  onClick($event) {
+    this.nodeExpanderNode.switchMode();
   }
 }

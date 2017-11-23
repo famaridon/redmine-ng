@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SettingsService} from '../settings.service';
-import {Paginable, Project} from './beans';
+import {Paginable, Project, Tracker} from './beans';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
@@ -55,6 +55,12 @@ export class ProjectsService extends AbstractRedmineService {
 
   public getWorkingProject(): Observable<Project> {
     return this.currentProject.asObservable();
+  }
+
+  public getAvailableTrackers(id: number): Observable<Tracker[]> {
+    return this.http.get(this.server + `/projects/${id}/trackers`).retry(3).map((data: any) => {
+      return <Tracker[]>data.trackers;
+    });
   }
 
 }

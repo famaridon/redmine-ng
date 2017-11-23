@@ -2,9 +2,9 @@
   <app-issue-id [issue]="node.element"></app-issue-id>
 </th>
 <td class="redmine-subject">
-  <span class="fa mr-1 expender" [ngClass]="{'fa-plus-circle': node.children.length > 0, 'fa-empty': node.children.length === 0}"></span>{{node.element.subject}}
+  <button type="button" class="fa mr-1 expender btn btn-link" appNodeExpander [(nodeExpanderNode)]="node" [ngClass]="{'fa-plus-circle': node.children.length > 0, 'fa-empty': node.children.length === 0}"></button>{{node.element.subject}}
 </td>
-<td class="redmine-status redmine-status-{{node.element.status.id}}">{{node.element.status.name}}</td>
+<td class="redmine-status redmine-status-{{node.element.status.id}}"><app-rm-status [issue]="node.element"></app-rm-status></td>
 <td class="redmine-priority">
   <i class="redmine-priority-{{node.element.priority.id}}"></i>
 </td>
@@ -16,4 +16,7 @@
 </td>
 
 <!-- append children -->
-<tr app-redmine-issue *ngFor="let child of node.children;" [node]="child" [level]="level+1"></tr>
+<ng-template *ngIf="node.status === 'expended'">
+  <tr app-redmine-issue *ngFor="let child of node.children;" [node]="child" [level]="level+1"></tr>
+</ng-template>
+

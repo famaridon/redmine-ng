@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AbstractRedmineService} from './abstract.redmine.service';
 import {SettingsService} from '../settings.service';
 import {HttpClient} from '@angular/common/http';
-import {Issue, Paginable} from './beans';
+import {Issue, Paginable, Status} from './beans';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
@@ -31,8 +31,19 @@ export class IssuesService extends AbstractRedmineService {
 
   public find(id: number): Observable<Issue> {
     return this.http.get(this.server + `/issues/${id}`).retry(3).map((data: any) => {
-      return <Issue>data.issue;
+      const issue = new Issue();
+      Object.assign(issue, data.issue);
+      // issue.start_date = new Date(issue.start_date);
+      // issue.due_date = new Date(issue.due_date);
+      issue.start_date = new Date();
+      issue.due_date = new Date();
+      return issue;
     });
   }
 
+  public getAvailableStatus(id: number): Observable<Status[]> {
+    return this.http.get(this.server + `/issues/${id}/status`).retry(3).map((data: any) => {
+      return <Status[]>data.status;
+    });
+  }
 }

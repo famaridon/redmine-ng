@@ -8,12 +8,17 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 /* Components */
 import {AppComponent} from './app.component';
 import {RedmineIssuesComponent} from './component/redmine-issues/redmine-issues.component';
+import {IssueIdComponent} from './components/redmine/issue-id/issue-id.component';
+import {RmTrackerComponent} from './components/redmine/input/rm-tracker/rm-tracker.component';
+import {RMStatusComponent} from './components/redmine/input/rm-status/rm-status.component';
+import {RmProprityComponent} from './components/redmine/input/rm-proprity/rm-proprity.component';
+import {AppLoaderComponent} from './components/app-loader/app-loader.component';
+
 /* Views */
 import {ProjectComponent} from './views/project/project/project.component';
 import {ProjectQueryIssuesComponent} from './views/project/issues/issues.component';
 import {SettingsComponent} from './settings/settings.component';
-import { IssueComponent } from './views/issue/issue.component';
-
+import {IssueComponent} from './views/issue/issue.component';
 /* Services  */
 import {AppSidebarService} from './services/app-sidebar.service';
 import {SettingsService} from './services/settings.service';
@@ -27,6 +32,9 @@ import {UsersService} from './services/redmine/users.service';
 import {NameFilterPipe} from './services/redmine/beans';
 /* Gravatar */
 import {GravatarModule} from 'ng2-gravatar-directive';
+/* bootstrap components */
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 /* CoreUI components */
 import {AppHeaderComponent} from './components/app-header/app-header.component';
 import {AppSidebarComponent} from './components/app-sidebar/app-sidebar.component';
@@ -44,12 +52,8 @@ import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav
 
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
 import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-table/redmine-issue-tree-table.component';
-import {RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
-import { TrackerComponent } from './components/redmine/tracker/tracker.component';
-import { IssueIdComponent } from './components/redmine/issue-id/issue-id.component';
-import { AppLoaderComponent } from './components/app-loader/app-loader.component';
-import { StatusComponent } from './components/redmine/status/status.component';
-
+import {AppNodeExpanderDirective, RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
+import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
 
 
 const appRoutes: Routes = [
@@ -104,10 +108,13 @@ const appRoutes: Routes = [
     RedmineIssueComponent,
     RedmineIssueTreeTableComponent,
     IssueComponent,
-    TrackerComponent,
+    RmTrackerComponent,
     IssueIdComponent,
     AppLoaderComponent,
-    StatusComponent
+    RMStatusComponent,
+    RmProprityComponent,
+    AutofocusDirective,
+    AppNodeExpanderDirective
   ],
   imports: [
     BrowserModule,
@@ -115,6 +122,7 @@ const appRoutes: Routes = [
     HttpModule,
     HttpClientModule,
     GravatarModule,
+    BsDatepickerModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: false} // <-- debugging purposes only
