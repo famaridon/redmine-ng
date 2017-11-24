@@ -1,7 +1,7 @@
 <ng-container *ngIf="issue;else loading">
   <h2><app-rm-tracker [issue]="issue"> </app-rm-tracker> <app-issue-id [issue]="issue"></app-issue-id></h2>
   <div class="card mt-4">
-    <div class="card-header"><h5>{{issue.subject}}</h5></div>
+    <div class="card-header"><h5><app-rm-text [(value)]="issue.subject" ></app-rm-text></h5></div>
     <div class="card-body">
       <div class="form row">
         <div class="form-group col-sm-12 col-md-6 row">

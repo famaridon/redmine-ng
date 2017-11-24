@@ -54,6 +54,7 @@ import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.comp
 import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-table/redmine-issue-tree-table.component';
 import {AppNodeExpanderDirective, RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
 import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
+import { RmTextComponent } from './components/redmine/input/rm-text/rm-text.component';
 
 
 const appRoutes: Routes = [
@@ -114,7 +115,8 @@ const appRoutes: Routes = [
     RMStatusComponent,
     RmProprityComponent,
     AutofocusDirective,
-    AppNodeExpanderDirective
+    AppNodeExpanderDirective,
+    RmTextComponent
   ],
   imports: [
     BrowserModule,
