@@ -2,7 +2,7 @@
   <app-sidebar-header></app-sidebar-header>
   <nav class="sidebar-nav">
     <ul class="nav">
-      <li *ngFor="let entry of entries;" class="nav-item nav-dropdown ">
+      <li *ngFor="let entry of entries;" class="nav-item nav-dropdown open">
         <a class="nav-link  nav-dropdown-toggle" appSidebarDropdownToggler routerLinkActive="active" [routerLink]="[entry.link]"><i class="fa fa-{{entry.icon}}"></i>{{entry.label}}</a>
         <ul class="nav-dropdown-items">
           <li *ngFor="let subentry of entry.entries;" class="nav-item">
