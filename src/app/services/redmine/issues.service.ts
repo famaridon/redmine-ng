@@ -30,6 +30,7 @@ export class IssuesService extends AbstractRedmineService {
   }
 
   public find(id: number): Observable<Issue> {
+    this.socket.emit('issue', {message: 'reading issue #' + id})
     return this.http.get(this.server + `/issues/${id}`).retry(3).map((data: any) => {
       const issue = new Issue();
       Object.assign(issue, data.issue);
@@ -45,5 +46,9 @@ export class IssuesService extends AbstractRedmineService {
     return this.http.get(this.server + `/issues/${id}/status`).retry(3).map((data: any) => {
       return <Status[]>data.status;
     });
+  }
+
+  protected getNamspaceName(): string {
+    return '/issues';
   }
 }
