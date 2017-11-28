@@ -1,42 +1,96 @@
-import {Input, OnInit, Output} from '@angular/core';
+import {EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ControlValueAccessor} from '@angular/forms';
 
 
-export abstract class AbstractRmInputComponent<T> implements OnInit {
+const noop = () => {
+};
 
-  @Input()
-  @Output()
-  public value: T;
+export abstract class AbstractRmInputComponent<T> implements OnInit, ControlValueAccessor {
 
-  public nextValue: T;
+  /**
+   * The internal data model
+   */
+  private innerValue: T;
+  /**
+   * hold the last value
+   */
+  private nextValue: T;
 
   @Input()
   public mode: 'read' | 'write' = 'read';
 
+
+  /**
+   * get accessor
+   */
+  get value(): T {
+    return this.innerValue;
+  };
+
+  /**
+   * set accessor including call the onchange callback
+   */
+  set value(v: T) {
+  console.log(`set value(${v})`);
+    if (v !== this.innerValue) {
+      this.innerValue = v;
+      this.nextValue = this.cloneValue(this.innerValue);
+      this.onChangeCallback(v);
+    }
+  }
+
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
+
   constructor() {
   }
 
-  ngOnInit() {
-    this.nextValue = this.value;
+  ngOnInit(): void {
   }
 
-  validateChanges(): void {
-    if (this.nextValue instanceof Object) {
-      this.value = Object.assign({}, this.nextValue);
-    } else {
-      this.value = this.nextValue;
-    }
+  /**
+   * Set touched on blur
+   */
+  onBlur() {
+    this.onTouchedCallback();
+  }
 
+  writeValue(value: T): void {
+    if (value !== this.innerValue) {
+      this.innerValue = value;
+      this.nextValue = this.cloneValue(this.innerValue);
+    }
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChangeCallback = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouchedCallback = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    // new Error("Method not implemented.");
+  }
+
+
+  validateChanges(): void {
+    this.value = this.cloneValue(this.nextValue);
     this.switchMode();
   }
 
   undoChanges(): void {
-    if (this.nextValue instanceof Object) {
-      this.nextValue = Object.assign({}, this.value);
-    } else {
-      this.nextValue = this.value;
-    }
-
+    this.nextValue = this.cloneValue(this.value);
     this.switchMode();
+  }
+
+  cloneValue(value: T): T {
+    if (this.nextValue instanceof Object) {
+      return Object.assign({}, value);
+    } else {
+      return value;
+    }
   }
 
   switchMode(): void {
