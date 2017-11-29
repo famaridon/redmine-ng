@@ -1,9 +1,10 @@
-import {ChangeDetectorRef, Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RedmineService} from '../../../services/redmine.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Issue} from '../../../services/redmine/beans';
 import {Node} from '../../../components/redmine-issue-tree-table/redmine-issue-tree-table.component';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -13,6 +14,7 @@ import {Node} from '../../../components/redmine-issue-tree-table/redmine-issue-t
 })
 export class ProjectQueryIssuesComponent implements OnInit, OnDestroy, OnChanges {
 
+  public nodeById: Map<number, Node<Issue>> = new Map();
   public tree: Array<Node<Issue>>;
   private flatTree: Array<Node<Issue>> = [];
   public projectSubscription: Subscription;
@@ -50,14 +52,25 @@ export class ProjectQueryIssuesComponent implements OnInit, OnDestroy, OnChanges
     });
   }
 
-  private addAll(issues: Issue[]): void {
-    issues.forEach((issue) => {
-      this.add(issue);
+  private addAll(issues: Observable<Issue>[]): void {
+    issues.forEach((obs) => {
+      obs.subscribe((issue) => {
+        this.addOrUpdate(issue);
+      });
     });
   }
 
-  private add(issue: Issue): void {
-    const node = new Node(issue);
+  private addOrUpdate(issue: Issue): void {
+
+    let node = this.nodeById.get(issue.id);
+    if (node) {
+      node.element = issue;
+      return;
+    } else {
+      node = new Node(issue);
+      this.nodeById.set(issue.id, node);
+    }
+
     this.flatTree.push(node);
     if (node.element.parent) { // need link to parent
       const parent = this.flatTree.filter((value) => {

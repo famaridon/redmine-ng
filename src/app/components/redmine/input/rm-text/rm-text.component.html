@@ -1,7 +1,7 @@
 <ng-container [ngSwitch]="mode">
 
   <ng-container *ngSwitchCase="'write'" >
-    <input [(ngModel)]="nextValue" appAutofocus (keypress.enter)="validateChanges()"/>
+    <input [(ngModel)]="nextValue" appAutofocus (keyup.enter)="validateChanges()"/>
     <button type="button" (click)="validateChanges()" class="btn btn-link btn-sm"><i class="fa fa-check"></i></button>
     <button type="button" (click)="undoChanges()" class="btn btn-link btn-sm"><i class="fa fa-undo"></i></button>
   </ng-container>

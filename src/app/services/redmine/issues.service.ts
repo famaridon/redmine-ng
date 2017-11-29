@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Issue, Paginable, Status} from './beans';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class IssuesService extends AbstractRedmineService {
@@ -15,11 +15,12 @@ export class IssuesService extends AbstractRedmineService {
   constructor(http: HttpClient, settings: SettingsService) {
     super(http, settings);
     this.socket.on('update', (issue) => {
+      console.dir(this.loadedIssues);
       this.notifyAll(this.loadIssueJson(issue));
     });
   }
 
-  public findByQuery(query: number, project?: number, offset = 0, limit = 50): Observable<Paginable<Issue>> {
+  public findByQuery(query: number, project?: number, offset = 0, limit = 50): Observable<Paginable<Observable<Issue>>> {
     let url = this.server;
     url += `/issues?query_id=${query}`;
     if (project) {
@@ -27,20 +28,29 @@ export class IssuesService extends AbstractRedmineService {
     }
     url += `&offset=${offset}&limit=${limit}`;
     return this.http.get(url).retry(3).map((data: any) => {
-      const paginable = new Paginable<Issue>();
+      const paginable = new Paginable<Observable<Issue>>();
       paginable.total_count = data.total_count;
       paginable.offset = data.offset;
       paginable.limit = data.limit;
-      paginable.elements = data.issues;
+      paginable.elements = [];
+      for (let i = 0; i < data.issues.length; i++) {
+        const issue = this.loadIssueJson(data.issues[i]);
+        paginable.elements.push( this.asObservable(issue.id, issue) );
+      }
       return paginable;
     });
   }
 
   public find(id: number): Observable<Issue> {
     this.socket.emit('issue', {message: 'reading issue #' + id});
-    return this.http.get(this.server + `/issues/${id}`).retry(3).map((data: any) => {
+    const obs = this.asObservable(id, null);
+    this.http.get(this.server + `/issues/${id}`).retry(3).map((data: any) => {
       return this.loadIssueJson(data.issue);
+    }).subscribe((issue) => {
+      this.loadIssueSubject(id).next(issue);
     });
+
+    return obs;
   }
 
   public getAvailableStatus(id: number): Observable<Status[]> {
@@ -50,7 +60,7 @@ export class IssuesService extends AbstractRedmineService {
   }
 
   private notifyAll(issue: Issue): void {
-    const subject: Subject<Issue> = this.loadedIssues.get(issue.id);
+    const subject: Subject<Issue> = this.loadIssueSubject(issue.id);
     if (subject) {
       console.log(`notify all #${issue.id}`);
       subject.next(issue);
@@ -65,14 +75,24 @@ export class IssuesService extends AbstractRedmineService {
     return issue;
   }
 
-  public asObservable(issue: Issue): Observable<Issue> {
-    let subject: Subject<Issue> = this.loadedIssues.get(issue.id);
-    if (!subject) {
-      subject = new BehaviorSubject(issue);
-      this.loadedIssues.set(issue.id, subject);
+  private asObservable(id: number, issue: Issue): Observable<Issue> {
+    const subject = this.loadIssueSubject(id);
+    if (issue) {
+      subject.next(issue);
     }
-
     return subject.asObservable();
+  }
+
+  private loadIssueSubject(id: number) {
+    if (typeof id !== 'number') {
+      throw new Error('id must be a number');
+    }
+    let subject: Subject<Issue> = this.loadedIssues.get(+id);
+    if (!subject) {
+      subject = new BehaviorSubject(null);
+      this.loadedIssues.set(+id, subject);
+    }
+    return subject;
   }
 
   public update(issue: Issue): void {

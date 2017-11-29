@@ -11,7 +11,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class IssueComponent implements OnInit, OnDestroy {
 
-  public issue: Issue;
+  public issue: Issue = null;
   public subscription: Subscription;
 
   constructor( private route: ActivatedRoute, private redmine: RedmineService) {
@@ -19,11 +19,9 @@ export class IssueComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.redmine.issues.find(params['id']).subscribe((issue) => {
+      this.subscription = this.redmine.issues.find(+params['id']).subscribe((issue) => {
+      console.log('issue subscription')
         this.issue = issue;
-        this.subscription = this.redmine.issues.asObservable(this.issue).subscribe((next) => {
-          this.issue = next;
-        });
       });
     });
   }
