@@ -2,7 +2,7 @@
   <app-issue-id [issue]="node.element"></app-issue-id>
 </th>
 <td class="redmine-subject">
-  <button type="button" class="fa mr-1 expender btn btn-link" appNodeExpander [(nodeExpanderNode)]="node" [ngClass]="{'fa-plus-circle': node.children.length > 0, 'fa-empty': node.children.length === 0}"></button>{{node.element.subject}}
+  <button type="button" class="fa mr-1 expender btn btn-link" appNodeExpander [(nodeExpanderNode)]="node" [ngClass]="{'fa-plus-circle': node.children.length > 0, 'fa-empty': node.children.length === 0}"></button><si-text [(ngModel)]="node.element.subject" ></si-text>
 </td>
 <td class="redmine-status redmine-status-{{node.element.status.id}}"><app-rm-status [issue]="node.element"></app-rm-status></td>
 <td class="redmine-priority">
