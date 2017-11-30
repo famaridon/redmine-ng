@@ -55,6 +55,8 @@ import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-ta
 import {AppNodeExpanderDirective, RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
 import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
 import {StatesInputsModule} from "./states-inputs/states-inputs.module";
+import { StatesInputssiSelectComponent } from './states-inputssi-select/states-inputssi-select.component';
+import { SiSelectComponent } from './states-inputes/si-select/si-select.component';
 
 
 const appRoutes: Routes = [
@@ -115,7 +117,9 @@ const appRoutes: Routes = [
     RMStatusComponent,
     RmProprityComponent,
     AutofocusDirective,
-    AppNodeExpanderDirective
+    AppNodeExpanderDirective,
+    StatesInputssiSelectComponent,
+    SiSelectComponent
   ],
   imports: [
     BrowserModule,
