@@ -54,9 +54,7 @@ import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.comp
 import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-table/redmine-issue-tree-table.component';
 import {AppNodeExpanderDirective, RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
 import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
-import {StatesInputsModule} from "./states-inputs/states-inputs.module";
-import { StatesInputssiSelectComponent } from './states-inputssi-select/states-inputssi-select.component';
-import { SiSelectComponent } from './states-inputes/si-select/si-select.component';
+import {StatesInputsModule} from './states-inputs/states-inputs.module';
 
 
 const appRoutes: Routes = [
@@ -117,9 +115,7 @@ const appRoutes: Routes = [
     RMStatusComponent,
     RmProprityComponent,
     AutofocusDirective,
-    AppNodeExpanderDirective,
-    StatesInputssiSelectComponent,
-    SiSelectComponent
+    AppNodeExpanderDirective
   ],
   imports: [
     BrowserModule,

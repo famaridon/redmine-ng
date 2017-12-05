@@ -34,7 +34,7 @@ export abstract class AbstractSIComponent<T> implements OnInit, ControlValueAcce
   console.log(`set value(${v})`);
     if (v !== this.innerValue) {
       this.innerValue = v;
-      this.nextValue = this.cloneValue(this.innerValue);
+      this.nextValue = this.innerValue;
       this.onChangeCallback(v);
     }
   }
@@ -58,7 +58,7 @@ export abstract class AbstractSIComponent<T> implements OnInit, ControlValueAcce
   writeValue(value: T): void {
     if (value !== this.innerValue) {
       this.innerValue = value;
-      this.nextValue = this.cloneValue(this.innerValue);
+      this.nextValue = this.innerValue;
     }
   }
 
@@ -74,23 +74,14 @@ export abstract class AbstractSIComponent<T> implements OnInit, ControlValueAcce
     // new Error("Method not implemented.");
   }
 
-
   validateChanges(): void {
-    this.value = this.cloneValue(this.nextValue);
+    this.value = this.nextValue;
     this.switchMode();
   }
 
   undoChanges(): void {
-    this.nextValue = this.cloneValue(this.value);
+    this.nextValue = this.value;
     this.switchMode();
-  }
-
-  cloneValue(value: T): T {
-    if (this.nextValue instanceof Object) {
-      return Object.assign({}, value);
-    } else {
-      return value;
-    }
   }
 
   switchMode(): void {

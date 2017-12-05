@@ -10,6 +10,11 @@ import { SiSelectComponent } from './si-select/si-select.component';
     FormsModule
   ],
   declarations: [SiTextComponent, SiSelectComponent],
-  exports: [SiTextComponent]
+  exports: [SiTextComponent, SiSelectComponent]
 })
 export class StatesInputsModule { }
+
+export interface IOption {
+  getDisplayLabel(): string;
+  getComparableValue(): any;
+}

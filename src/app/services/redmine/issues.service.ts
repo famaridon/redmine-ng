@@ -35,7 +35,7 @@ export class IssuesService extends AbstractRedmineService {
       paginable.elements = [];
       for (let i = 0; i < data.issues.length; i++) {
         const issue = this.loadIssueJson(data.issues[i]);
-        paginable.elements.push( this.asObservable(issue.id, issue) );
+        paginable.elements.push(this.asObservable(issue.id, issue));
       }
       return paginable;
     });
@@ -55,7 +55,12 @@ export class IssuesService extends AbstractRedmineService {
 
   public getAvailableStatus(id: number): Observable<Status[]> {
     return this.http.get(this.server + `/issues/${id}/status`).retry(3).map((data: any) => {
-      return <Status[]>data.status;
+      const statusList = new Array<Status>();
+      for (let i = 0; i < data.status.length; i++) {
+        const status = this.loadStatusJson(data.status[i]);
+        statusList.push(status);
+      }
+      return statusList;
     });
   }
 
@@ -67,9 +72,14 @@ export class IssuesService extends AbstractRedmineService {
     }
   }
 
+  private loadStatusJson(jsonStatus: any): Status {
+    return Object.assign(new Status(), jsonStatus);
+  }
+
   private loadIssueJson(jsonIssue: any): Issue {
     const issue = new Issue();
     Object.assign(issue, jsonIssue);
+    issue.status = this.loadStatusJson(jsonIssue.status);
     issue.start_date = new Date();
     issue.due_date = new Date();
     return issue;
