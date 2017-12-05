@@ -1,4 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
+import {IOption} from "../../states-inputs/states-inputs.module";
 
 export class Paginable<T> {
   public total_count: number;
@@ -8,9 +9,18 @@ export class Paginable<T> {
   public elements: Array<T>;
 }
 
-export abstract class AbstractRedmineBean {
+export abstract class AbstractRedmineBean implements IOption  {
+
   public id: number;
   public name: string;
+
+  getDisplayLabel(): string {
+    return this.name;
+  }
+
+  getComparableValue() {
+    return this.id;
+  }
 }
 
 export class Project extends AbstractRedmineBean {

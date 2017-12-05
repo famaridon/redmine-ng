@@ -1,8 +1,9 @@
-import {ChangeDetectorRef, Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RedmineService} from '../../services/redmine.service';
-import {Issue} from '../../services/redmine/beans';
+import {Issue, Status} from '../../services/redmine/beans';
 import {Subscription} from 'rxjs/Subscription';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-issue',
@@ -12,16 +13,24 @@ import {Subscription} from 'rxjs/Subscription';
 export class IssueComponent implements OnInit, OnDestroy {
 
   public issue: Issue = null;
+  public availableStatus: Status[] = [];
   public subscription: Subscription;
 
-  constructor( private route: ActivatedRoute, private redmine: RedmineService) {
+
+  constructor(private route: ActivatedRoute, private redmine: RedmineService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.subscription = this.redmine.issues.find(+params['id']).subscribe((issue) => {
-      console.log('issue subscription')
+        console.log('issue subscription')
+        if (issue == null) {
+          return;
+        }
         this.issue = issue;
+        this.redmine.issues.getAvailableStatus(this.issue.id).subscribe((status) => {
+          this.availableStatus = status;
+        });
       });
     });
   }
@@ -36,4 +45,14 @@ export class IssueComponent implements OnInit, OnDestroy {
     this.issue.subject = value;
     this.redmine.issues.update(this.issue);
   }
+
+  getAvailableStatus(): Observable<Status[]> {
+    return this.redmine.issues.getAvailableStatus(this.issue.id);
+  }
+
+  updateStatus(value): void {
+    this.issue.status = value;
+    this.redmine.issues.update(this.issue);
+  }
+
 }

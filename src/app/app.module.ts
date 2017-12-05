@@ -11,7 +11,6 @@ import {RedmineIssuesComponent} from './component/redmine-issues/redmine-issues.
 import {IssueIdComponent} from './components/redmine/issue-id/issue-id.component';
 import {RmTrackerComponent} from './components/redmine/input/rm-tracker/rm-tracker.component';
 import {RMStatusComponent} from './components/redmine/input/rm-status/rm-status.component';
-import {RmProprityComponent} from './components/redmine/input/rm-proprity/rm-proprity.component';
 import {AppLoaderComponent} from './components/app-loader/app-loader.component';
 
 /* Views */
@@ -54,7 +53,7 @@ import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.comp
 import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-table/redmine-issue-tree-table.component';
 import {AppNodeExpanderDirective, RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
 import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
-import { RmTextComponent } from './components/redmine/input/rm-text/rm-text.component';
+import {StatesInputsModule} from './states-inputs/states-inputs.module';
 
 
 const appRoutes: Routes = [
@@ -113,10 +112,8 @@ const appRoutes: Routes = [
     IssueIdComponent,
     AppLoaderComponent,
     RMStatusComponent,
-    RmProprityComponent,
     AutofocusDirective,
-    AppNodeExpanderDirective,
-    RmTextComponent
+    AppNodeExpanderDirective
   ],
   imports: [
     BrowserModule,
@@ -128,7 +125,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: false} // <-- debugging purposes only
-    )
+    ),
+    StatesInputsModule
   ],
   providers: [
     AppSidebarService,
