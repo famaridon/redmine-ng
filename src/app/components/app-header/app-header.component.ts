@@ -12,15 +12,15 @@ export class AppHeaderComponent implements OnInit {
   public loggedOnUser: User;
 
   constructor(private el: ElementRef, private redmine: RedmineService) {
-    this.project = new Project();
+    this.project = new Project({});
     this.project.name = 'Select a project.';
-    this.loggedOnUser = new User();
+    this.loggedOnUser = new User({});
     this.loggedOnUser.mail = 'anonymous@gmail.com';
   }
 
   ngOnInit(): void {
     const nativeElement: HTMLElement = this.el.nativeElement,
-    parentElement: HTMLElement = nativeElement.parentElement;
+      parentElement: HTMLElement = nativeElement.parentElement;
     // move all children out of the element
     while (nativeElement.firstChild) {
       parentElement.insertBefore(nativeElement.firstChild, nativeElement);

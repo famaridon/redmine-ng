@@ -17,12 +17,7 @@ export class QueriesService extends AbstractRedmineService {
 
   public findAll(offset = 0, limit = 50): Observable<Paginable<Query>> {
     return this.http.get(this.server + `/queries?offset=${offset}&limit=${limit}`).retry(3).map((data: any) => {
-      const paginable = new Paginable<Query>();
-      paginable.total_count = data.total_count;
-      paginable.offset = data.offset;
-      paginable.limit = data.limit;
-      paginable.elements = data.queries;
-      return paginable;
+      return new Paginable<Query>(data, 'queries', this.caster);
     });
   }
 
@@ -39,4 +34,7 @@ export class QueriesService extends AbstractRedmineService {
     });
   }
 
+  private caster(element: any) {
+    return new Query(element);
+  }
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SettingsService} from '../settings.service';
-import {Paginable, Project, Tracker} from './beans';
+import {Paginable, Project, Query, Tracker} from './beans';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
@@ -32,12 +32,7 @@ export class ProjectsService extends AbstractRedmineService {
 
   public findAll(offset = 0, limit = 50): Observable<Paginable<Project>> {
     return this.http.get(this.server + `/projects?offset=${offset}&limit=${limit}`).retry(3).map((data: any) => {
-      const paginable = new Paginable<Project>();
-      paginable.total_count = data.total_count;
-      paginable.offset = data.offset;
-      paginable.limit = data.limit;
-      paginable.elements = data.projects;
-      return paginable;
+      return new Paginable<Project>(data, 'projects', this.caster);
     });
   }
 
@@ -61,6 +56,10 @@ export class ProjectsService extends AbstractRedmineService {
     return this.http.get(this.server + `/projects/${id}/trackers`).retry(3).map((data: any) => {
       return <Tracker[]>data.trackers;
     });
+  }
+
+  private caster(element: any) {
+    return new Project(element);
   }
 
 }
