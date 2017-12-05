@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {RedmineService} from '../../services/redmine.service';
 import {Issue, Status} from '../../services/redmine/beans';
 import {Subscription} from 'rxjs/Subscription';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-issue',
@@ -45,8 +46,13 @@ export class IssueComponent implements OnInit, OnDestroy {
     this.redmine.issues.update(this.issue);
   }
 
+  getAvailableStatus(): Observable<Status[]> {
+    return this.redmine.issues.getAvailableStatus(this.issue.id);
+  }
+
   updateStatus(value): void {
     this.issue.status = value;
     this.redmine.issues.update(this.issue);
   }
+
 }

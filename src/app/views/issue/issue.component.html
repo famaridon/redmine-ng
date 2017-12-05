@@ -15,7 +15,7 @@
           <div class="form-group col-sm-12 col-md-6 row">
             <label for="status" class="col-sm-2 col-form-label">Status</label>
             <div class="col-sm-10">
-              <si-select [ngModel]="issue.status" name="status" [availableOptions]="availableStatus" (ngModelChange)="updateStatus($event)" ></si-select>
+              <si-select [ngModel]="issue.status" name="status" [availableOptionsObservable]="getAvailableStatus()" (ngModelChange)="updateStatus($event)" ></si-select>
             </div>
           </div>
           <div class="form-group col-sm-12 col-md-6 row">
@@ -27,6 +27,7 @@
           <div class="form-group col-sm-12 col-md-6 row">
             <label for="priority" class="col-sm-2 col-form-label">Priority</label>
             <div class="col-sm-10">
+              <!-- <si-select [ngModel]="issue.priority" name="priority" (ngModelChange)="updateStatus($event)" ></si-select> -->
               <input type="text" class="form-control" id="priority" value="TODO">
             </div>
           </div>
