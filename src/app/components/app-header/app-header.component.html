@@ -3,6 +3,12 @@
   <a class="navbar-brand d-md-down-none" href="#"></a>
   <button class="navbar-toggler d-md-down-none" type="button" appSidebarToggler><i class="fa fa-bars" aria-hidden="true"></i></button>
   <h2 class="m-auto"><span *ngIf="project">{{project.name}}</span></h2>
-  <img class="d-none d-md-inline" gravatar [email]="loggedOnUser.mail" [size]="35" fallback="identicon">
+  <div class="rounded-circle" >
+    <img *ngIf="loggedOnUser;else anonymous;" class="d-none d-md-inline" gravatar [email]="loggedOnUser.mail" [size]="35" fallback="identicon">
+    <ng-template #anonymous>
+      <img #anonymous class="d-none d-md-inline" src="http://random-octodex.herokuapp.com/random">
+    </ng-template>
+  </div>
+
   <button class="navbar-toggler d-none d-md-inline" type="button" appAsideMenuToggler><i class="fa fa-bars" aria-hidden="true"></i></button>
 </header>

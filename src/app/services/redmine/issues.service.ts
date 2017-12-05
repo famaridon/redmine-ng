@@ -5,10 +5,9 @@ import {HttpClient} from '@angular/common/http';
 import {Issue, Paginable, Status} from './beans';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class IssuesService extends AbstractRedmineService {
+export class IssuesService extends AbstractRedmineService<Issue> {
 
   protected loadedIssues: Map<number, Subject<Issue>> = new Map();
 
@@ -54,37 +53,8 @@ export class IssuesService extends AbstractRedmineService {
     });
   }
 
-  private notifyAll(issue: Issue): void {
-    const subject: Subject<Issue> = this.loadIssueSubject(issue.id);
-    if (subject) {
-      console.log(`notify all #${issue.id}`);
-      subject.next(issue);
-    }
-  }
-
   private caster(element): Observable<Issue> {
     return this.asObservable(element.id, new Issue(element));
-  }
-
-  private asObservable(id: number, issue?: Issue): Observable<Issue> {
-    const subject = this.loadIssueSubject(id);
-    if (issue) {
-      subject.next(issue);
-    }
-    return subject.asObservable();
-  }
-
-
-  private loadIssueSubject(id: number): Subject<Issue> {
-    if (typeof id !== 'number') {
-      throw new Error('id must be a number');
-    }
-    let subject: Subject<Issue> = this.loadedIssues.get(+id);
-    if (!subject) {
-      subject = new BehaviorSubject(null);
-      this.loadedIssues.set(+id, subject);
-    }
-    return subject;
   }
 
   public update(issue: Issue): void {

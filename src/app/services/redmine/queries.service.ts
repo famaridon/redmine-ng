@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 import {Paginable, Project, Query} from './beans';
 
 @Injectable()
-export class QueriesService extends AbstractRedmineService {
+export class QueriesService extends AbstractRedmineService<Query> {
 
   constructor(http: HttpClient, settings: SettingsService) {
     super(http, settings);

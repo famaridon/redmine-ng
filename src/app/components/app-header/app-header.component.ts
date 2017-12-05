@@ -14,8 +14,6 @@ export class AppHeaderComponent implements OnInit {
   constructor(private el: ElementRef, private redmine: RedmineService) {
     this.project = new Project({});
     this.project.name = 'Select a project.';
-    this.loggedOnUser = new User({});
-    this.loggedOnUser.mail = 'anonymous@gmail.com';
   }
 
   ngOnInit(): void {

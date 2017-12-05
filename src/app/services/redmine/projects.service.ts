@@ -11,7 +11,7 @@ import {AbstractRedmineService} from './abstract.redmine.service';
 
 
 @Injectable()
-export class ProjectsService extends AbstractRedmineService {
+export class ProjectsService extends AbstractRedmineService<Project> {
 
   private currentProject: BehaviorSubject<Project> = new BehaviorSubject<Project>(null);
   private currentLoadedProject: Project ;
