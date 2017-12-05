@@ -7,7 +7,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 /* Components */
 import {AppComponent} from './app.component';
-import {RedmineIssuesComponent} from './component/redmine-issues/redmine-issues.component';
 import {IssueIdComponent} from './components/redmine/issue-id/issue-id.component';
 import {RmTrackerComponent} from './components/redmine/input/rm-tracker/rm-tracker.component';
 import {RMStatusComponent} from './components/redmine/input/rm-status/rm-status.component';
@@ -103,7 +102,6 @@ const appRoutes: Routes = [
     SettingsComponent,
     PageNotFoundComponent,
     ProjectComponent,
-    RedmineIssuesComponent,
     ProjectQueryIssuesComponent,
     RedmineIssueComponent,
     RedmineIssueTreeTableComponent,
