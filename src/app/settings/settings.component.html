@@ -1,22 +1,38 @@
-
-
 <div class="card mt-4">
   <div class="card-header">
     <h1>Settings</h1>
   </div>
   <div class="card-body">
-    <h2 class="card-title">Server</h2>
-    <div>
-      <div class="form-group">
-        <label for="server">Redmine server URL</label>
-        <input type="text" class="form-control" id="server" placeholder="Enter your redmine server URL" [(ngModel)]="settings.server" >
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="card-title">Server</h2>
+        <div>
+          <div class="form-group">
+            <label for="server">Redmine server URL</label>
+            <input type="text" class="form-control" id="server" placeholder="Enter your redmine server URL" [(ngModel)]="settings.server">
+          </div>
+          <div class="form-group">
+            <label for="redmineAPIKey">Redmine API Key</label>
+            <input type="text" class="form-control" id="redmineAPIKey" placeholder="Enter your redmine API key" [(ngModel)]="settings.api_key">
+            <small class="form-text text-muted">Redmine API key can be found in your redmine profile</small>
+          </div>
+          <button type="button" (click)="save()">Save</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="redmineAPIKey">Redmine API Key</label>
-        <input type="text" class="form-control" id="redmineAPIKey" placeholder="Enter your redmine API key" [(ngModel)]="settings.api_key" >
-        <small class="form-text text-muted">Redmine API key can be found in your redmine profile</small>
+      <div class="col-md-6">
+        <h2 class="card-title">User</h2>
+        <ng-container *ngIf="user">
+          <div>{{user.firstname}} {{user.lastname}}</div><img class="rounded-circle d-none d-md-inline" gravatar [email]="user.mail" [size]="64" fallback="identicon">
+
+          <div>{{user.created_on}}</div>
+          <div>{{user.last_login_on}}</div>
+          <div>{{user.login}}</div>
+          <div *ngFor="let cf of user.custom_fields">{{cf.name}} : {{cf.value}}</div>
+
+          <div>{{user.stringify()}}</div>
+        </ng-container>
       </div>
-      <button type="button" (click)="save()">Save</button>
+
     </div>
   </div>
 

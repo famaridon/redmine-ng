@@ -102,7 +102,6 @@ export class Settings {
   }
 
   isValide(): boolean {
-    console.dir(this);
     return this.api_key != null && this.server != null;
   }
 

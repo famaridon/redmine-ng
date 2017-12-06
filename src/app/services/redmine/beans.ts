@@ -44,6 +44,10 @@ export abstract class AbstractRedmineBean implements IOption {
     }
     return null;
   }
+
+  public stringify(): string {
+    return JSON.stringify(this);
+  }
 }
 
 export class Project extends AbstractRedmineBean {
