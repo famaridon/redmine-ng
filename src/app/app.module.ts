@@ -56,19 +56,20 @@ import {StatesInputsModule} from './states-inputs/states-inputs.module';
 
 const appRoutes: Routes = [
   {path: 'settings', component: SettingsComponent},
-  {
-    path: 'project/:project', component: ProjectComponent,
-    children: [
-      {path: 'issues/:query', component: ProjectQueryIssuesComponent}
-    ]
-  },
-  {path: 'issue/:id', component: IssueComponent},
-  {
-    path: '',
-    redirectTo: 'project/last',
-    pathMatch: 'full'
-  },
-  {path: '**', canActivate: [SettingsGuardService], component: PageNotFoundComponent}
+  {path: '', canActivate: [SettingsGuardService], children: [
+      {
+        path: 'project/:project', component: ProjectComponent,
+        children: [
+          {path: 'issues/:query', component: ProjectQueryIssuesComponent}
+        ]
+      },
+      {path: 'issue/:id', component: IssueComponent},
+      {
+        path: '',
+        redirectTo: 'project/last',
+        pathMatch: 'full'
+      }
+  ]}
 ];
 
 @NgModule({

@@ -1,9 +1,35 @@
 import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class SettingsService {
+  private static readonly SETTINGS_KEY = 'settings';
+
+  protected subject: BehaviorSubject<Settings>;
+  protected observer: Observable<Settings>;
 
   constructor() {
+    this.subject = new BehaviorSubject(this.loadSettings());
+    this.observer = this.subject.asObservable();
+  }
+
+  private loadSettings(): Settings {
+    const settingsJson = localStorage.getItem(SettingsService.SETTINGS_KEY);
+    if (settingsJson) {
+      return new Settings(JSON.parse(settingsJson));
+    } else {
+      return new Settings();
+    }
+  }
+
+  public save(settings: Settings) {
+    localStorage.setItem(SettingsService.SETTINGS_KEY, JSON.stringify(settings));
+    this.subject.next(this.loadSettings());
+  }
+
+  public getSettings(): Observable<Settings> {
+    return this.observer;
   }
 
   public setString(key: string, value: string): void {
@@ -61,10 +87,23 @@ export class SettingsService {
     }
     return loadedValue;
   }
+}
 
-  public isValide(): boolean {
-    const apiKey = this.getString('apiKey');
-    return (apiKey !== '' && apiKey != null);
+export class Settings {
+
+  public api_key: string = null;
+  public server: string = null;
+
+  constructor(json?: any) {
+    if (json) {
+      this.api_key = json.api_key;
+      this.server = json.server;
+    }
+  }
+
+  isValide(): boolean {
+    console.dir(this);
+    return this.api_key != null && this.server != null;
   }
 
 }

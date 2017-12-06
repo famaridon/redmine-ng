@@ -9,11 +9,11 @@
     <div>
       <div class="form-group">
         <label for="server">Redmine server URL</label>
-        <input type="text" class="form-control" id="server" placeholder="Enter your redmine server URL" [(ngModel)]="server" >
+        <input type="text" class="form-control" id="server" placeholder="Enter your redmine server URL" [(ngModel)]="settings.server" >
       </div>
       <div class="form-group">
         <label for="redmineAPIKey">Redmine API Key</label>
-        <input type="text" class="form-control" id="redmineAPIKey" placeholder="Enter your redmine API key" [(ngModel)]="apiKey" >
+        <input type="text" class="form-control" id="redmineAPIKey" placeholder="Enter your redmine API key" [(ngModel)]="settings.api_key" >
         <small class="form-text text-muted">Redmine API key can be found in your redmine profile</small>
       </div>
       <button type="button" (click)="save()">Save</button>

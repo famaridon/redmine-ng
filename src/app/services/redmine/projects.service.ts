@@ -17,14 +17,14 @@ export class ProjectsService extends AbstractRedmineService<Project> {
 
   constructor(http: HttpClient, settings: SettingsService) {
     super(http, settings);
-    const projectId = this.settings.getNumber('currentProject');
+    const projectId = this.settingsService.getNumber('currentProject');
     if (projectId) {
       this.switchWorkingProject(projectId);
     }
   }
 
   public findAll(offset = 0, limit = 50): Observable<Paginable<Project>> {
-    return this.http.get(this.server + `/projects?offset=${offset}&limit=${limit}`).retry(3).map((data: any) => {
+    return this.get(`/projects?offset=${offset}&limit=${limit}`).map((data: any) => {
       return new Paginable<Project>(data, 'projects', this.caster);
     });
   }
@@ -38,7 +38,7 @@ export class ProjectsService extends AbstractRedmineService<Project> {
         this.switchWorkingProject(loadedProject);
       });
     } else {
-      this.settings.setNumber('currentProject', project.id);
+      this.settingsService.setNumber('currentProject', project.id);
       this.currentProject.next(project);
     }
   }
@@ -48,7 +48,7 @@ export class ProjectsService extends AbstractRedmineService<Project> {
   }
 
   public getAvailableTrackers(id: number): Observable<Tracker[]> {
-    return this.http.get(this.server + `/projects/${id}/trackers`).retry(3).map((data: any) => {
+    return this.get(`/projects/${id}/trackers`).map((data: any) => {
       return <Tracker[]>data.trackers;
     });
   }

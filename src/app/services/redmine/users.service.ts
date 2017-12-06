@@ -15,7 +15,7 @@ export class UsersService extends AbstractRedmineService<User> {
   }
 
   public findLoggedOnUser(): Observable<User> {
-    this.http.get(this.server + `/users/current`).retry(3).map((data: any) => {
+    this.get(`/users/current`).map((data: any) => {
       const user = new User(data.user);
       return user;
     }).subscribe((user) => {

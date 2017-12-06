@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { SettingsService } from './settings.service';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {SettingsService} from './settings.service';
 
 @Injectable()
 export class SettingsGuardService implements CanActivate {
@@ -13,12 +13,25 @@ export class SettingsGuardService implements CanActivate {
     this.router = router;
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const url = state.url;
-    if (this.settingsService.isValide() || url === '/settings') { return true; }
-    // Navigate to the settings page
-    this.router.navigate(['/settings']);
-    return false;
+
+    const result = new Promise<boolean>((resolve, reject) => {
+      this.settingsService.getSettings().subscribe((settings) => {
+        if (settings.isValide() || url === '/settings') {
+          resolve(true);
+        } else {
+          console.log('settings not ready plz configure application.');
+          this.router.navigate(['/settings']);
+          resolve(false);
+        }
+      }, (error) => {
+        reject(error);
+      });
+
+    });
+
+    return result;
   }
 
 }

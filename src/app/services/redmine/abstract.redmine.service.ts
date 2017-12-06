@@ -1,41 +1,52 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {SettingsService} from '../settings.service';
+import {Settings, SettingsService} from '../settings.service';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import * as io from 'socket.io-client';
+import {AbstractRedmineBean} from './beans';
+import {Subject} from 'rxjs/Subject';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 import Socket = SocketIOClient.Socket;
-import {AbstractRedmineBean, Issue} from "./beans";
-import {Subject} from "rxjs/Subject";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
 
-  protected http: HttpClient
-  protected settings: SettingsService;
-  protected server: string;
+  private http: HttpClient
+  protected settings: Observable<Settings>;
   protected socket: Socket;
   protected loadedObjects: Map<number, Subject<T>> = new Map();
 
-  constructor(http: HttpClient, settings: SettingsService) {
+  constructor(http: HttpClient, protected settingsService: SettingsService) {
     this.http = http;
-    this.settings = settings;
-    this.server = this.settings.getString('server');
+    this.settings = this.settingsService.getSettings().filter((settings): boolean => {
+      return settings.isValide();
+    });
     if (this.getNamspaceName()) {
-      this.socket = io.connect(`${this.server}${this.getNamspaceName()}`, {path: `/ws`, query: 'user_id=5'});
+      this.settings.subscribe((settings) => {
+        this.socket = io.connect(`${settings.server}${this.getNamspaceName()}`, {path: `/ws`, query: 'user_id=5'});
+      })
     }
   }
 
   public find(id: number): Observable<T> {
     const obs = this.asObservable(id);
-    this.http.get(this.server + `/${this.getRootPath()}/${id}`).retry(3).map(this.mapper).subscribe((object) => {
+    this.get(`/${this.getRootPath()}/${id}`).map(this.mapper).subscribe((object) => {
       this.asObservable(id, object);
     });
-
     return obs;
+  }
+
+  protected get(path: string): Observable<any> {
+    const subject = new Subject<any>();
+    this.settings.subscribe((settings) => {
+      this.http.get(settings.server + path).retry(3).subscribe((data) => {
+        subject.next(data);
+      });
+    });
+    return subject.asObservable();
   }
 
   protected asObservable(id: number, object?: T): Observable<T> {
@@ -71,6 +82,7 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
   }
 
   protected abstract getRootPath(): string;
+
   protected abstract mapper(data: any): T;
 
 }

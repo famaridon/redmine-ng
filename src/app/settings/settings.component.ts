@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from '../services/settings.service';
+import {Settings, SettingsService} from '../services/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -8,22 +8,19 @@ import { SettingsService } from '../services/settings.service';
 })
 export class SettingsComponent implements OnInit {
 
-  protected settingsServcie: SettingsService;
-  public apiKey: string;
-  public server: string;
+  public settings: Settings;
 
-  constructor(settingsServcie: SettingsService) {
-    this.settingsServcie = settingsServcie;
+  constructor(protected settingsService: SettingsService) {
   }
 
   ngOnInit() {
-    this.server = this.settingsServcie.getString('server');
-    this.apiKey = this.settingsServcie.getString('apiKey');
+    this.settingsService.getSettings().subscribe((settings) => {
+      this.settings = settings;
+    });
   }
 
   public save(): void {
-    this.settingsServcie.setString('server', this.server);
-    this.settingsServcie.setString('apiKey', this.apiKey);
+    this.settingsService.save(this.settings);
 
   }
 

@@ -20,19 +20,19 @@ export class IssuesService extends AbstractRedmineService<Issue> {
   }
 
   public findByQuery(query: number, project?: number, offset = 0, limit = 50): Observable<Paginable<Observable<Issue>>> {
-    let url = this.server;
+    let url = '';
     url += `/issues?query_id=${query}`;
     if (project) {
       url += `&project_id=${project}`;
     }
     url += `&offset=${offset}&limit=${limit}`;
-    return this.http.get(url).retry(3).map((data: any) => {
+    return this.get(url).map((data: any) => {
       return new Paginable<Observable<Issue>>(data, 'issues', this.caster);
     });
   }
 
   public getAvailableStatus(id: number): Observable<Status[]> {
-    return this.http.get(this.server + `/issues/${id}/status`).retry(3).map((data: any) => {
+    return this.get(`/issues/${id}/status`).map((data: any) => {
       const statusList = new Array<Status>();
       for (let i = 0; i < data.status.length; i++) {
         statusList.push(new Status(data.status[i]));
