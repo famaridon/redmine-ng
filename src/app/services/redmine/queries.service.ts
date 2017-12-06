@@ -37,4 +37,12 @@ export class QueriesService extends AbstractRedmineService<Query> {
   private caster(element: any) {
     return new Query(element);
   }
+
+  protected getRootPath(): string {
+    return 'queries';
+  }
+
+  protected mapper(data: any): Query {
+    return new Query(data.query);
+  }
 }

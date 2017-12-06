@@ -12,14 +12,10 @@ export class AppAsideComponent implements OnInit {
   private el: ElementRef;
   private redmine: RedmineService;
 
-  public projects: Array<Project>;
-  public selected: Project;
-  public search: string;
 
   constructor(el: ElementRef, redmine: RedmineService) {
     this.el = el;
     this.redmine = redmine;
-    this.projects = [];
   }
 
   public ngOnInit(): void {
@@ -31,21 +27,7 @@ export class AppAsideComponent implements OnInit {
     }
     // remove the empty element(the host)
     parentElement.removeChild(nativeElement);
-    this.loadAll();
   }
 
-  public async loadAll(): Promise<void> {
-    let paginable = await this.redmine.projects.findAll(0, 100).toPromise();
-    this.projects = this.projects.concat(paginable.elements);
-    while (paginable.elements.length === 100) {
-      paginable = await this.redmine.projects.findAll(paginable.offset + paginable.elements.length, 100).toPromise();
-      this.projects = this.projects.concat(paginable.elements);
-    }
-  }
-
-  public select(selected: Project): void {
-    this.selected = selected;
-    this.redmine.projects.switchWorkingProject(this.selected);
-  }
 
 }

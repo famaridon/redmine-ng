@@ -11,7 +11,6 @@ import {IssueIdComponent} from './components/redmine/issue-id/issue-id.component
 import {RmTrackerComponent} from './components/redmine/input/rm-tracker/rm-tracker.component';
 import {RMStatusComponent} from './components/redmine/input/rm-status/rm-status.component';
 import {AppLoaderComponent} from './components/app-loader/app-loader.component';
-
 /* Views */
 import {ProjectComponent} from './views/project/project/project.component';
 import {ProjectQueryIssuesComponent} from './views/project/issues/issues.component';
@@ -31,8 +30,8 @@ import {NameFilterPipe} from './services/redmine/beans';
 /* Gravatar */
 import {GravatarModule} from 'ng2-gravatar-directive';
 /* bootstrap components */
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
 /* CoreUI components */
 import {AppHeaderComponent} from './components/app-header/app-header.component';
 import {AppSidebarComponent} from './components/app-sidebar/app-sidebar.component';
@@ -51,7 +50,7 @@ import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
 import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-table/redmine-issue-tree-table.component';
 import {AppNodeExpanderDirective, RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
-import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
+import {AutofocusDirective} from './directives/autofocus/autofocus.directive';
 import {StatesInputsModule} from './states-inputs/states-inputs.module';
 
 
@@ -119,6 +118,8 @@ const appRoutes: Routes = [
     HttpModule,
     HttpClientModule,
     GravatarModule,
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,

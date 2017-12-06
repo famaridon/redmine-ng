@@ -1,12 +1,3 @@
 <aside class="aside-menu">
-  <div class="input-group">
-    <input type="text" class="form-control" [(ngModel)]="search" placeholder="Search">
-    <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
-  </div>
 
-  <ul class="list-group" *ngIf="projects">
-    <li class="list-group-item" routerLinkActive="active" *ngFor="let project of projects | nameFilter: search">
-      <button class="btn btn-link" [routerLink]="['/project/'+project.id ]" (click)="select(project);">{{project.name}}</button>
-    </li>
-  </ul>
 </aside>

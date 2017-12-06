@@ -25,4 +25,13 @@ export class UsersService extends AbstractRedmineService<User> {
 
     return this.asObservable(UsersService.CURRENT_USER_ID);
   }
+
+
+  protected getRootPath(): string {
+    return 'users';
+  }
+
+  protected mapper(data: any): User {
+    return new User(data.user);
+  }
 }

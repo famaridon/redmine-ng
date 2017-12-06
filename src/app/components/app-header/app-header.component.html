@@ -2,13 +2,44 @@
   <button class="navbar-toggler d-lg-none" type="button" appMobileSidebarToggler><i class="fa fa-bars" aria-hidden="true"></i></button>
   <a class="navbar-brand d-md-down-none" href="#"></a>
   <button class="navbar-toggler d-md-down-none" type="button" appSidebarToggler><i class="fa fa-bars" aria-hidden="true"></i></button>
-  <h2 class="m-auto"><span *ngIf="project">{{project.name}}</span></h2>
-  <div class="rounded-circle" >
-    <img *ngIf="loggedOnUser;else anonymous;" class="d-none d-md-inline" gravatar [email]="loggedOnUser.mail" [size]="35" fallback="identicon">
+
+  <!-- the project and selector -->
+
+  <div class="m-auto" dropdown>
+    <h2><span *ngIf="project">{{project.name}}</span>
+      <span *ngIf="!project">Select a project</span>
+      <button type="button" class="btn btn-link" (click)="openModal(template)"><i class="fa fa-2 fa-caret-square-o-down" aria-hidden="true"></i></button>
+    </h2>
+  </div>
+
+  <!-- the avatar -->
+  <div class="avatar">
+    <img *ngIf="loggedOnUser && loggedOnUser.mail;else anonymous;" class="rounded-circle d-none d-md-inline" gravatar [email]="loggedOnUser.mail" [size]="35" fallback="identicon">
     <ng-template #anonymous>
-      <img #anonymous class="d-none d-md-inline" src="http://random-octodex.herokuapp.com/random">
+      <img #anonymous class="rounded-circle d-none d-md-inline" src="http://random-octodex.herokuapp.com/random">
     </ng-template>
   </div>
 
   <button class="navbar-toggler d-none d-md-inline" type="button" appAsideMenuToggler><i class="fa fa-bars" aria-hidden="true"></i></button>
 </header>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Select a project.</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="search" placeholder="Search">
+      <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+    </div>
+    <br>
+    <div class="list-group" *ngIf="projects">
+      <button *ngFor="let project of projects | nameFilter: search" type="button" [routerLink]="['/project/'+project.id ]" (click)="select(project);" class="list-group-item list-group-item-action">{{project.name}}</button>
+    </div>
+  </div>
+</ng-template>
+

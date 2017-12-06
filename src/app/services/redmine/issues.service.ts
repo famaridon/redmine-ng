@@ -31,18 +31,6 @@ export class IssuesService extends AbstractRedmineService<Issue> {
     });
   }
 
-  public find(id: number): Observable<Issue> {
-    this.socket.emit('issue', {message: 'reading issue #' + id});
-    const obs = this.asObservable(id);
-    this.http.get(this.server + `/issues/${id}`).retry(3).map((data: any) => {
-      return new Issue(data.issue);
-    }).subscribe((issue) => {
-      this.asObservable(id, issue);
-    });
-
-    return obs;
-  }
-
   public getAvailableStatus(id: number): Observable<Status[]> {
     return this.http.get(this.server + `/issues/${id}/status`).retry(3).map((data: any) => {
       const statusList = new Array<Status>();
@@ -63,5 +51,13 @@ export class IssuesService extends AbstractRedmineService<Issue> {
 
   protected getNamspaceName(): string {
     return '/issues';
+  }
+
+  protected getRootPath(): string {
+    return 'issues';
+  }
+
+  protected mapper(data: any): Issue {
+    return new Issue(data.issue);
   }
 }

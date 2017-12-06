@@ -29,6 +29,15 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
     }
   }
 
+  public find(id: number): Observable<T> {
+    const obs = this.asObservable(id);
+    this.http.get(this.server + `/${this.getRootPath()}/${id}`).retry(3).map(this.mapper).subscribe((object) => {
+      this.asObservable(id, object);
+    });
+
+    return obs;
+  }
+
   protected asObservable(id: number, object?: T): Observable<T> {
     const subject = this.loadIssueSubject(id);
     if (object) {
@@ -60,5 +69,8 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
   protected getNamspaceName(): string {
     return undefined;
   }
+
+  protected abstract getRootPath(): string;
+  protected abstract mapper(data: any): T;
 
 }
