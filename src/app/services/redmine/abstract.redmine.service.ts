@@ -16,7 +16,7 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
 
   private http: HttpClient
   protected settings: Observable<Settings>;
-  protected socket: Socket;
+  protected socket: Observable<Socket>;
   protected loadedObjects: Map<number, Subject<T>> = new Map();
 
   constructor(http: HttpClient, protected settingsService: SettingsService) {
@@ -24,10 +24,15 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
     this.settings = this.settingsService.getSettings().filter((settings): boolean => {
       return settings.isValide();
     });
+    const socketSubject = new BehaviorSubject(null);
+    this.socket = socketSubject.asObservable().filter((socket) => {
+      return this.socket ? false : true;
+    });
     if (this.getNamspaceName()) {
       this.settings.subscribe((settings) => {
-        this.socket = io.connect(`${settings.server}${this.getNamspaceName()}`, {path: `/ws`, query: 'user_id=5'});
-      })
+        const socket = io.connect(`${settings.server}${this.getNamspaceName()}`, {path: `/ws`, query: 'user_id=5'});
+        socketSubject.next(socket);
+      });
     }
   }
 
@@ -44,28 +49,28 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
     this.settings.subscribe((settings) => {
       this.http.get(settings.server + path).retry(3).subscribe((data) => {
         subject.next(data);
+      }, (error) => {
+        subject.error(error);
       });
     });
     return subject.asObservable();
   }
 
   protected asObservable(id: number, object?: T): Observable<T> {
-    const subject = this.loadIssueSubject(id);
-    if (object) {
-      subject.next(object);
-    }
+    const subject = this.findSubject(id);
+    subject.next(object);
     return subject.asObservable();
   }
 
   protected notifyAll(object: T): void {
-    const subject: Subject<T> = this.loadIssueSubject(object.id);
+    const subject: Subject<T> = this.findSubject(object.id);
     if (subject) {
       console.log(`notify all #${object.id}`);
       subject.next(object);
     }
   }
 
-  private loadIssueSubject(id: number): Subject<T> {
+  protected findSubject(id: number): Subject<T> {
     if (typeof id !== 'number') {
       throw new Error('id must be a number');
     }

@@ -21,10 +21,6 @@ export class SettingsComponent implements OnInit {
       this.settings = settings;
       this.redmine.users.findLoggedOnUser().subscribe((user) => {
           this.user = user;
-          console.dir(this.user);
-        },
-        (error) => {
-          this.user = null;
         });
     });
   }

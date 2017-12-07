@@ -20,7 +20,9 @@ export class UsersService extends AbstractRedmineService<User> {
       return user;
     }).subscribe((user) => {
       this.asObservable(user.id, user);
-      this.asObservable(UsersService.CURRENT_USER_ID, user)
+      this.asObservable(UsersService.CURRENT_USER_ID, user);
+    }, (error) => {
+      this.asObservable(UsersService.CURRENT_USER_ID, null);
     });
 
     return this.asObservable(UsersService.CURRENT_USER_ID);
