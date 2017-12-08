@@ -111,7 +111,7 @@
     "component-selector": [
       true,
       "element",
-      ["app", "si"],
+      ["app", "si", "rm-ng"],
       "kebab-case"
     ],
     "use-input-property-decorator": true,

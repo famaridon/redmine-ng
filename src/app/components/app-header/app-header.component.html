@@ -8,7 +8,7 @@
   <div class="m-auto" dropdown>
     <h2><span *ngIf="project">{{project.name}}</span>
       <span *ngIf="!project">Select a project</span>
-      <button type="button" class="btn btn-link" (click)="openModal(template)"><i class="fa fa-2 fa-caret-square-o-down" aria-hidden="true"></i></button>
+      <button *ngIf="projects" type="button" class="btn btn-link" (click)="openModal(template)"><i class="fa fa-2 fa-caret-square-o-down" aria-hidden="true"></i></button>
     </h2>
   </div>
 
@@ -38,7 +38,7 @@
     </div>
     <br>
     <div class="list-group" *ngIf="projects">
-      <button *ngFor="let project of projects | nameFilter: search" type="button" [routerLink]="['/project/'+project.id ]" (click)="select(project);" class="list-group-item list-group-item-action">{{project.name}}</button>
+      <rm-ng-project *ngFor="let project of projects;" [nameFilter]="search" [project]="project"></rm-ng-project>
     </div>
   </div>
 </ng-template>

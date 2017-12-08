@@ -2,6 +2,8 @@ import {Component, OnInit, TemplateRef} from '@angular/core';
 import {RedmineService} from '../../services/redmine.service';
 import {Project, User} from '../../services/redmine/beans';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {Observable} from 'rxjs/Observable';
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-header',
@@ -12,41 +14,57 @@ export class AppHeaderComponent implements OnInit {
 
   private modalRef: BsModalRef;
   public search: string;
-  public projects: Project[] = [];
+  public projects: Observable<Project>[] = [];
   public project: Project;
   public selected: Project;
   public loggedOnUser: User;
 
-  constructor(private redmine: RedmineService, private modalService: BsModalService) {
+  constructor(private settingsService: SettingsService, private redmine: RedmineService, private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
     this.redmine.projects.getWorkingProject().subscribe((project) => {
       this.project = project;
+      if (this.modalRef) {
+        this.modalRef.hide();
+      }
+      this.selected = this.project;
     });
     this.redmine.users.findLoggedOnUser().subscribe((user) => {
       this.loggedOnUser = user;
     });
 
-    this.loadAll();
+    this.settingsService.getSettings().subscribe((settings) => {
+      if (settings && settings.isValide()) {
+        this.loadAll();
+      } else {
+        this.selected = null;
+        this.projects = [];
+      }
+    });
+
   }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-  public async loadAll(): Promise<void> {
-    let paginable = await this.redmine.projects.findAll(0, 100).toPromise();
-    this.projects = this.projects.concat(paginable.elements);
-    while (paginable.elements.length === 100) {
-      paginable = await this.redmine.projects.findAll(paginable.offset + paginable.elements.length, 100).toPromise();
-      this.projects = this.projects.concat(paginable.elements);
-    }
+  private loadAll(): void {
+    const tmpProjects: Observable<Project>[] = [];
+    this.loadPage(tmpProjects, 0, 100);
   }
 
-  public select(selected: Project): void {
-    this.selected = selected;
-    this.redmine.projects.switchWorkingProject(this.selected);
-    this.modalRef.hide();
+  private loadPage(tmpProjects: Observable<Project>[], offset: number, limit: number): void {
+    this.redmine.projects.findAll(offset, limit).subscribe((paginable) => {
+      paginable.elements.forEach((element) => {
+        tmpProjects.push(element);
+      });
+      if (paginable.elements.length >= 100) {
+        this.loadPage(tmpProjects, offset + limit, limit);
+      } else {
+        // I'm the last page
+        this.projects = tmpProjects;
+      }
+    });
   }
 }

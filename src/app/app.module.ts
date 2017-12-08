@@ -52,6 +52,8 @@ import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-ta
 import {AppNodeExpanderDirective, RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
 import {AutofocusDirective} from './directives/autofocus/autofocus.directive';
 import {StatesInputsModule} from './states-inputs/states-inputs.module';
+import {CommonModule} from '@angular/common';
+import {RedmineNgModule} from './redmine-ng/redmine-ng.module';
 
 
 const appRoutes: Routes = [
@@ -116,6 +118,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    CommonModule,
     HttpModule,
     HttpClientModule,
     GravatarModule,
@@ -126,7 +129,8 @@ const appRoutes: Routes = [
       appRoutes,
       {enableTracing: false} // <-- debugging purposes only
     ),
-    StatesInputsModule
+    StatesInputsModule,
+    RedmineNgModule
   ],
   providers: [
     AppSidebarService,
