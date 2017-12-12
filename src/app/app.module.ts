@@ -17,7 +17,6 @@ import {ProjectQueryIssuesComponent} from './views/project/issues/issues.compone
 import {SettingsComponent} from './settings/settings.component';
 import {IssueComponent} from './views/issue/issue.component';
 /* Services  */
-import {AppSidebarService} from './services/app-sidebar.service';
 import {SettingsService} from './services/settings.service';
 import {SettingsGuardService} from './services/settings-guard.service';
 import {AddAPIKeyHeaderInterceptor, RedmineService} from './services/redmine.service';
@@ -133,7 +132,6 @@ const appRoutes: Routes = [
     RedmineNgModule
   ],
   providers: [
-    AppSidebarService,
     SettingsService,
     SettingsGuardService,
     RedmineService,

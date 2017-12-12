@@ -10,7 +10,6 @@
         <ul class="nav-dropdown-items">
           <li *ngFor="let query of queries;" class="nav-item">
             <rm-ng-query [bean]="query" [project]="workingProject" ></rm-ng-query>
-            <!--<a class="nav-link" [routerLink]="[subentry.link]"><i class="fa fa-{{subentry.icon}}" aria-hidden="true"></i>{{subentry.label}}</a>-->
           </li>
         </ul>
       </li>
