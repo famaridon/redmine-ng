@@ -25,7 +25,6 @@ import {IssuesService} from './services/redmine/issues.service';
 import {QueriesService} from './services/redmine/queries.service';
 import {UsersService} from './services/redmine/users.service';
 /* Pipe */
-import {NameFilterPipe} from './services/redmine/beans';
 /* Gravatar */
 import {GravatarModule} from 'ng2-gravatar-directive';
 /* bootstrap components */
@@ -97,8 +96,6 @@ const appRoutes: Routes = [
 
     NavDropdownDirective,
     NavDropdownToggleDirective,
-
-    NameFilterPipe,
 
     SettingsComponent,
     PageNotFoundComponent,
