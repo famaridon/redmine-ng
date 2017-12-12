@@ -76,6 +76,12 @@ export class Project extends AbstractRedmineBean {
 export class Query extends AbstractRedmineBean {
   public is_public: boolean;
   public project_id: number;
+
+  constructor(json: any) {
+    super(json);
+    this.is_public = json.is_public;
+    this.project_id = json.project_id;
+  }
 }
 
 export class Issue extends AbstractRedmineBean {
@@ -99,7 +105,9 @@ export class Issue extends AbstractRedmineBean {
 
   constructor(json: any) {
     super(json);
-    this.project = new Project(json.project);
+    if (json.project) {
+      this.project = new Project(json.project);
+    }
     this.tracker = new Tracker(json.tracker);
     this.status = new Status(json.status);
     this.priority = new Priority(json.priority);

@@ -2,16 +2,15 @@
   <app-sidebar-header></app-sidebar-header>
   <nav class="sidebar-nav">
     <ul class="nav">
-      <li *ngFor="let entry of entries;" class="nav-item nav-dropdown open">
-        <a class="nav-link  nav-dropdown-toggle" appSidebarDropdownToggler routerLinkActive="active" [routerLink]="[entry.link]"><i class="fa fa-{{entry.icon}}"></i>{{entry.label}}</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="'/settings'"><i class="fa fa-cogs"></i>Settings</a>
+      </li>
+      <li class="nav-item nav-dropdown open" *ngIf="workingProject">
+        <a class="nav-link nav-dropdown-toggle" appSidebarDropdownToggler><i class="fa fa-building"></i>Projects</a>
         <ul class="nav-dropdown-items">
-          <li *ngFor="let subentry of entry.entries;" class="nav-item">
-            <ng-container *ngIf="subentry.link;else divider">
-              <a class="nav-link" [routerLink]="[subentry.link]"><i class="fa fa-{{subentry.icon}}" aria-hidden="true"></i>{{subentry.label}}</a>
-            </ng-container>
-            <ng-template #divider>
-              {{subentry.label}}
-            </ng-template>
+          <li *ngFor="let query of queries;" class="nav-item">
+            <rm-ng-query [bean]="query" [project]="workingProject" ></rm-ng-query>
+            <!--<a class="nav-link" [routerLink]="[subentry.link]"><i class="fa fa-{{subentry.icon}}" aria-hidden="true"></i>{{subentry.label}}</a>-->
           </li>
         </ul>
       </li>

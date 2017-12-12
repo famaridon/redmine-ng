@@ -7,6 +7,7 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {Paginable, Project, Query} from './beans';
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class QueriesService extends AbstractRedmineService<Query> {
@@ -15,27 +16,14 @@ export class QueriesService extends AbstractRedmineService<Query> {
     super(http, settings);
   }
 
-  public findAll(offset = 0, limit = 50): Observable<Paginable<Query>> {
+  public findAll(offset = 0, limit = 50): Observable<Paginable<Observable<Query>>> {
     return this.get(`/queries?offset=${offset}&limit=${limit}`).map((data: any) => {
-      return new Paginable<Query>(data, 'queries', this.caster);
+      return new Paginable<Observable<Query>>(data, 'queries', this.caster.bind(this));
     });
   }
 
-  public async findByProject(project: Project | number, offset = 0, limit = 50): Promise<Array<Query>> {
-    let result = [];
-    let paginable = await this.findAll(0, 100).toPromise();
-    result = result.concat(paginable.elements)
-    while (paginable.elements.length === 100) {
-      paginable = await this.findAll(paginable.offset + paginable.elements.length, 100).toPromise();
-      result = result.concat(paginable.elements);
-    }
-    return result.filter((query: Query) => {
-      return query.project_id === project;
-    });
-  }
-
-  private caster(element: any) {
-    return new Query(element);
+  private caster(element: any): Observable<Query> {
+    return this.asObservable(element.id, new Query(element));
   }
 
   protected getRootPath(): string {

@@ -28,7 +28,7 @@ export class IssuesService extends AbstractRedmineService<Issue> {
     }
     url += `&offset=${offset}&limit=${limit}`;
     return this.get(url).map((data: any) => {
-      return new Paginable<Observable<Issue>>(data, 'issues', this.caster);
+      return new Paginable<Observable<Issue>>(data, 'issues', this.caster.bind(this));
     });
   }
 

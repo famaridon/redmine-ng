@@ -1,5 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {AppSidebarService, Entry} from "../../services/app-sidebar.service";
+import {RedmineService} from '../../services/redmine.service';
+import {Project, Query} from '../../services/redmine/beans';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,14 +9,17 @@ import {AppSidebarService, Entry} from "../../services/app-sidebar.service";
 })
 export class AppSidebarComponent implements OnInit {
 
-  private el: ElementRef;
-  private appSidebarNavService: AppSidebarService;
-  public entries: Array<Entry>;
+  public workingProject: Project;
+  public queries: Observable<Query>[] = [];
 
-  constructor(appSidebarNavService: AppSidebarService, el: ElementRef) {
-    this.appSidebarNavService = appSidebarNavService;
-    this.el = el;
-    this.entries = this.appSidebarNavService.entries;
+  constructor(private redmine: RedmineService, private el: ElementRef) {
+    this.redmine.projects.getWorkingProject().subscribe((wp) => {
+      this.workingProject = wp;
+    });
+
+    this.redmine.queries.findAll(0, 100).subscribe((page) => {
+      this.queries = this.queries.concat(page.elements);
+    });
   }
 
   // wait for the component to render completely

@@ -106,6 +106,7 @@ export class SidebarDropdownToggleDirective {
   @HostListener('click', ['$event'])
   toggleOpen($event: MouseEvent) {
     $event.preventDefault();
+    $event.stopPropagation();
     const element = <Element>$event.target;
     if(element.parentElement.classList.contains('open')) {
       element.parentElement.classList.remove('open');

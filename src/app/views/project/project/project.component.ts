@@ -47,16 +47,16 @@ export class ProjectComponent implements OnInit {
       return;
     }
     this.project = project;
-    this.redmine.queries.findByProject(this.project.id).then((queries) => {
-      const queriesEntry = [];
-
-      queries.forEach((query) => {
-        const queryEntry = new Entry(String(query.id), query.name);
-        queryEntry.link = `/project/${this.project.id}/issues/${query.id}`;
-        queriesEntry.push(queryEntry);
-      });
-
-      this.sidebarService.findEntry('project').entries = queriesEntry;
-    });
+    // this.redmine.queries.findByProject(this.project.id).then((queries) => {
+    //   const queriesEntry = [];
+    //
+    //   queries.forEach((query) => {
+    //     const queryEntry = new Entry(String(query.id), query.name);
+    //     queryEntry.link = `/project/${this.project.id}/issues/${query.id}`;
+    //     queriesEntry.push(queryEntry);
+    //   });
+    //
+    //   this.sidebarService.findEntry('project').entries = queriesEntry;
+    // });
   }
 }
