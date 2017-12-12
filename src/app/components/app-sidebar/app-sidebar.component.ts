@@ -12,25 +12,34 @@ export class AppSidebarComponent implements OnInit {
   public workingProject: Project;
   public queries: Observable<Query>[] = [];
 
-  constructor(private redmine: RedmineService, private el: ElementRef) {
+  constructor(private redmine: RedmineService) {
     this.redmine.projects.getWorkingProject().subscribe((wp) => {
       this.workingProject = wp;
     });
 
-    this.redmine.queries.findAll(0, 100).subscribe((page) => {
-      this.queries = this.queries.concat(page.elements);
+    this.loadAllQueries();
+  }
+
+  private loadAllQueries(): void {
+    const tmp: Observable<Query>[] = [];
+    this.loadPage(tmp, 0, 100);
+  }
+
+  private loadPage(tmp: Observable<Query>[], offset: number, limit: number): void {
+    this.redmine.queries.findAll(offset, limit).subscribe((paginable) => {
+      paginable.elements.forEach((element) => {
+        tmp.push(element);
+      });
+      if (paginable.elements.length >= 100) {
+        this.loadPage(tmp, offset + limit, limit);
+      } else {
+        // I'm the last page
+        this.queries = tmp;
+      }
     });
   }
 
-  // wait for the component to render completely
   public ngOnInit(): void {
-    const nativeElement: HTMLElement = this.el.nativeElement,
-      parentElement: HTMLElement = nativeElement.parentElement;
-    // move all children out of the element
-    while (nativeElement.firstChild) {
-      parentElement.insertBefore(nativeElement.firstChild, nativeElement);
-    }
-    // remove the empty element(the host)
-    parentElement.removeChild(nativeElement);
+
   }
 }
