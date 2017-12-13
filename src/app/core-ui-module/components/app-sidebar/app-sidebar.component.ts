@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {RedmineService} from '../../redmine-ng/services/redmine.service';
-import {Project, Query} from '../../redmine-ng/services/beans';
 import {Observable} from 'rxjs/Observable';
+import {Project, Query} from '../../../redmine-ng/services/beans';
+import {RedmineService} from '../../../redmine-ng/services/redmine.service';
 
 @Component({
   selector: 'app-sidebar',

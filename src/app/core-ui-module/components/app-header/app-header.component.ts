@@ -1,9 +1,9 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {RedmineService} from '../../redmine-ng/services/redmine.service';
-import {Project, User} from '../../redmine-ng/services/beans';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {Observable} from 'rxjs/Observable';
-import {SettingsService} from "../../services/settings.service";
+import {Project, User} from '../../../redmine-ng/services/beans';
+import {SettingsService} from '../../../services/settings.service';
+import {RedmineService} from '../../../redmine-ng/services/redmine.service';
 
 @Component({
   selector: 'app-header',

@@ -1,10 +1,10 @@
 import { Component, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'app-sidebar-form',
-  templateUrl: './app-sidebar-form.component.html'
+  selector: 'app-sidebar-minimizer',
+  templateUrl: './app-sidebar-minimizer.component.html'
 })
-export class AppSidebarForm {
+export class AppSidebarMinimizerComponent {
 
   constructor(private el: ElementRef) { }
 
