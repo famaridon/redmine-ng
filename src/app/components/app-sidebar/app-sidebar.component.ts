@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {RedmineService} from '../../services/redmine.service';
-import {Project, Query} from '../../services/redmine/beans';
+import {RedmineService} from '../../redmine-ng/services/redmine.service';
+import {Project, Query} from '../../redmine-ng/services/beans';
 import {Observable} from 'rxjs/Observable';
 
 @Component({

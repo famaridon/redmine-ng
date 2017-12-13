@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
-import {AbstractRedmineService} from './abstract.redmine.service';
+import {AbstractRedmineService} from '../abstract.redmine.service';
 import {HttpClient} from '@angular/common/http';
-import {SettingsService} from '../settings.service';
+import {SettingsService} from '../../../services/settings.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import {Paginable, Project, Query} from './beans';
-import {Subject} from "rxjs/Subject";
+import {Paginable, Project, Query} from '../beans';
 
 @Injectable()
 export class QueriesService extends AbstractRedmineService<Query> {

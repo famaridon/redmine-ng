@@ -1,6 +1,6 @@
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {AbstractRedmineComponent} from '../abstract-redmine-ng-component';
-import {Project, Query} from '../../../services/redmine/beans';
+import {Project, Query} from '../../services/beans';
 
 @Component({
   selector: 'rm-ng-query',

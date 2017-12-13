@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
-import {RedmineService} from '../../services/redmine.service';
-import {Project} from '../../services/redmine/beans';
+import {RedmineService} from '../../redmine-ng/services/redmine.service';
+import {Project} from '../../redmine-ng/services/beans';
 
 @Component({
   selector: 'app-aside',

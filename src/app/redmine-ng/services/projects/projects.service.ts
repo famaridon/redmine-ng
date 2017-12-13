@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {SettingsService} from '../settings.service';
-import {Issue, Paginable, Project, Tracker} from './beans';
+import {SettingsService} from '../../../services/settings.service';
+import {Issue, Paginable, Project, Tracker} from '../beans';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {AbstractRedmineService} from './abstract.redmine.service';
+import {AbstractRedmineService} from '../abstract.redmine.service';
 
 
 @Injectable()

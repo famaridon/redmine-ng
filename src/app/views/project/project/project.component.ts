@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RedmineService} from '../../../services/redmine.service';
-import {Project} from '../../../services/redmine/beans';
+import {RedmineService} from '../../../redmine-ng/services/redmine.service';
+import {Project} from '../../../redmine-ng/services/beans';
 
 @Component({
   selector: 'app-project',

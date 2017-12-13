@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {ProjectsService} from './redmine/projects.service';
-import {IssuesService} from './redmine/issues.service';
+import {ProjectsService} from './projects/projects.service';
+import {IssuesService} from './issues/issues.service';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Settings, SettingsService} from './settings.service';
-import {QueriesService} from './redmine/queries.service';
-import {UsersService} from './redmine/users.service';
+import {QueriesService} from './queries/queries.service';
+import {UsersService} from './users/users.service';
+import {Settings, SettingsService} from '../../services/settings.service';
 
 /**
  * this is simply a service aggregator

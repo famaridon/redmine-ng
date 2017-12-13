@@ -1,10 +1,11 @@
-import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {Component, ComponentFactory, ComponentFactoryResolver, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {RedmineService} from '../../../services/redmine.service';
+import {RedmineService} from '../../../redmine-ng/services/redmine.service';
 import {Subscription} from 'rxjs/Subscription';
-import {Issue} from '../../../services/redmine/beans';
-import {Node} from '../../../components/redmine-issue-tree-table/redmine-issue-tree-table.component';
+import {Issue} from '../../../redmine-ng/services/beans';
+import {Node} from '../../../tree-table/node';
 import {Observable} from 'rxjs/Observable';
+import {IssuesRowComponent} from './issue-row-component.component';
 
 
 @Component({
@@ -12,15 +13,17 @@ import {Observable} from 'rxjs/Observable';
   templateUrl: './issues.component.html',
   styleUrls: ['./issues.component.css']
 })
-export class ProjectQueryIssuesComponent implements OnInit, OnDestroy, OnChanges {
+export class ProjectQueryIssuesComponent implements OnInit, OnDestroy {
 
   public nodeById: Map<number, Node<Issue>> = new Map();
   public tree: Array<Node<Issue>>;
   private flatTree: Array<Node<Issue>> = [];
   public projectSubscription: Subscription;
   public querySubscription: Subscription;
+  public factory: ComponentFactory<any>;
 
-  constructor(private route: ActivatedRoute, private redmine: RedmineService) {
+  constructor(private route: ActivatedRoute, private redmine: RedmineService, private resolver: ComponentFactoryResolver) {
+    this.factory = this.resolver.resolveComponentFactory(IssuesRowComponent);
   }
 
   ngOnInit() {
@@ -33,12 +36,10 @@ export class ProjectQueryIssuesComponent implements OnInit, OnDestroy, OnChanges
     });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-  }
-
   private loadIssues(query: number, project: number) {
     this.tree = [];
     this.flatTree = [];
+    this.nodeById = new Map()
     // first call contain total count
     this.redmine.issues.findByQuery(query, project).subscribe((paginable) => {
       if (paginable.total_count > paginable.elements.length) { // we have more pages

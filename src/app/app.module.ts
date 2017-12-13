@@ -2,14 +2,10 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 import {RouterModule, Routes} from '@angular/router';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 /* Components */
 import {AppComponent} from './app.component';
-import {IssueIdComponent} from './components/redmine/issue-id/issue-id.component';
-import {RmTrackerComponent} from './components/redmine/input/rm-tracker/rm-tracker.component';
-import {RMStatusComponent} from './components/redmine/input/rm-status/rm-status.component';
 import {AppLoaderComponent} from './components/app-loader/app-loader.component';
 /* Views */
 import {ProjectComponent} from './views/project/project/project.component';
@@ -19,11 +15,7 @@ import {IssueComponent} from './views/issue/issue.component';
 /* Services  */
 import {SettingsService} from './services/settings.service';
 import {SettingsGuardService} from './services/settings-guard.service';
-import {AddAPIKeyHeaderInterceptor, RedmineService} from './services/redmine.service';
-import {ProjectsService} from './services/redmine/projects.service';
-import {IssuesService} from './services/redmine/issues.service';
-import {QueriesService} from './services/redmine/queries.service';
-import {UsersService} from './services/redmine/users.service';
+import {AddAPIKeyHeaderInterceptor} from './redmine-ng/services/redmine.service';
 /* Pipe */
 /* Gravatar */
 import {GravatarModule} from 'ng2-gravatar-directive';
@@ -46,12 +38,12 @@ import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarDropdownTog
 import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav-dropdown/nav-dropdown.directive';
 
 import {PageNotFoundComponent} from './errors/page-not-found/page-not-found.component';
-import {RedmineIssueTreeTableComponent} from './components/redmine-issue-tree-table/redmine-issue-tree-table.component';
-import {AppNodeExpanderDirective, RedmineIssueComponent} from './components/redmine-issue-tree-table/redmine-issue.component';
 import {AutofocusDirective} from './directives/autofocus/autofocus.directive';
 import {StatesInputsModule} from './states-inputs/states-inputs.module';
 import {CommonModule} from '@angular/common';
 import {RedmineNgModule} from './redmine-ng/redmine-ng.module';
+import {TreeTableModule} from './tree-table/tree-table.module';
+import {IssuesRowComponent} from './views/project/issues/issue-row-component.component';
 
 
 const appRoutes: Routes = [
@@ -101,21 +93,15 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     ProjectComponent,
     ProjectQueryIssuesComponent,
-    RedmineIssueComponent,
-    RedmineIssueTreeTableComponent,
     IssueComponent,
-    RmTrackerComponent,
-    IssueIdComponent,
+    IssuesRowComponent,
     AppLoaderComponent,
-    RMStatusComponent,
-    AutofocusDirective,
-    AppNodeExpanderDirective
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     CommonModule,
-    HttpModule,
     HttpClientModule,
     GravatarModule,
     ModalModule.forRoot(),
@@ -126,23 +112,23 @@ const appRoutes: Routes = [
       {enableTracing: false} // <-- debugging purposes only
     ),
     StatesInputsModule,
-    RedmineNgModule
+    RedmineNgModule,
+    TreeTableModule,
+
+  ],
+  entryComponents: [
+    IssuesRowComponent
   ],
   providers: [
     SettingsService,
     SettingsGuardService,
-    RedmineService,
-    ProjectsService,
-    QueriesService,
-    UsersService,
-    IssuesService,
+    SettingsService,
     [{
       provide: HTTP_INTERCEPTORS,
       useClass: AddAPIKeyHeaderInterceptor,
       multi: true,
     }]
   ],
-  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

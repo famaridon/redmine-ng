@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {AbstractRedmineService} from './abstract.redmine.service';
-import {SettingsService} from '../settings.service';
+import {AbstractRedmineService} from '../abstract.redmine.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {User} from './beans';
+import {User} from '../beans';
+import {SettingsService} from '../../../services/settings.service';
 
 @Injectable()
 export class UsersService extends AbstractRedmineService<User> {

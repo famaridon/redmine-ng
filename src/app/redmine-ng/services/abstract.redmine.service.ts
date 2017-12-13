@@ -1,6 +1,6 @@
+///<reference path="../../../../node_modules/@types/socket.io-client/index.d.ts"/>
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Settings, SettingsService} from '../settings.service';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
@@ -10,6 +10,7 @@ import {Subject} from 'rxjs/Subject';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import Socket = SocketIOClient.Socket;
+import {Settings, SettingsService} from '../../services/settings.service';
 
 @Injectable()
 export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {

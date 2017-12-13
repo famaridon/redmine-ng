@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RedmineService} from './services/redmine.service';
+import {RedmineService} from './redmine-ng/services/redmine.service';
 
 @Component({
   selector: 'app-root',

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {AbstractRedmineService} from './abstract.redmine.service';
-import {SettingsService} from '../settings.service';
+import {AbstractRedmineService} from '../abstract.redmine.service';
+import {SettingsService} from '../../../services/settings.service';
 import {HttpClient} from '@angular/common/http';
-import {Issue, Paginable, Status} from './beans';
+import {Issue, Paginable, Status} from '../beans';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 
@@ -21,8 +21,7 @@ export class IssuesService extends AbstractRedmineService<Issue> {
   }
 
   public findByQuery(query: number, project?: number, offset = 0, limit = 50): Observable<Paginable<Observable<Issue>>> {
-    let url = '';
-    url += `/issues?query_id=${query}`;
+    let url = `/issues?query_id=${query}`;
     if (project) {
       url += `&project_id=${project}`;
     }

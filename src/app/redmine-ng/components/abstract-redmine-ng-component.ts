@@ -1,6 +1,6 @@
 import {Input, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {AbstractRedmineBean} from '../../services/redmine/beans';
+import {AbstractRedmineBean} from '../services/beans';
 import {Subscription} from 'rxjs/Subscription';
 
 export abstract class AbstractRedmineComponent<T extends AbstractRedmineBean> implements OnInit, OnDestroy {

@@ -1,6 +1,0 @@
-<ng-container [ngSwitch]="mode">
-  <select *ngSwitchCase="'write'" [(ngModel)]="issue.status" (ngModelChange)="valueChange($event)" appAutofocus (blur)="switchMode()" [compareWith]="compareFn" >
-    <option *ngFor="let status of availableStatus"  [ngValue]="status">{{status.name}}</option>
-  </select>
-  <span *ngSwitchCase="'read'" (click)="switchMode()" >{{issue.status.name}}</span>
-</ng-container>

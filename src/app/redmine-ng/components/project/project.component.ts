@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Project} from '../../../services/redmine/beans';
+import {Project} from '../../services/beans';
 
 @Component({
   selector: 'rm-ng-project',

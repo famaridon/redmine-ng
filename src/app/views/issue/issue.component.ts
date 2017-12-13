@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {RedmineService} from '../../services/redmine.service';
-import {Issue, Status} from '../../services/redmine/beans';
+import {RedmineService} from '../../redmine-ng/services/redmine.service';
+import {Issue, Status} from '../../redmine-ng/services/beans';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from "rxjs/Observable";
 
