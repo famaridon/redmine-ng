@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {SiTextComponent} from './si-text/si-text.component';
+import {SiTextComponent} from './components/si-text/si-text.component';
 import {FormsModule} from '@angular/forms';
-import {SiSelectComponent} from './si-select/si-select.component';
+import {SiSelectComponent} from './components/si-select/si-select.component';
 import {AutofocusDirective} from './directives/autofocus/autofocus.directive';
 
 @NgModule({

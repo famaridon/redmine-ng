@@ -1,4 +1,4 @@
-import {EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Input, OnInit} from '@angular/core';
 import {ControlValueAccessor} from '@angular/forms';
 
 
