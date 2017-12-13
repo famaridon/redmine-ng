@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from './table/table.component';
-import { RowComponent } from './row/row.component';
+import { TableComponent } from './components/table/table.component';
+import { RowComponent } from './components/row/row.component';
 
 @NgModule({
   imports: [
