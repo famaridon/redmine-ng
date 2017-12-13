@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Settings, SettingsService} from '../services/settings.service';
-import {User} from '../redmine-ng/services/beans';
-import {RedmineService} from '../redmine-ng/services/redmine.service';
+import {Settings, SettingsService} from '../../services/settings.service';
+import {User} from '../../redmine-ng/services/beans';
+import {RedmineService} from '../../redmine-ng/services/redmine.service';
 
 @Component({
   selector: 'app-settings',
