@@ -1,6 +1,6 @@
 import {Component, ComponentFactory, ComponentRef, ElementRef, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {Node} from '../../node'
-import {AbstractRowComponentComponent} from "./abstract-row-component.component";
+import {AbstractRowComponentComponent} from './abstract-row-component.component';
 
 @Component({
   selector: 'tt-row , [tt-row]',

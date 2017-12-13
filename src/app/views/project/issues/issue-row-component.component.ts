@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Issue} from '../../../redmine-ng/services/beans';
-import {AbstractRowComponentComponent} from '../../../tree-table/row/abstract-row-component.component';
+import {AbstractRowComponentComponent} from '../../../tree-table/components/row/abstract-row-component.component';
 
 
 @Component({

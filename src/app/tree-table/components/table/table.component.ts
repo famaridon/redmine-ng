@@ -1,5 +1,5 @@
 import {Component, ComponentFactory, ElementRef, Input, OnInit,} from '@angular/core';
-import {Node} from '../node'
+import {Node} from '../../node'
 
 @Component({
   selector: 'tt-table',
