@@ -11,11 +11,15 @@ import {UsersService} from './services/users/users.service';
 import {SettingsService} from '../services/settings.service';
 import {RmNgIssueComponent} from './components/issue/issue.component';
 import { RmNgIssueIdComponent } from './components/issue-id/issue-id.component';
+import {StatesInputsModule} from "../states-inputs/states-inputs.module";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    StatesInputsModule,
+    FormsModule
   ],
   declarations: [
     RmNgProjectComponent,

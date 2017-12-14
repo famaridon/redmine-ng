@@ -5,7 +5,7 @@ import {Issue} from '../../services/beans';
 import {AbstractRedmineNgBeanComponent} from '../abstract-redmine-ng-bean-component';
 
 @Component({
-  selector: 'app-issue',
+  selector: 'rm-ng-issue',
   templateUrl: './issue.component.html',
   styleUrls: ['./issue.component.css']
 })
@@ -33,6 +33,10 @@ export class RmNgIssueComponent extends AbstractRedmineNgBeanComponent<Issue> im
 
   protected getBean(): Issue {
     return this._issue;
+  }
+
+  public updateSubject($event) {
+    this._issue.subject = $event;
   }
 
 }
