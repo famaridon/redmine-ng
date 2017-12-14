@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ProjectComponent} from './components/project/project.component';
+import {RmNgProjectComponent} from './components/project/project.component';
 import {RouterModule} from '@angular/router';
-import {QueryComponent} from './components/query/query.component';
+import {RmNgQueryComponent} from './components/query/query.component';
 import {RedmineService} from './services/redmine.service';
 import {IssuesService} from './services/issues/issues.service';
 import {ProjectsService} from './services/projects/projects.service';
 import {QueriesService} from './services/queries/queries.service';
 import {UsersService} from './services/users/users.service';
 import {SettingsService} from '../services/settings.service';
-import {IssueComponent} from './components/issue/issue.component';
-import { IssueIdComponent } from './components/issue-id/issue-id.component';
+import {RmNgIssueComponent} from './components/issue/issue.component';
+import { RmNgIssueIdComponent } from './components/issue-id/issue-id.component';
 
 @NgModule({
   imports: [
@@ -18,10 +18,10 @@ import { IssueIdComponent } from './components/issue-id/issue-id.component';
     RouterModule
   ],
   declarations: [
-    ProjectComponent,
-    QueryComponent,
-    IssueComponent,
-    IssueIdComponent
+    RmNgProjectComponent,
+    RmNgQueryComponent,
+    RmNgIssueComponent,
+    RmNgIssueIdComponent
   ],
   providers: [
     RedmineService,
@@ -32,11 +32,11 @@ import { IssueIdComponent } from './components/issue-id/issue-id.component';
     SettingsService
   ],
   entryComponents: [
-    IssueComponent
+    RmNgIssueComponent
   ],
   exports: [
-    ProjectComponent,
-    QueryComponent
+    RmNgProjectComponent,
+    RmNgQueryComponent
   ]
 })
 export class RedmineNgModule {

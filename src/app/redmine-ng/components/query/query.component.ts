@@ -8,7 +8,7 @@ import {AbstractRedmineNgBeanComponent} from '../abstract-redmine-ng-bean-compon
   templateUrl: './query.component.html',
   styleUrls: ['./query.component.css']
 })
-export class QueryComponent extends AbstractRedmineNgBeanComponent<Query> implements OnInit {
+export class RmNgQueryComponent extends AbstractRedmineNgBeanComponent<Query> implements OnInit {
 
   private projectFilter: number;
   private _query: Query;

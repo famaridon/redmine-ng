@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Issue} from '../../../redmine-ng/services/beans';
 import {Node} from '../../../tree-table/node';
 import {Observable} from 'rxjs/Observable';
-import {IssueComponent} from '../../../redmine-ng/components/issue/issue.component';
+import {RmNgIssueComponent} from '../../../redmine-ng/components/issue/issue.component';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class ProjectQueryIssuesComponent implements OnInit, OnDestroy {
   public factory: ComponentFactory<any>;
 
   constructor(private route: ActivatedRoute, private redmine: RedmineService, private resolver: ComponentFactoryResolver) {
-    this.factory = this.resolver.resolveComponentFactory(IssueComponent);
+    this.factory = this.resolver.resolveComponentFactory(RmNgIssueComponent);
   }
 
   ngOnInit() {

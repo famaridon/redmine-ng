@@ -9,7 +9,7 @@ import {AbstractRedmineNgBeanComponent} from '../abstract-redmine-ng-bean-compon
   templateUrl: './issue.component.html',
   styleUrls: ['./issue.component.css']
 })
-export class IssueComponent extends AbstractRedmineNgBeanComponent<Issue> implements OnInit, RowComponentReady<Observable<Issue> | Promise<Issue> | Issue> {
+export class RmNgIssueComponent extends AbstractRedmineNgBeanComponent<Issue> implements OnInit, RowComponentReady<Observable<Issue> | Promise<Issue> | Issue> {
 
   private _issue: Issue;
 

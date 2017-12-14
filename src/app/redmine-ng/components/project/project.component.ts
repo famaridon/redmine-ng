@@ -7,7 +7,7 @@ import {Project} from '../../services/beans';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit {
+export class RmNgProjectComponent implements OnInit {
   @Input()
   public nameFilter: string;
   public internalProject: Project;
