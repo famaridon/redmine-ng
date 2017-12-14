@@ -10,6 +10,7 @@ import {QueriesService} from './services/queries/queries.service';
 import {UsersService} from './services/users/users.service';
 import {SettingsService} from '../services/settings.service';
 import {IssueComponent} from './components/issue/issue.component';
+import { IssueIdComponent } from './components/issue-id/issue-id.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {IssueComponent} from './components/issue/issue.component';
   declarations: [
     ProjectComponent,
     QueryComponent,
-    IssueComponent
+    IssueComponent,
+    IssueIdComponent
   ],
   providers: [
     RedmineService,

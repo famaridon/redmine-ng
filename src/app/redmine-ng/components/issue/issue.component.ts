@@ -2,14 +2,14 @@ import {Component, Input, OnInit} from '@angular/core';
 import {RowComponentReady} from '../../../tree-table/components/row/row.component';
 import {Observable} from 'rxjs/Observable';
 import {Issue} from '../../services/beans';
-import {AbstractRedmineComponent} from '../abstract-redmine-ng-component';
+import {AbstractRedmineNgBeanComponent} from '../abstract-redmine-ng-bean-component';
 
 @Component({
   selector: 'app-issue',
   templateUrl: './issue.component.html',
   styleUrls: ['./issue.component.css']
 })
-export class IssueComponent extends AbstractRedmineComponent<Issue> implements OnInit, RowComponentReady<Observable<Issue> | Promise<Issue> | Issue> {
+export class IssueComponent extends AbstractRedmineNgBeanComponent<Issue> implements OnInit, RowComponentReady<Observable<Issue> | Promise<Issue> | Issue> {
 
   private _issue: Issue;
 

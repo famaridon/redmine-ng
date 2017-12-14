@@ -1,14 +1,14 @@
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
-import {AbstractRedmineComponent} from '../abstract-redmine-ng-component';
 import {Project, Query} from '../../services/beans';
 import {Observable} from 'rxjs/Observable';
+import {AbstractRedmineNgBeanComponent} from '../abstract-redmine-ng-bean-component';
 
 @Component({
   selector: 'rm-ng-query',
   templateUrl: './query.component.html',
   styleUrls: ['./query.component.css']
 })
-export class QueryComponent extends AbstractRedmineComponent<Query> implements OnInit {
+export class QueryComponent extends AbstractRedmineNgBeanComponent<Query> implements OnInit {
 
   private projectFilter: number;
   private _query: Query;

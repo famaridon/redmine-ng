@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {AbstractRedmineBean, Issue} from '../services/beans';
 import {Subscription} from 'rxjs/Subscription';
 
-export abstract class AbstractRedmineComponent<T extends AbstractRedmineBean> implements OnInit, OnDestroy {
+export abstract class AbstractRedmineNgBeanComponent<T extends AbstractRedmineBean> implements OnInit, OnDestroy {
 
   @Input()
   public nameFilter: string;
