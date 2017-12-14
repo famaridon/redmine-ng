@@ -32,7 +32,6 @@ import {StatesInputsModule} from './states-inputs/states-inputs.module';
 import {CommonModule} from '@angular/common';
 import {RedmineNgModule} from './redmine-ng/redmine-ng.module';
 import {TreeTableModule} from './tree-table/tree-table.module';
-import {IssuesRowComponent} from './views/project/issues/issue-row-component.component';
 import {CoreUiModuleModule} from './core-ui-module/core-ui-module.module';
 
 
@@ -62,8 +61,7 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     ProjectComponent,
     ProjectQueryIssuesComponent,
-    IssueComponent,
-    IssuesRowComponent
+    IssueComponent
   ],
   imports: [
     BrowserModule,
@@ -82,9 +80,6 @@ const appRoutes: Routes = [
     StatesInputsModule,
     RedmineNgModule,
     TreeTableModule,
-  ],
-  entryComponents: [
-    IssuesRowComponent
   ],
   providers: [
     SettingsService,

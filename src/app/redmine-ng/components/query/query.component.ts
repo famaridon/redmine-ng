@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {AbstractRedmineComponent} from '../abstract-redmine-ng-component';
 import {Project, Query} from '../../services/beans';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'rm-ng-query',
@@ -10,10 +11,18 @@ import {Project, Query} from '../../services/beans';
 export class QueryComponent extends AbstractRedmineComponent<Query> implements OnInit {
 
   private projectFilter: number;
+  private _query: Query;
 
   constructor(private el: ElementRef) {
     super();
     el.nativeElement.parentElement.classList.add()
+  }
+
+  @Input()
+  set query(query: Observable<Query> | Promise<Query> | Query) {
+    this.loadBean(query, (q) => {
+      this._query = q;
+    });
   }
 
   @Input()
@@ -23,7 +32,7 @@ export class QueryComponent extends AbstractRedmineComponent<Query> implements O
     } else if (typeof project === 'number') {
       this.projectFilter = project;
     }
-    if(this.isVisible() && this.el.nativeElement.parentElement.tagName === 'LI') {
+    if (this.isVisible() && this.el.nativeElement.parentElement.tagName === 'LI') {
       this.el.nativeElement.parentElement.classList.remove('d-none');
     } else {
       this.el.nativeElement.parentElement.classList.add('d-none');
@@ -31,14 +40,18 @@ export class QueryComponent extends AbstractRedmineComponent<Query> implements O
   }
 
   ngOnInit() {
+    super.ngOnInit();
   }
 
+  protected getBean(): Query {
+    return this._query;
+  }
 
   public getRouterLink(): string {
-    return `/project/${this.internalBean.project_id}/issues/${this.internalBean.id}`;
+    return `/project/${this._query.project_id}/issues/${this._query.id}`;
   }
 
   public isVisible(): boolean {
-    return super.isVisible() && this.internalBean.project_id === this.projectFilter;
+    return super.isVisible() && this._query.project_id === this.projectFilter;
   }
 }

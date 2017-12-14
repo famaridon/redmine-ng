@@ -9,7 +9,7 @@
         <a class="nav-link nav-dropdown-toggle" appSidebarDropdownToggler><i class="fa fa-building"></i>Projects</a>
         <ul class="nav-dropdown-items">
           <li *ngFor="let query of queries;" class="nav-item">
-            <rm-ng-query [bean]="query" [project]="workingProject" ></rm-ng-query>
+            <rm-ng-query [query]="query" [project]="workingProject" ></rm-ng-query>
           </li>
         </ul>
       </li>

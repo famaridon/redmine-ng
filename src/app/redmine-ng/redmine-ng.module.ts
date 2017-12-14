@@ -9,6 +9,7 @@ import {ProjectsService} from './services/projects/projects.service';
 import {QueriesService} from './services/queries/queries.service';
 import {UsersService} from './services/users/users.service';
 import {SettingsService} from '../services/settings.service';
+import {IssueComponent} from './components/issue/issue.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {SettingsService} from '../services/settings.service';
   ],
   declarations: [
     ProjectComponent,
-    QueryComponent
+    QueryComponent,
+    IssueComponent
   ],
   providers: [
     RedmineService,
@@ -26,6 +28,9 @@ import {SettingsService} from '../services/settings.service';
     QueriesService,
     UsersService,
     SettingsService
+  ],
+  entryComponents: [
+    IssueComponent
   ],
   exports: [
     ProjectComponent,

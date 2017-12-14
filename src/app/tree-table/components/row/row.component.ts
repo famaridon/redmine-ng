@@ -1,6 +1,5 @@
 import {Component, ComponentFactory, ComponentRef, ElementRef, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {Node} from '../../node'
-import {AbstractRowComponentComponent} from './abstract-row-component.component';
 
 @Component({
   selector: 'tt-row , [tt-row]',
@@ -12,12 +11,12 @@ export class RowComponent<T> implements OnInit {
   @ViewChild('componentContainer', {read: ViewContainerRef})
   private container: ViewContainerRef;
   @Input()
-  public factory: ComponentFactory<AbstractRowComponentComponent<T>>;
+  public factory: ComponentFactory<RowComponentReady<T>>;
   @Input()
   public node: Node<T>;
   @Input()
   public level = 0;
-  private componentRef: ComponentRef<AbstractRowComponentComponent<T>>;
+  private componentRef: ComponentRef<RowComponentReady<T>>;
 
   constructor(private el: ElementRef) {
   }
@@ -25,7 +24,7 @@ export class RowComponent<T> implements OnInit {
   ngOnInit(): void {
     this.container.clear();
     this.componentRef = this.container.createComponent(this.factory);
-    this.componentRef.instance.bean = this.node.element;
+    this.componentRef.instance.setElement(this.node.element);
 
     const nativeElement: HTMLElement = this.el.nativeElement;
     // const parentElement: HTMLElement = nativeElement.parentElement;
@@ -38,4 +37,8 @@ export class RowComponent<T> implements OnInit {
     nativeElement.setAttribute('data-tt-parent', this.node.id);
   }
 
+}
+
+export interface RowComponentReady<T> {
+  setElement(element: T): void;
 }
