@@ -9,8 +9,8 @@ import {AbstractRedmineBean} from './beans';
 import {Subject} from 'rxjs/Subject';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
-import Socket = SocketIOClient.Socket;
 import {Settings, SettingsService} from '../../services/settings.service';
+import Socket = SocketIOClient.Socket;
 
 @Injectable()
 export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
@@ -59,7 +59,9 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
 
   protected asObservable(id: number, object?: T): Observable<T> {
     const subject = this.findSubject(id);
-    subject.next(object);
+    if (object) {
+      subject.next(object);
+    }
     return subject.asObservable();
   }
 
