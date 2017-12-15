@@ -68,7 +68,6 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
   protected notifyAll(object: T): void {
     const subject: Subject<T> = this.findSubject(object.id);
     if (subject) {
-      console.log(`notify all #${object.id}`);
       subject.next(object);
     }
   }

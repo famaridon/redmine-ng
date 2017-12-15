@@ -31,7 +31,6 @@ export abstract class AbstractSIComponent<T> implements OnInit, ControlValueAcce
    * set accessor including call the onchange callback
    */
   set value(v: T) {
-  console.log(`set value(${v})`);
     if (v !== this.innerValue) {
       this.innerValue = v;
       this.nextValue = this.innerValue;

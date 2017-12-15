@@ -23,7 +23,6 @@ export class IssueComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.subscription = this.redmine.issues.find(+params['id']).subscribe((issue) => {
-        console.log('issue subscription')
         if (issue == null) {
           return;
         }

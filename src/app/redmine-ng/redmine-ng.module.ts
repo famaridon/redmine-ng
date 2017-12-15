@@ -19,6 +19,7 @@ import {MomentModule} from 'angular2-moment';
 import { RmNgTrackerComponent } from './components/issue/tracker/tracker.component';
 import {CACHE, CacheModule} from '@ngx-cache/core';
 import {BrowserCacheModule, MemoryCacheService} from '@ngx-cache/platform-browser';
+import {TrackersService} from './services/trackers/trackers.service';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import {BrowserCacheModule, MemoryCacheService} from '@ngx-cache/platform-browse
     IssuesService,
     ProjectsService,
     QueriesService,
+    TrackersService,
     UsersService,
     SettingsService
   ],
