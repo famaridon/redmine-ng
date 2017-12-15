@@ -59,6 +59,8 @@ export class Project extends AbstractRedmineBean {
   public created_on: Date;
   public updated_on: Date;
   public parent: Project;
+  public trackers: Tracker[] = [];
+  public issue_categories: Category[] = [];
 
   constructor(json?: any) {
     super(json);
@@ -71,6 +73,17 @@ export class Project extends AbstractRedmineBean {
 
       if (json.parent) {
         this.parent = new Project(json.parent);
+      }
+      if (json.trackers) {
+        json.trackers.forEach((t) => {
+          this.trackers.push(new Tracker(t));
+        });
+      }
+
+      if (json.issue_categories) {
+        json.issue_categories.forEach((c) => {
+          this.issue_categories.push(new Category(c));
+        });
       }
     }
   }
@@ -129,7 +142,7 @@ export class Issue extends AbstractRedmineBean {
       if (json.category) {
         this.category = new Category(json.category);
       }
-      if(json.fixed_version) {
+      if (json.fixed_version) {
         this.fixed_version = new Version(json.fixed_version);
       }
       if (json.parent) {
@@ -157,7 +170,7 @@ export class CustomField extends AbstractRedmineBean {
 
   constructor(json?: any) {
     super(json);
-    if(json) {
+    if (json) {
       this.value = json.value;
     }
   }

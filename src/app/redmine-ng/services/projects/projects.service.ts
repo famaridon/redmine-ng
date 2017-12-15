@@ -23,6 +23,14 @@ export class ProjectsService extends AbstractRedmineService<Project> {
     }
   }
 
+  public find(id: number): Observable<Project> {
+    const obs = this.asObservable(id);
+    this.get(`/${this.getRootPath()}/${id}?include=trackers,issue_categories`).map(this.mapper).subscribe((object) => {
+      this.asObservable(id, object);
+    });
+    return obs;
+  }
+
   public findAll(offset = 0, limit = 50): Observable<Paginable<Observable<Project>>> {
     return this.get(`/projects?offset=${offset}&limit=${limit}`).map((data: any) => {
       return new Paginable<Observable<Project>>(data, 'projects', this.caster.bind(this));
@@ -45,12 +53,6 @@ export class ProjectsService extends AbstractRedmineService<Project> {
 
   public getWorkingProject(): Observable<Project> {
     return this.currentProject.asObservable();
-  }
-
-  public getAvailableTrackers(id: number): Observable<Tracker[]> {
-    return this.get(`/projects/${id}/trackers`).map((data: any) => {
-      return <Tracker[]>data.trackers;
-    });
   }
 
   private caster(element: any): Observable<Project> {

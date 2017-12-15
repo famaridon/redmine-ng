@@ -1,3 +1,7 @@
+/**
+ * inspired from https://github.com/DesertFoxNV/ngx-autosize-input
+ */
+
 import {Component, Input, OnInit} from '@angular/core';
 import {RowComponentReady} from '../../../tree-table/components/row/row.component';
 import {Observable} from 'rxjs/Observable';
