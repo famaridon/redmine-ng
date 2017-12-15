@@ -1,0 +1,26 @@
+.tt-row {
+  &.list-group-item {
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+
+  &.list-group-item:last-child {
+    border-bottom-style: none;
+  }
+
+  .tt-row-content > div {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+
+  .tt-children-table {
+    .tt-row-content > div {
+      margin-left: 0.75rem;
+    }
+    .tt-row {
+      border-right-style: none;
+      border-left-style: none;
+    }
+  }
+}

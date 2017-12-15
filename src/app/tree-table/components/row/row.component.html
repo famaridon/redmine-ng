@@ -2,7 +2,7 @@
 
 <!-- append children -->
 <ng-container *ngIf="node.status === 'expended'">
-  <div class="list-group">
-    <div tt-row *ngFor="let child of node.children;" [node]="child" [level]="level+1" [factory]="factory" class="list-group-item"></div>
+  <div class="list-group tt-children-table">
+    <div tt-row *ngFor="let child of node.children;" [node]="child" [level]="level+1" [factory]="factory" class="list-group-item tt-row"></div>
   </div>
 </ng-container>

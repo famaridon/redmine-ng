@@ -25,6 +25,7 @@ export class RowComponent<T> implements OnInit {
     this.container.clear();
     this.componentRef = this.container.createComponent(this.factory);
     this.componentRef.instance.setElement(this.node.element);
+    this.componentRef.location.nativeElement.classList.add('tt-row-content')
 
     const nativeElement: HTMLElement = this.el.nativeElement;
     // const parentElement: HTMLElement = nativeElement.parentElement;

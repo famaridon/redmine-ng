@@ -1,7 +1,7 @@
 <ng-container *ngIf="tree;else loading">
-  <div class="list-group">
-    <div class="list-group-item"># Subject</div>
-    <div tt-row *ngFor="let node of tree;" [node]="node" [factory]="factory" [level]="0" class="list-group-item"></div>
+  <div class="list-group tt-table">
+    <div class="list-group-item tt-table-header"># Subject</div>
+    <div tt-row *ngFor="let node of tree;" [node]="node" [factory]="factory" [level]="0" class="list-group-item tt-row"></div>
   </div>
 </ng-container>
 
