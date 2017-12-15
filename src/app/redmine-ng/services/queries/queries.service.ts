@@ -6,7 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import {Paginable, Project, Query} from '../beans';
+import {Paginable, Query} from '../beans';
 
 @Injectable()
 export class QueriesService extends AbstractRedmineService<Query> {

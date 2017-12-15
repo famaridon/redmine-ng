@@ -3,7 +3,8 @@ import {CommonModule} from '@angular/common';
 import {SiTextComponent} from './components/si-text/si-text.component';
 import {FormsModule} from '@angular/forms';
 import {SiSelectComponent} from './components/si-select/si-select.component';
-import {AutofocusDirective} from './directives/autofocus/autofocus.directive';
+import {SiAutoFocusDirective} from './directives/autofocus/autofocus.directive';
+import {SiAutoSizeDirective} from './directives/autosize/auto-size.directive';
 
 @NgModule({
 
@@ -12,13 +13,15 @@ import {AutofocusDirective} from './directives/autofocus/autofocus.directive';
     FormsModule
   ],
   declarations: [
-    AutofocusDirective,
+    SiAutoFocusDirective,
+    SiAutoSizeDirective,
 
     SiTextComponent,
     SiSelectComponent
+
   ],
   exports: [
-    AutofocusDirective,
+    SiAutoFocusDirective,
 
     SiTextComponent,
     SiSelectComponent
