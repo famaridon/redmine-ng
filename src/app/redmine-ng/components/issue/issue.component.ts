@@ -11,7 +11,7 @@ import {AbstractRedmineNgBeanComponent} from '../abstract-redmine-ng-bean-compon
 })
 export class RmNgIssueComponent extends AbstractRedmineNgBeanComponent<Issue> implements OnInit, RowComponentReady<Observable<Issue> | Promise<Issue> | Issue> {
 
-  private _issue: Issue;
+  public _issue: Issue;
 
   constructor() {
     super();
