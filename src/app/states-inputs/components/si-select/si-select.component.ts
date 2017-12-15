@@ -25,9 +25,11 @@ export class SiSelectComponent<T extends IOption> extends AbstractSIComponent<T>
   }
 
   ngOnInit() {
-    this.availableOptionsObservable.subscribe((availableOptions) => {
-      this.availableOptions = availableOptions;
-    })
+    if (this.availableOptionsObservable) {
+      this.availableOptionsObservable.subscribe((availableOptions) => {
+        this.availableOptions = availableOptions;
+      })
+    }
   }
 
   compareFn(t1: T, t2: T): boolean {
