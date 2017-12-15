@@ -17,9 +17,18 @@ import {RmNgStatusComponent} from './components/issue/status/status.component';
 import {RmNgPriorityComponent} from './components/issue/priority/priority.component';
 import {MomentModule} from 'angular2-moment';
 import { RmNgTrackerComponent } from './components/issue/tracker/tracker.component';
+import {CACHE, CacheModule} from '@ngx-cache/core';
+import {BrowserCacheModule, MemoryCacheService} from '@ngx-cache/platform-browser';
 
 @NgModule({
   imports: [
+    CacheModule.forRoot(),
+    BrowserCacheModule.forRoot([
+      {
+        provide: CACHE,
+        useClass: MemoryCacheService // or, LocalStorageCacheService
+      }
+    ]),
     CommonModule,
     RouterModule,
     MomentModule,

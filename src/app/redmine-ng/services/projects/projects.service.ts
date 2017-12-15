@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SettingsService} from '../../../services/settings.service';
-import {Issue, Paginable, Project, Tracker} from '../beans';
+import {Paginable, Project} from '../beans';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {AbstractRedmineService} from '../abstract.redmine.service';
+import { Cached, CacheKey } from '@ngx-cache/core';
 
 
 @Injectable()
@@ -23,7 +24,8 @@ export class ProjectsService extends AbstractRedmineService<Project> {
     }
   }
 
-  public find(id: number): Observable<Project> {
+  @Cached('project')
+  public find(@CacheKey id: number): Observable<Project> {
     const obs = this.asObservable(id);
     this.get(`/${this.getRootPath()}/${id}?include=trackers,issue_categories`).map(this.mapper).subscribe((object) => {
       this.asObservable(id, object);
@@ -56,7 +58,7 @@ export class ProjectsService extends AbstractRedmineService<Project> {
   }
 
   private caster(element: any): Observable<Project> {
-    return this.asObservable(element.id,  new Project(element));
+    return this.asObservable(element.id, new Project(element));
   }
 
   protected getRootPath(): string {
