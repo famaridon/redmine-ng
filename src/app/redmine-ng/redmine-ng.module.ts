@@ -10,9 +10,11 @@ import {QueriesService} from './services/queries/queries.service';
 import {UsersService} from './services/users/users.service';
 import {SettingsService} from '../services/settings.service';
 import {RmNgIssueComponent} from './components/issue/issue.component';
-import { RmNgIssueIdComponent } from './components/issue-id/issue-id.component';
+import { RmNgIssueIdComponent } from './components/issue/issue-id/issue-id.component';
 import {StatesInputsModule} from "../states-inputs/states-inputs.module";
 import {FormsModule} from "@angular/forms";
+import { RmNgStatusComponent } from './components/issue/status/status.component';
+import { RmNgPriorityComponent } from './components/issue/priority/priority.component';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import {FormsModule} from "@angular/forms";
     RmNgProjectComponent,
     RmNgQueryComponent,
     RmNgIssueComponent,
-    RmNgIssueIdComponent
+    RmNgIssueIdComponent,
+    RmNgStatusComponent,
+    RmNgPriorityComponent
   ],
   providers: [
     RedmineService,

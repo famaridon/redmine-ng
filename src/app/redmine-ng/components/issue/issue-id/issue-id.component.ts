@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Issue} from '../../services/beans';
+import {Issue} from '../../../services/beans';
 
 @Component({
   selector: 'rm-ng-issue-id',

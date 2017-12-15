@@ -1,7 +1,10 @@
 <div>
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1"><rm-ng-issue-id [issue]="_issue"></rm-ng-issue-id> - <small><si-text [ngModel]="_issue.subject" (ngModelChange)="updateSubject($event)"></si-text></small></h5>
-    <small>3 days ago</small>
+    <ul>
+      <li class="d-inline badge badge-pill badge-light"><rm-ng-status [issue]="_issue"></rm-ng-status></li>
+      <li class="d-inline badge badge-pill badge-light"><rm-ng-priority [issue]="_issue"></rm-ng-priority></li>
+    </ul>
   </div>
   <div class="d-none">
     <p class="mb-1">{{_issue.description}}</p>

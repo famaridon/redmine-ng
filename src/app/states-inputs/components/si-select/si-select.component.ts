@@ -2,9 +2,7 @@ import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {AbstractSIComponent} from '../abstract-si-input';
 import {IOption} from '../../states-inputs.module';
-import {Observable} from "rxjs/Observable";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {log} from "util";
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'si-select',
