@@ -2,8 +2,9 @@
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1"><rm-ng-issue-id [issue]="_issue"></rm-ng-issue-id> - <small><si-text [ngModel]="_issue.subject" (ngModelChange)="updateSubject($event)"></si-text></small></h5>
     <ul>
-      <li class="d-inline badge badge-pill badge-light"><rm-ng-status [issue]="_issue"></rm-ng-status></li>
-      <li class="d-inline badge badge-pill badge-light"><rm-ng-priority [issue]="_issue"></rm-ng-priority></li>
+      <li class="d-inline badge badge-pill badge-light"><rm-ng-status [status]="_issue.status"></rm-ng-status></li>
+      <li class="d-inline badge badge-pill badge-light"><rm-ng-priority [priority]="_issue.priority"></rm-ng-priority></li>
+      <li class="d-inline badge badge-pill badge-light"><rm-ng-tracker [tracker]="_issue.tracker"></rm-ng-tracker></li>
       <li class="d-inline badge badge-pill badge-light">{{_issue.updated_on | amTimeAgo}}</li>
     </ul>
   </div>

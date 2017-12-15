@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Issue} from '../../../services/beans';
+import {Priority} from '../../../services/beans';
 
 @Component({
   selector: 'rm-ng-priority',
@@ -9,7 +9,7 @@ import {Issue} from '../../../services/beans';
 export class RmNgPriorityComponent implements OnInit {
 
   @Input()
-  public issue: Issue;
+  public priority: Priority;
 
   constructor() {
   }

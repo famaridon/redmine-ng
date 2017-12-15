@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Issue} from '../../../services/beans';
+import {Status} from '../../../services/beans';
 
 @Component({
   selector: 'rm-ng-status',
@@ -9,7 +9,7 @@ import {Issue} from '../../../services/beans';
 export class RmNgStatusComponent implements OnInit {
 
   @Input()
-  public issue: Issue;
+  public status: Status;
 
   constructor() {
   }

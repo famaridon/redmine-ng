@@ -10,16 +10,19 @@ import {QueriesService} from './services/queries/queries.service';
 import {UsersService} from './services/users/users.service';
 import {SettingsService} from '../services/settings.service';
 import {RmNgIssueComponent} from './components/issue/issue.component';
-import { RmNgIssueIdComponent } from './components/issue/issue-id/issue-id.component';
-import {StatesInputsModule} from "../states-inputs/states-inputs.module";
-import {FormsModule} from "@angular/forms";
-import { RmNgStatusComponent } from './components/issue/status/status.component';
-import { RmNgPriorityComponent } from './components/issue/priority/priority.component';
+import {RmNgIssueIdComponent} from './components/issue/issue-id/issue-id.component';
+import {StatesInputsModule} from '../states-inputs/states-inputs.module';
+import {FormsModule} from '@angular/forms';
+import {RmNgStatusComponent} from './components/issue/status/status.component';
+import {RmNgPriorityComponent} from './components/issue/priority/priority.component';
+import {MomentModule} from 'angular2-moment';
+import { RmNgTrackerComponent } from './components/issue/tracker/tracker.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    MomentModule,
     StatesInputsModule,
     FormsModule
   ],
@@ -29,7 +32,8 @@ import { RmNgPriorityComponent } from './components/issue/priority/priority.comp
     RmNgIssueComponent,
     RmNgIssueIdComponent,
     RmNgStatusComponent,
-    RmNgPriorityComponent
+    RmNgPriorityComponent,
+    RmNgTrackerComponent
   ],
   providers: [
     RedmineService,
