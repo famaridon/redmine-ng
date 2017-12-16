@@ -2,40 +2,48 @@
   max-width: 500px;
 }
 
-.redmine-priority i {
+span.rm-priority {
+  font-family: FontAwesome;
+  font-size: 0;
+}
+
+span.rm-priority-*:before{
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
+  font-weight: normal;
+  font-variant: normal;
+  font-style: normal;
+  font-family: FontAwesome;
+  font-size: $font-size-lg;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.redmine-priority-3:before {
+.rm-priority-3:before {
   @extend .text-secondary;
   font-size: $font-size-lg;
   content: "\f2cb";
 }
 
-.redmine-priority-4:before {
+.rm-priority-4:before {
   @extend .text-success;
   font-size: $font-size-lg;
   content: "\f2ca";
 }
 
-.redmine-priority-5:before {
+.rm-priority-5:before {
   @extend .text-info;
   font-size: $font-size-lg;
   content: "\f2c9";
 }
 
-.redmine-priority-6:before {
+.rm-priority-6:before {
   @extend .text-warning;
   font-size: $font-size-lg;
   content: "\f2c8";
 }
 
-.redmine-priority-7:before {
+.rm-priority-7:before {
   @extend .text-danger;
   font-size: $font-size-lg;
   content: "\f2c7";
