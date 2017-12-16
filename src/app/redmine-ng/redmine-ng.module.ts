@@ -20,6 +20,7 @@ import { RmNgTrackerComponent } from './components/issue/tracker/tracker.compone
 import {CACHE, CacheModule} from '@ngx-cache/core';
 import {BrowserCacheModule, MemoryCacheService} from '@ngx-cache/platform-browser';
 import {TrackersService} from './services/trackers/trackers.service';
+import {PrioritiesService} from "./services/priorities/priorities.service";
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import {TrackersService} from './services/trackers/trackers.service';
     ProjectsService,
     QueriesService,
     TrackersService,
+    PrioritiesService,
     UsersService,
     SettingsService
   ],

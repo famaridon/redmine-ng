@@ -1,7 +1,7 @@
 <ng-container [ngSwitch]="mode">
 
   <ng-container *ngSwitchCase="'write'">
-    <select [(ngModel)]="nextValue" siAutoFocus (keyup.enter)="validateChanges()" [compareWith]="compareFn">
+    <select [(ngModel)]="nextValue" siAutoFocus (keyup.enter)="validateChanges()" (keyup.esc)="undoChanges()" [compareWith]="compareFn">
       <option *ngFor="let option of availableOptions" [ngValue]="option">{{option.getDisplayLabel()}}</option>
     </select>
     <button type="button" (click)="validateChanges()" class="btn btn-link btn-sm"><i class="fa fa-check"></i></button>

@@ -8,7 +8,7 @@ import {SiSelectComponent} from '../../../../states-inputs/components/si-select/
   templateUrl: './tracker.component.html',
   styleUrls: ['./tracker.component.css']
 })
-export class RmNgTrackerComponent extends SiSelectComponent<Tracker>implements OnInit {
+export class RmNgTrackerComponent extends SiSelectComponent<Tracker> implements OnInit {
 
   @Input()
   public project: number;

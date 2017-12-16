@@ -7,6 +7,7 @@ import {QueriesService} from './queries/queries.service';
 import {UsersService} from './users/users.service';
 import {Settings, SettingsService} from '../../services/settings.service';
 import {TrackersService} from './trackers/trackers.service';
+import {PrioritiesService} from './priorities/priorities.service';
 
 /**
  * this is simply a service aggregator
@@ -19,7 +20,8 @@ export class RedmineService {
               public issues: IssuesService,
               public queries: QueriesService,
               public users: UsersService,
-              public trackers: TrackersService) {
+              public trackers: TrackersService,
+              public priorities: PrioritiesService) {
   }
 
 }
