@@ -1,0 +1,46 @@
+span.rm-priority {
+  font-family: FontAwesome;
+  font-size: 0;
+}
+
+span.rm-priority-*:before{
+  display: inline-block;
+  font-weight: normal;
+  font-variant: normal;
+  font-style: normal;
+  font-family: FontAwesome;
+  font-size: $font-size-base;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.rm-priority-3:before {
+  @extend .text-secondary;
+  font-size: $font-size-base;
+  content: "\f2cb";
+}
+
+.rm-priority-4:before {
+  @extend .text-success;
+  font-size: $font-size-base;
+  content: "\f2ca";
+}
+
+.rm-priority-5:before {
+  @extend .text-info;
+  font-size: $font-size-base;
+  content: "\f2c9";
+}
+
+.rm-priority-6:before {
+  @extend .text-warning;
+  font-size: $font-size-base;
+  content: "\f2c8";
+}
+
+.rm-priority-7:before {
+  @extend .text-danger;
+  font-size: $font-size-base;
+  content: "\f2c7";
+}

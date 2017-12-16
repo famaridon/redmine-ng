@@ -1,0 +1,34 @@
+span.rm-tracker {
+  font-family: FontAwesome;
+  font-size: 0;
+}
+
+span.rm-tracker-*:before {
+  display: inline-block;
+  font-weight: normal;
+  font-variant: normal;
+  font-style: normal;
+  font-family: FontAwesome;
+  font-size: $font-size-base;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.rm-tracker-37:before {
+  @extend .text-secondary;
+  font-size: $font-size-base;
+  content: "\f188";
+}
+
+.rm-tracker-36:before {
+  @extend .text-secondary;
+  font-size: $font-size-base;
+  content: "\f02d";
+}
+
+.rm-tracker-35:before {
+  @extend .text-secondary;
+  font-size: $font-size-base;
+  content: "\f0ae";
+}
