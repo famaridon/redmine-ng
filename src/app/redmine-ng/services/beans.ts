@@ -109,6 +109,7 @@ export class Issue extends AbstractRedmineBean {
   public status: Status;
   public priority: Priority;
   public author: User;
+  public assigned_to: User;
   public category: Category;
   public fixed_version: Version;
   public parent: Issue;
@@ -138,6 +139,9 @@ export class Issue extends AbstractRedmineBean {
       }
       if (json.author) {
         this.author = new User(json.author);
+      }
+      if (json.assigned_to) {
+        this.assigned_to = new User(json.assigned_to);
       }
       if (json.category) {
         this.category = new Category(json.category);
@@ -186,19 +190,21 @@ export class User extends AbstractRedmineBean {
   public api_key: string;
   public custom_fields: CustomField[] = [];
 
-  constructor(json: any) {
+  constructor(json?: any) {
     super(json);
-    this.login = json.login;
-    this.firstname = json.firstname;
-    this.lastname = json.lastname;
-    this.mail = json.mail;
-    this.created_on = this.parseDate(json.created_on);
-    this.last_login_on = this.parseDate(json.last_login_on);
-    this.api_key = json.api_key;
-    if (json.custom_fields) {
-      json.custom_fields.forEach((value) => {
-        this.custom_fields.push(new CustomField(value));
-      });
+    if (json) {
+      this.login = json.login;
+      this.firstname = json.firstname;
+      this.lastname = json.lastname;
+      this.mail = json.mail;
+      this.created_on = this.parseDate(json.created_on);
+      this.last_login_on = this.parseDate(json.last_login_on);
+      this.api_key = json.api_key;
+      if (json.custom_fields) {
+        json.custom_fields.forEach((value) => {
+          this.custom_fields.push(new CustomField(value));
+        });
+      }
     }
   }
 

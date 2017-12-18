@@ -21,6 +21,8 @@ import {CACHE, CacheModule} from '@ngx-cache/core';
 import {BrowserCacheModule, MemoryCacheService} from '@ngx-cache/platform-browser';
 import {TrackersService} from './services/trackers/trackers.service';
 import {PrioritiesService} from "./services/priorities/priorities.service";
+import { RmNgUserComponent } from './components/user/user.component';
+import {GravatarModule} from "ng2-gravatar-directive/src/gravatar.module";
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import {PrioritiesService} from "./services/priorities/priorities.service";
     CommonModule,
     RouterModule,
     MomentModule,
+    GravatarModule,
     StatesInputsModule,
     FormsModule
   ],
@@ -44,7 +47,8 @@ import {PrioritiesService} from "./services/priorities/priorities.service";
     RmNgIssueIdComponent,
     RmNgStatusComponent,
     RmNgPriorityComponent,
-    RmNgTrackerComponent
+    RmNgTrackerComponent,
+    RmNgUserComponent
   ],
   providers: [
     RedmineService,

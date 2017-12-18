@@ -1,0 +1,9 @@
+<img *ngIf="user ;else anonymous;" class="rounded-circle d-none d-md-inline avatar" gravatar [email]="user.name" [size]="28" fallback="identicon">
+
+<ng-template #anonymous>
+  <div class="d-none d-md-inline-block rounded-circle  avatar">
+    <div class="d-flex justify-content-center align-items-center">
+      <i class="fa fa-2 fa-user align-self-center text-secondary"></i>
+    </div>
+  </div>
+</ng-template>
