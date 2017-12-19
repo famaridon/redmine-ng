@@ -66,6 +66,7 @@ import { RmNgIssueTreeTableRowComponent } from './components/issue/issue-tree-ta
     RmNgIssueTreeTableRowComponent
   ],
   exports: [
+    RmNgIssueComponent,
     RmNgProjectComponent,
     RmNgQueryComponent
   ]

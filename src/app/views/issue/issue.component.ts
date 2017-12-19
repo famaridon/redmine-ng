@@ -40,18 +40,4 @@ export class IssueComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateSubject(value): void {
-    this.issue.subject = value;
-    this.redmine.issues.update(this.issue);
-  }
-
-  getAvailableStatus(): Observable<Status[]> {
-    return this.redmine.issues.getAvailableStatus(this.issue.id);
-  }
-
-  updateStatus(value): void {
-    this.issue.status = value;
-    this.redmine.issues.update(this.issue);
-  }
-
 }
