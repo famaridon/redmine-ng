@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Tracker} from '../../../services/beans';
-import {RedmineService} from '../../../services/redmine.service';
-import {SiSelectComponent} from '../../../../states-inputs/components/si-select/si-select.component';
+import {Tracker} from '../../services/beans';
+import {RedmineService} from '../../services/redmine.service';
+import {SiSelectComponent} from '../../../states-inputs/components/si-select/si-select.component';
 
 @Component({
   selector: 'rm-ng-tracker',

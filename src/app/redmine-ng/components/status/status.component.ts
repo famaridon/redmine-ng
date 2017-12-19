@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Status} from '../../../services/beans';
+import {Status} from '../../services/beans';
 
 @Component({
   selector: 'rm-ng-status',

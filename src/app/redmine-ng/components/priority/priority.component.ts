@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Priority, Tracker} from '../../../services/beans';
-import {SiSelectComponent} from "../../../../states-inputs/components/si-select/si-select.component";
-import {RedmineService} from "../../../services/redmine.service";
+import {Priority, Tracker} from '../../services/beans';
+import {SiSelectComponent} from "../../../states-inputs/components/si-select/si-select.component";
+import {RedmineService} from "../../services/redmine.service";
 
 @Component({
   selector: 'rm-ng-priority',
