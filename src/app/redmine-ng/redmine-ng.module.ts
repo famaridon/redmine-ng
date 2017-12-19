@@ -23,6 +23,7 @@ import {TrackersService} from './services/trackers/trackers.service';
 import {PrioritiesService} from "./services/priorities/priorities.service";
 import { RmNgUserComponent } from './components/user/user.component';
 import {GravatarModule} from "ng2-gravatar-directive/src/gravatar.module";
+import { RmNgIssueTreeTableRowComponent } from './components/issue/issue-tree-table-row/issue-tree-table-row.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import {GravatarModule} from "ng2-gravatar-directive/src/gravatar.module";
     RmNgStatusComponent,
     RmNgPriorityComponent,
     RmNgTrackerComponent,
-    RmNgUserComponent
+    RmNgUserComponent,
+    RmNgIssueTreeTableRowComponent
   ],
   providers: [
     RedmineService,
@@ -61,7 +63,7 @@ import {GravatarModule} from "ng2-gravatar-directive/src/gravatar.module";
     SettingsService
   ],
   entryComponents: [
-    RmNgIssueComponent
+    RmNgIssueTreeTableRowComponent
   ],
   exports: [
     RmNgProjectComponent,

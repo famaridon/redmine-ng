@@ -1,0 +1,19 @@
+<div>
+  <div class="d-flex w-100 justify-content-between">
+    <div class="mb-1">
+      <rm-ng-issue-id [issue]="_issue"></rm-ng-issue-id>
+      <rm-ng-tracker [tracker]="_issue.tracker" [project]="_issue.project.id"></rm-ng-tracker>
+      <si-text [ngModel]="_issue.subject" (ngModelChange)="updateSubject($event)"></si-text>
+    </div>
+    <ul class="pl-0">
+      <li class="d-inline "><rm-ng-user [user]="_issue.assigned_to" ></rm-ng-user></li>
+      <li class="d-inline "><rm-ng-status [status]="_issue.status"></rm-ng-status></li>
+      <li class="d-inline "><rm-ng-priority [priority]="_issue.priority"></rm-ng-priority></li>
+      <li class="d-inline badge badge-pill badge-light">{{_issue.updated_on | amTimeAgo}}</li>
+    </ul>
+  </div>
+  <div class="d-none">
+    <p class="mb-1">{{_issue.description}}</p>
+    <small>Donec id elit non mi porta.</small>
+  </div>
+</div>

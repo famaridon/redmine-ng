@@ -13,7 +13,7 @@ import {AbstractRedmineNgBeanComponent} from '../abstract-redmine-ng-bean-compon
   templateUrl: './issue.component.html',
   styleUrls: ['./issue.component.css']
 })
-export class RmNgIssueComponent extends AbstractRedmineNgBeanComponent<Issue> implements OnInit, RowComponentReady<Observable<Issue> | Promise<Issue> | Issue> {
+export class RmNgIssueComponent extends AbstractRedmineNgBeanComponent<Issue> implements OnInit {
 
   public _issue: Issue;
 
@@ -22,10 +22,6 @@ export class RmNgIssueComponent extends AbstractRedmineNgBeanComponent<Issue> im
   }
 
   ngOnInit() {
-  }
-
-  setElement(element: Observable<Issue> | Promise<Issue> | Issue): void {
-    this.issue = element;
   }
 
   @Input()
