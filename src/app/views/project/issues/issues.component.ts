@@ -41,7 +41,7 @@ export class ProjectQueryIssuesComponent implements OnInit, OnDestroy {
     this.flatTree = [];
     this.nodeById = new Map()
     // first call contain total count
-    this.redmine.issues.findByQuery(query, project).subscribe((paginable) => {
+    this.redmine.issues.findByQuery(query, project, 0, 100).subscribe((paginable) => {
       if (paginable.total_count > paginable.elements.length) { // we have more pages
         for (let count = paginable.elements.length; count < paginable.total_count; count += paginable.limit) {
           this.redmine.issues.findByQuery(query, project, count, paginable.limit).subscribe((page) => {

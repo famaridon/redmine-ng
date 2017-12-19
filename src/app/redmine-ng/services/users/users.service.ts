@@ -9,6 +9,7 @@ import {SettingsService} from '../../../services/settings.service';
 export class UsersService extends AbstractRedmineService<User> {
 
   private static readonly CURRENT_USER_ID = -255;
+  private userCache: Map<number, Observable<User>> = new Map();
 
   constructor(http: HttpClient, settings: SettingsService) {
     super(http, settings);
@@ -28,6 +29,12 @@ export class UsersService extends AbstractRedmineService<User> {
     return this.asObservable(UsersService.CURRENT_USER_ID);
   }
 
+  public find(id: number): Observable<User> {
+    if (!this.userCache.has(id)) {
+      this.userCache.set(id, super.find(id));
+    }
+    return this.userCache.get(id);
+  }
 
   protected getRootPath(): string {
     return 'users';

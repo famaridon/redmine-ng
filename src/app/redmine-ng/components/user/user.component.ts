@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../services/beans';
+import {RedmineService} from '../../services/redmine.service';
 
 @Component({
   selector: 'rm-ng-user',
@@ -11,9 +12,16 @@ export class RmNgUserComponent implements OnInit {
   @Input()
   public user: User;
 
-  constructor() { }
+  constructor(private redmine: RedmineService) {
+  }
 
   ngOnInit() {
+    if (this.user) {
+      // reload user with completed datas
+      this.redmine.users.find(this.user.id).subscribe((u) => {
+        this.user = u;
+      });
+    }
   }
 
 }
