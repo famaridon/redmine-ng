@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="mode">
+<span [ngSwitch]="mode" class="si-select">
 
   <ng-container *ngSwitchCase="'write'">
     <select [(ngModel)]="nextValue" siAutoFocus (keyup.enter)="validateChanges()" [compareWith]="compareFn">
@@ -17,6 +17,6 @@
 
   </ng-container>
 
-</ng-container>
+</span>
 
 

@@ -1,5 +1,7 @@
 <ng-container *ngIf="issue;else loading">
-  <rm-ng-issue [issue]="issue"></rm-ng-issue>
+  <div class="pt-4">
+    <rm-ng-issue [issue]="issue"></rm-ng-issue>
+  </div>
 </ng-container>
 
 <ng-template #loading>

@@ -1,9 +1,9 @@
-import {AfterViewInit, Directive, ElementRef, OnInit, Renderer2} from '@angular/core';
+import {AfterViewInit, Directive, ElementRef, OnInit} from '@angular/core';
 
 @Directive({
   selector: '[siAutoFocus]'
 })
-export class SiAutoFocusDirective implements OnInit, AfterViewInit{
+export class SiAutoFocusDirective implements OnInit, AfterViewInit {
 
   constructor(private el: ElementRef) {
   }
@@ -12,7 +12,7 @@ export class SiAutoFocusDirective implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() {
-    this.el.nativeElement.focus()
+    this.el.nativeElement.focus();
   }
 
 }

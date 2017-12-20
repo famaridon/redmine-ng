@@ -1,0 +1,22 @@
+.si-text {
+  > span {
+
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: $gray-400;
+    &:hover{
+      border-bottom-color: $gray-800;
+    }
+  }
+
+  > input {
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: theme-color("primary");
+    border-left-style: none;
+    outline: 0;
+  }
+
+}

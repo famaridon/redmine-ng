@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="mode">
+<span [ngSwitch]="mode" class="si-text">
 
   <ng-container *ngSwitchCase="'write'" >
     <input [(ngModel)]="nextValue" siAutoFocus siAutoSize (keyup.enter)="validateChanges()" (keyup.esc)="undoChanges()" />
@@ -8,4 +8,4 @@
 
   <span *ngSwitchCase="'read'" (click)="switchMode()" >{{value}}</span>
 
-</ng-container>
+</span>
