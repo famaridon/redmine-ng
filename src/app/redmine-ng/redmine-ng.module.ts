@@ -24,6 +24,7 @@ import {PrioritiesService} from "./services/priorities/priorities.service";
 import { RmNgUserComponent } from './components/user/user.component';
 import {GravatarModule} from "ng2-gravatar-directive/src/gravatar.module";
 import { RmNgIssueTreeTableRowComponent } from './components/issue/issue-tree-table-row/issue-tree-table-row.component';
+import {StatusService} from "./services/status/status.service";
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { RmNgIssueTreeTableRowComponent } from './components/issue/issue-tree-ta
     TrackersService,
     PrioritiesService,
     UsersService,
-    SettingsService
+    SettingsService,
+    StatusService
   ],
   entryComponents: [
     RmNgIssueTreeTableRowComponent
