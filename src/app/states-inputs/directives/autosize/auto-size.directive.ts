@@ -9,7 +9,7 @@ export class SiAutoSizeDirective implements AfterContentChecked {
   public extraWidth = 4;
 
   @Input()
-  public extraHeight = 4;
+  public extraHeight = 2;
 
   @HostListener('input', ['$event.target'])
   onInput(): void {
