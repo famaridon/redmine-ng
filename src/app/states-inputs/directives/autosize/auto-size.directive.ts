@@ -41,6 +41,7 @@ export class SiAutoSizeDirective implements AfterContentChecked {
       const contentTextMetrics = this.getTextMetrics(this.element.nativeElement.value, fontSize, fontFamily);
       // set the width
       this.element.nativeElement.style.width = contentTextMetrics.width + extraWidthTextMetrics.width * this.extraWidth + 'px';
+      this.element.nativeElement.style.maxWidth = '100%';
     }
   }
 

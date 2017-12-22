@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-body">
+    <h6 class="card-subtitle mb-2">
+      <rm-ng-tracker [ngModel]="_issue.tracker" [project]="_issue.project.id"></rm-ng-tracker>
+    </h6>
     <h4 class="card-title">
       <rm-ng-issue-id [issue]="_issue"></rm-ng-issue-id>
       <si-text [ngModel]="_issue.subject" (ngModelChange)="updateSubject($event)"></si-text>
     </h4>
-    <h6 class="card-subtitle mb-2 text-muted">
-      <rm-ng-tracker [ngModel]="_issue.tracker" [project]="_issue.project.id"></rm-ng-tracker>
-    </h6>
     <form>
       <div class="form-group row">
         <label for="status" class="col-sm-2 col-form-label">Status</label>
