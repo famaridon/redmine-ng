@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {SiSelectComponent} from './components/si-select/si-select.component';
 import {SiAutoFocusDirective} from './directives/autofocus/autofocus.directive';
 import {SiAutoSizeDirective} from './directives/autosize/auto-size.directive';
+import { SiTextareaComponent } from './components/si-textarea/si-textarea.component';
 
 @NgModule({
 
@@ -17,14 +18,16 @@ import {SiAutoSizeDirective} from './directives/autosize/auto-size.directive';
     SiAutoSizeDirective,
 
     SiTextComponent,
-    SiSelectComponent
+    SiSelectComponent,
+    SiTextareaComponent
 
   ],
   exports: [
     SiAutoFocusDirective,
 
     SiTextComponent,
-    SiSelectComponent
+    SiSelectComponent,
+    SiTextareaComponent
   ]
 })
 export class StatesInputsModule {
