@@ -1,11 +1,11 @@
 <span [ngSwitch]="mode" class="si-textarea">
 
   <ng-container *ngSwitchCase="'write'" >
-    <textarea [(ngModel)]="nextValue" siAutoFocus siAutoSize (keyup.esc)="undoChanges()" ></textarea>
+    <textarea [(ngModel)]="nextValue" siAutoFocus siAutoSize (keyup.esc)="undoChanges()" class="pl-2" ></textarea>
     <button type="button" (click)="validateChanges()" class="btn btn-link btn-sm"><i class="fa fa-check"></i></button>
     <button type="button" (click)="undoChanges()" class="btn btn-link btn-sm"><i class="fa fa-undo"></i></button>
   </ng-container>
 
-  <pre *ngSwitchCase="'read'" (click)="switchMode()" >{{value}}</pre>
+  <pre *ngSwitchCase="'read'" (click)="switchMode()" class="pl-2">{{value}}</pre>
 
 </span>

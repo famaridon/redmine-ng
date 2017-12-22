@@ -1,0 +1,26 @@
+.si-textarea {
+  > pre {
+
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+
+    min-height: 21px; // else user can't click on it if it's empty.
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: $gray-400;
+    &:hover {
+      border-left-color: $gray-800;
+    }
+  }
+
+  > textarea {
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: theme-color("primary");
+    outline: 0;
+  }
+
+}
