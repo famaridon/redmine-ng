@@ -16,7 +16,7 @@ export class RowComponent<T> implements OnInit {
   public node: Node<T>;
   @Input()
   public level = 0;
-  private componentRef: ComponentRef<RowComponentReady<T>>;
+  public componentRef: ComponentRef<RowComponentReady<T>>;
 
   constructor(private el: ElementRef) {
   }
@@ -28,12 +28,6 @@ export class RowComponent<T> implements OnInit {
     this.componentRef.location.nativeElement.classList.add('tt-row-content')
 
     const nativeElement: HTMLElement = this.el.nativeElement;
-    // const parentElement: HTMLElement = nativeElement.parentElement;
-    //
-    // if (parentElement.classList.contains('list-group-item')) { // my parent is a tr i move to table
-    //   parentElement.removeChild(nativeElement);
-    //   parentElement.parentElement.insertBefore(nativeElement, parentElement.nextSibling);
-    // }
     nativeElement.classList.add(`tt-level-${this.level}`);
     nativeElement.setAttribute('data-tt-parent', this.node.id);
   }
@@ -42,4 +36,5 @@ export class RowComponent<T> implements OnInit {
 
 export interface RowComponentReady<T> {
   setElement(element: T): void;
+  getExpender(): HTMLElement;
 }

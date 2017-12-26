@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {RmNgIssueComponent} from '../issue.component';
 import {Issue} from '../../../services/beans';
 import {Observable} from 'rxjs/Observable';
@@ -11,6 +11,10 @@ import {RowComponentReady} from '../../../../tree-table/components/row/row.compo
 })
 export class RmNgIssueTreeTableRowComponent extends RmNgIssueComponent implements OnInit, RowComponentReady<Observable<Issue> | Promise<Issue> | Issue> {
 
+
+  @ViewChild('expender')
+  public expender: ElementRef;
+
   constructor() {
     super();
   }
@@ -20,6 +24,10 @@ export class RmNgIssueTreeTableRowComponent extends RmNgIssueComponent implement
 
   setElement(element: Observable<Issue> | Promise<Issue> | Issue): void {
     this.issue = element;
+  }
+
+  getExpender(): HTMLElement {
+    return this.expender.nativeElement;
   }
 
 }
