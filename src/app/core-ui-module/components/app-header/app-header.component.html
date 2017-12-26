@@ -14,7 +14,7 @@
 
   <!-- the avatar -->
   <div class="avatar">
-    <img *ngIf="loggedOnUser && loggedOnUser.mail;else anonymous;" class="rounded-circle d-none d-md-inline" gravatar [email]="loggedOnUser.mail" [size]="35" fallback="identicon">
+    <img *ngIf="loggedOnUser;else anonymous;" class="rounded-circle d-none d-md-inline" [src]="loggedOnUser.gravatar">
     <ng-template #anonymous>
       <img #anonymous class="rounded-circle d-none d-md-inline" src="http://random-octodex.herokuapp.com/random">
     </ng-template>

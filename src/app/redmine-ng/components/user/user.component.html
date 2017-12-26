@@ -1,5 +1,5 @@
-<span *ngIf="user ;else nobody;">
-  <img class="rounded-circle d-none d-md-inline avatar" gravatar [email]="user.mail ? user.mail : user.id" [size]="28" fallback="identicon">
+<span *ngIf="user && user.gravatar ;else nobody;">
+  <img class="rounded-circle d-none d-md-inline avatar" [src]="user.gravatar">
 </span>
 
 <ng-template #nobody>

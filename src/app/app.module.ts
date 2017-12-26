@@ -20,9 +20,6 @@ import {SettingsService} from './services/settings.service';
 import {SettingsGuardService} from './services/settings-guard.service';
 import {AddAPIKeyHeaderInterceptor} from './redmine-ng/services/redmine.service';
 
-/* Gravatar */
-import {GravatarModule} from 'ng2-gravatar-directive';
-
 /* bootstrap components */
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {BsDropdownModule, ModalModule} from 'ngx-bootstrap';
@@ -68,7 +65,6 @@ const appRoutes: Routes = [
     FormsModule,
     CommonModule,
     HttpClientModule,
-    GravatarModule,
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),

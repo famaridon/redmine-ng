@@ -24,7 +24,7 @@
         <ng-container *ngIf="user">
           <dl>
             <dt>{{user.firstname}} {{user.lastname}}</dt>
-            <dd><img class="rounded-circle d-none d-md-inline" gravatar [email]="user.mail" [size]="64" fallback="identicon"></dd>
+            <dd><img class="rounded-circle d-none d-md-inline" [src]="user.gravatar" ></dd>
             <dt>Login</dt>
             <dd>{{user.login}}</dd>
             <dt>Mail</dt>

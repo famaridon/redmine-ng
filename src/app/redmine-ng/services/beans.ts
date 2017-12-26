@@ -182,6 +182,7 @@ export class CustomField extends AbstractRedmineBean {
 
 export class User extends AbstractRedmineBean {
   public login: string;
+  public gravatar: string;
   public firstname: string;
   public lastname: string;
   public mail: string;

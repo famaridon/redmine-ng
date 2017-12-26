@@ -20,11 +20,10 @@ import { RmNgTrackerComponent } from './components/tracker/tracker.component';
 import {CACHE, CacheModule} from '@ngx-cache/core';
 import {BrowserCacheModule, MemoryCacheService} from '@ngx-cache/platform-browser';
 import {TrackersService} from './services/trackers/trackers.service';
-import {PrioritiesService} from "./services/priorities/priorities.service";
+import {PrioritiesService} from './services/priorities/priorities.service';
 import { RmNgUserComponent } from './components/user/user.component';
-import {GravatarModule} from "ng2-gravatar-directive/src/gravatar.module";
 import { RmNgIssueTreeTableRowComponent } from './components/issue/issue-tree-table-row/issue-tree-table-row.component';
-import {StatusService} from "./services/status/status.service";
+import {StatusService} from './services/status/status.service';
 
 @NgModule({
   imports: [
@@ -38,7 +37,6 @@ import {StatusService} from "./services/status/status.service";
     CommonModule,
     RouterModule,
     MomentModule,
-    GravatarModule,
     StatesInputsModule,
     FormsModule
   ],

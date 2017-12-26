@@ -12,7 +12,6 @@ import {AppSidebarHeaderComponent} from './components/app-sidebar-header/app-sid
 import {AppSidebarMinimizerComponent} from './components/app-sidebar-minimizer/app-sidebar-minimizer.component';
 import {RedmineNgModule} from '../redmine-ng/redmine-ng.module';
 import {RouterModule} from '@angular/router';
-import {GravatarModule} from 'ng2-gravatar-directive';
 import {FormsModule} from '@angular/forms';
 import {AsideToggleDirective} from './directives/aside/aside.directive';
 import {NavDropdownDirective, NavDropdownToggleDirective} from './directives/nav-dropdown/nav-dropdown.directive';
@@ -23,7 +22,6 @@ import {BrandMinimizeDirective, MobileSidebarToggleDirective, SidebarDropdownTog
     CommonModule,
     RedmineNgModule,
     RouterModule,
-    GravatarModule,
     FormsModule
   ],
   declarations: [
