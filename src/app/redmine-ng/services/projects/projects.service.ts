@@ -8,7 +8,6 @@ import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {AbstractRedmineService} from '../abstract.redmine.service';
-import { Cached, CacheKey } from '@ngx-cache/core';
 
 
 @Injectable()
@@ -24,18 +23,20 @@ export class ProjectsService extends AbstractRedmineService<Project> {
     }
   }
 
-  @Cached('project')
-  public find(@CacheKey id: number): Observable<Project> {
-    const obs = this.asObservable(id);
-    this.get(`/${this.getRootPath()}/${id}?include=trackers,issue_categories`).map(this.mapper).subscribe((object) => {
-      this.asObservable(id, object);
-    });
+  public find( id: number): Observable<Project> {
+    const obs = this.findSubject(id);
+    obs.filter((p) => { return p ? false : true; } ).subscribe( (p) => {
+      this.get(`/${this.getRootPath()}/${id}?include=trackers,issue_categories`).map(this.mapper).subscribe((object) => {
+        this.asObservable(id, object);
+      });
+    })
+
     return obs;
   }
 
   public findAll(offset = 0, limit = 50): Observable<Paginable<Observable<Project>>> {
     return this.get(`/projects?offset=${offset}&limit=${limit}`).map((data: any) => {
-      return new Paginable<Observable<Project>>(data, 'projects', this.caster.bind(this));
+      return new Paginable<Observable<Project>>(data, this.caster.bind(this));
     });
   }
 
@@ -66,6 +67,6 @@ export class ProjectsService extends AbstractRedmineService<Project> {
   }
 
   protected mapper(data: any): Project {
-    return new Project(data.project);
+    return new Project(data);
   }
 }

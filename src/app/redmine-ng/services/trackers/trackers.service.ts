@@ -5,10 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {SettingsService} from '../../../services/settings.service';
 import {Observable} from 'rxjs/Observable';
 import {ProjectsService} from '../projects/projects.service';
-import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/operator/publish';
-import {Cached, CacheKey} from '@ngx-cache/core';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class TrackersService extends AbstractRedmineService<Tracker> {
@@ -17,8 +15,7 @@ export class TrackersService extends AbstractRedmineService<Tracker> {
     super(http, settings);
   }
 
-  @Cached('findTrackerByProject')
-  public findTrackerByProject(@CacheKey project: number): Observable<Array<Tracker>> {
+  public findTrackerByProject( project: number): Observable<Array<Tracker>> {
     const subject = new BehaviorSubject<Array<Tracker>>([]);
     this.projectService.find(project).subscribe((p) => {
       subject.next(p.trackers);

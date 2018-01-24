@@ -17,7 +17,7 @@ export class QueriesService extends AbstractRedmineService<Query> {
 
   public findAll(offset = 0, limit = 50): Observable<Paginable<Observable<Query>>> {
     return this.get(`/queries?offset=${offset}&limit=${limit}`).map((data: any) => {
-      return new Paginable<Observable<Query>>(data, 'queries', this.caster.bind(this));
+      return new Paginable<Observable<Query>>(data, this.caster.bind(this));
     });
   }
 
@@ -30,6 +30,6 @@ export class QueriesService extends AbstractRedmineService<Query> {
   }
 
   protected mapper(data: any): Query {
-    return new Query(data.query);
+    return new Query(data);
   }
 }

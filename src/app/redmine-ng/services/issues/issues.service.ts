@@ -13,11 +13,11 @@ export class IssuesService extends AbstractRedmineService<Issue> {
 
   constructor(http: HttpClient, settings: SettingsService) {
     super(http, settings);
-    this.socket.subscribe((socket) => {
-      socket.on('update', (issue) => {
-        this.notifyAll(new Issue(issue));
-      });
-    })
+    // this.socket.subscribe((socket) => {
+    //   socket.on('update', (issue) => {
+    //     this.notifyAll(new Issue(issue));
+    //   });
+    // })
   }
 
   public findByQuery(query: number, project?: number, offset = 0, limit = 50): Observable<Paginable<Observable<Issue>>> {
@@ -27,7 +27,7 @@ export class IssuesService extends AbstractRedmineService<Issue> {
     }
     url += `&offset=${offset}&limit=${limit}`;
     return this.get(url).map((data: any) => {
-      return new Paginable<Observable<Issue>>(data, 'issues', this.caster.bind(this));
+      return new Paginable<Observable<Issue>>(data, this.caster.bind(this));
     });
   }
 
@@ -46,9 +46,9 @@ export class IssuesService extends AbstractRedmineService<Issue> {
   }
 
   public update(issue: Issue): void {
-    this.socket.subscribe((socket) => {
-      socket.emit('update', issue);
-    });
+    // this.socket.subscribe((socket) => {
+    //   socket.emit('update', issue);
+    // });
   }
 
   protected getNamspaceName(): string {
@@ -60,6 +60,6 @@ export class IssuesService extends AbstractRedmineService<Issue> {
   }
 
   protected mapper(data: any): Issue {
-    return new Issue(data.issue);
+    return new Issue(data);
   }
 }

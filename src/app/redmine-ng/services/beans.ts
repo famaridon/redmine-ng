@@ -7,15 +7,13 @@ export class Paginable<T> {
 
   public elements: Array<T> = [];
 
-  constructor(json: any, elementAttribut: string, caster: (element) => T) {
+  constructor(json: any, caster: (element) => T) {
     this.total_count = json.total_count;
     this.offset = json.offset;
     this.limit = json.limit;
-    if (json[elementAttribut]) {
-      json[elementAttribut].forEach((element) => {
-        this.elements.push(caster(element));
-      });
-    }
+    json.elements.forEach((element) => {
+      this.elements.push(caster(element));
+    });
   }
 }
 
@@ -195,6 +193,7 @@ export class User extends AbstractRedmineBean {
     super(json);
     if (json) {
       this.login = json.login;
+      this.gravatar = json.gravatar;
       this.firstname = json.firstname;
       this.lastname = json.lastname;
       this.mail = json.mail;

@@ -26,7 +26,7 @@ export class UsersService extends AbstractRedmineService<User> {
 
   public findLoggedOnUser(): Observable<User> {
     this.get(`/users/current`).map((data: any) => {
-      const user = new User(data.user);
+      const user = this.mapper(data);
       return user;
     }).subscribe((user) => {
       this.asObservable(user.id, user);
@@ -42,35 +42,8 @@ export class UsersService extends AbstractRedmineService<User> {
   public find(id: number): Observable<User> {
     if (!this.userCache.has(id)) {
       this.userCache.set(id, super.find(id));
-      this.userCache.get(id).subscribe((user) => {
-        if (user && !user.gravatar) {
-          this.findGravatar(user).then((gravatar) => {
-            user.gravatar = gravatar;
-            this.findSubject(id).next(user);
-          });
-        }
-      });
     }
     return this.userCache.get(id);
-  }
-
-  private findGravatar(user: User): Promise<string> {
-    return new Promise((resolve, reject) => {
-      let gravatar = this.gravatarCache['' + user.id];
-      if (gravatar) {
-        resolve(gravatar);
-      } else {
-        this.get(`/users/${user.id}/gravatar`).subscribe((g) => {
-            gravatar = g.user.gravatar;
-            this.gravatarCache['' + user.id] = gravatar;
-            this.saveGravatarCache();
-            resolve(gravatar);
-          },
-          (err) => {
-            reject(err);
-          })
-      }
-    });
   }
 
   protected getRootPath(): string {
@@ -78,7 +51,7 @@ export class UsersService extends AbstractRedmineService<User> {
   }
 
   protected mapper(data: any): User {
-    return new User(data.user);
+    return new User(data);
   }
 
   private saveGravatarCache() {

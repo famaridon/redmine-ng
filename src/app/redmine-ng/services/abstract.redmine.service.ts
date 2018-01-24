@@ -25,16 +25,16 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
     this.settings = this.settingsService.getSettings().filter((settings): boolean => {
       return settings.isValide();
     });
-    const socketSubject = new BehaviorSubject(null);
-    this.socket = socketSubject.asObservable().filter((socket) => {
-      return this.socket ? false : true;
-    });
-    if (this.getNamspaceName()) {
-      this.settings.subscribe((settings) => {
-        const socket = io.connect(`${settings.server}${this.getNamspaceName()}`, {path: `/ws`, query: 'user_id=5'});
-        socketSubject.next(socket);
-      });
-    }
+    // const socketSubject = new BehaviorSubject(null);
+    // this.socket = socketSubject.asObservable().filter((socket) => {
+    //   return this.socket ? false : true;
+    // });
+    // if (this.getNamspaceName()) {
+    //   this.settings.subscribe((settings) => {
+    //     const socket = io.connect(`${settings.server}${this.getNamspaceName()}`, {path: `/ws`, query: 'user_id=5'});
+    //     socketSubject.next(socket);
+    //   });
+    // }
   }
 
   public find(id: number): Observable<T> {
