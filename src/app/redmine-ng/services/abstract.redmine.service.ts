@@ -4,6 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/last';
 import * as io from 'socket.io-client';
 import {AbstractRedmineBean} from './beans';
 import {Subject} from 'rxjs/Subject';
@@ -47,8 +49,10 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
 
   protected get(path: string): Observable<any> {
     const subject = new Subject<any>();
-    this.settings.subscribe((settings) => {
-      this.http.get(settings.server + path).retry(3).subscribe((data) => {
+    const subscription = this.settings.subscribe((settings) => {
+      this.http.get(settings.server + path).subscribe((data) => {
+
+        subscription.unsubscribe();
         subject.next(data);
       }, (error) => {
         subject.error(error);

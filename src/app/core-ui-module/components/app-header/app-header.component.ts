@@ -55,7 +55,7 @@ export class AppHeaderComponent implements OnInit {
   }
 
   private loadPage(tmpProjects: Observable<Project>[], offset: number, limit: number): void {
-    this.redmine.projects.findAll(offset, limit).subscribe((paginable) => {
+    const subscription = this.redmine.projects.findAll(offset, limit).subscribe((paginable) => {
       paginable.elements.forEach((element) => {
         tmpProjects.push(element);
       });
