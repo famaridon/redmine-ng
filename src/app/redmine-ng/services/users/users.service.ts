@@ -10,18 +10,9 @@ export class UsersService extends AbstractRedmineService<User> {
 
   private static readonly CURRENT_USER_ID = -255;
   private userCache: Map<number, Observable<User>> = new Map();
-  private gravatarCache: any;
 
   constructor(http: HttpClient, settings: SettingsService) {
     super(http, settings);
-    const gravatarCacheJson = localStorage.getItem('gravatar');
-    if (gravatarCacheJson) {
-      this.gravatarCache = JSON.parse(gravatarCacheJson);
-    } else {
-      this.gravatarCache = {};
-      this.saveGravatarCache();
-    }
-
   }
 
   public findLoggedOnUser(): Observable<User> {
@@ -54,7 +45,4 @@ export class UsersService extends AbstractRedmineService<User> {
     return new User(data);
   }
 
-  private saveGravatarCache() {
-    localStorage.setItem('gravatar', JSON.stringify(this.gravatarCache));
-  }
 }
