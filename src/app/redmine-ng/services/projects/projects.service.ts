@@ -26,7 +26,7 @@ export class ProjectsService extends AbstractRedmineService<Project> {
   public find( id: number): Observable<Project> {
     const obs = this.findSubject(id);
     obs.filter((p) => { return p ? false : true; } ).subscribe( (p) => {
-      this.get(`/${this.getRootPath()}/${id}?include=trackers,issue_categories`).map(this.mapper).subscribe((object) => {
+      this.get(`/${this.getRootPath()}/${id}`).map(this.mapper).subscribe((object) => {
         this.asObservable(id, object);
       });
     })
