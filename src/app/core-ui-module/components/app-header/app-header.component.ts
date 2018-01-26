@@ -30,7 +30,7 @@ export class AppHeaderComponent implements OnInit {
       }
       this.selected = this.project;
     });
-    this.redmine.users.findLoggedOnUser().subscribe((user) => {
+    this.redmine.users.findCurrent().subscribe((user) => {
       this.loggedOnUser = user;
     });
 

@@ -19,7 +19,7 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.settingsService.getSettings().subscribe((settings) => {
       this.settings = settings;
-      this.redmine.users.findLoggedOnUser().subscribe((user) => {
+      this.redmine.users.findCurrent().subscribe((user) => {
           this.user = user;
         });
     });
