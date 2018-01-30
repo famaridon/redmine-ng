@@ -21,11 +21,12 @@ export class IssuesService extends AbstractRedmineService<Issue> {
   }
 
   public findByQuery(query: number, project?: number, offset = 0, limit = 50): Observable<Paginable<Observable<Issue>>> {
-    let url = `/issues?query_id=${query}`;
+    let url = `/issues`;
     if (project) {
-      url += `&project_id=${project}`;
+      url += `/project/${project}`;
     }
-    url += `&offset=${offset}&limit=${limit}`;
+    url += `/query/${query}`;
+    url += `?offset=${offset}&limit=${limit}`;
     return this.get(url).map((data: any) => {
       return new Paginable<Observable<Issue>>(data, this.caster.bind(this));
     });
