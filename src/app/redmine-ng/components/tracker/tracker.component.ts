@@ -2,7 +2,8 @@ import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {Tracker} from '../../services/beans';
 import {RedmineService} from '../../services/redmine.service';
 import {SiSelectComponent} from '../../../states-inputs/components/si-select/si-select.component';
-import {NG_VALUE_ACCESSOR} from "@angular/forms";
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'rm-ng-tracker',
@@ -26,15 +27,19 @@ export class RmNgTrackerComponent extends SiSelectComponent<Tracker> implements 
 
   constructor(private redmine: RedmineService) {
     super();
+    this.isAsync = true;
   }
 
   ngOnInit() {
     if (this.project) {
-      this.availableOptionsObservable = this.redmine.trackers.findTrackerByProject(this.project);
-    } else {
       this.availableOptions = [];
+      this.isAsync = false;
     }
     super.ngOnInit();
   }
 
+
+  load(): Observable<Tracker[]> {
+    return this.redmine.trackers.findTrackerByProject(this.project);
+  }
 }
