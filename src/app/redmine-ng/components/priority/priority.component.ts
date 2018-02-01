@@ -3,6 +3,7 @@ import {Priority, Tracker} from '../../services/beans';
 import {SiSelectComponent} from "../../../states-inputs/components/si-select/si-select.component";
 import {RedmineService} from "../../services/redmine.service";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'rm-ng-priority',
@@ -23,11 +24,10 @@ export class RmNgPriorityComponent extends SiSelectComponent<Priority> implement
 
   constructor(private redmine: RedmineService) {
     super();
+    this.isAsync = true;
   }
 
-  ngOnInit() {
-    this.availableOptionsObservable = this.redmine.priorities.findAll();
-    super.ngOnInit();
+  load(): Observable<Priority[]> {
+    return this.redmine.priorities.findAll();
   }
-
 }

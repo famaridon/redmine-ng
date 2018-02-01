@@ -19,6 +19,8 @@ export class SiSelectComponent<T extends IOption> extends AbstractSIComponent<T>
   @Input()
   public availableOptionsObservable: Observable<T[]>;
   public availableOptions: T[] = [];
+  public isAsync = false;
+  public isLoaded = false;
 
   constructor() {
     super();
@@ -26,14 +28,32 @@ export class SiSelectComponent<T extends IOption> extends AbstractSIComponent<T>
 
   ngOnInit() {
     if (this.availableOptionsObservable) {
-      this.availableOptionsObservable.subscribe((availableOptions) => {
-        this.availableOptions = availableOptions;
-      })
+      this.isAsync = true;
+      this.setAsyncAvailableOptions();
     }
   }
 
   compareFn(t1: T, t2: T): boolean {
     return t1 && t2 ? t1.getComparableValue() === t2.getComparableValue() : t1 === t2;
+  }
+
+  switchMode(): void {
+    super.switchMode();
+    if (this.isAsync && !this.isLoaded) {
+      this.availableOptionsObservable = this.load();
+      this.setAsyncAvailableOptions();
+    }
+  }
+
+  load(): Observable<T[]> {
+    return null;
+  }
+
+  private setAsyncAvailableOptions() {
+    this.availableOptionsObservable.subscribe((availableOptions) => {
+      this.availableOptions = availableOptions;
+      this.isLoaded = true;
+    });
   }
 
 }

@@ -3,6 +3,7 @@ import {Status} from '../../services/beans';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {SiSelectComponent} from '../../../states-inputs/components/si-select/si-select.component';
 import {RedmineService} from '../../services/redmine.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'rm-ng-status',
@@ -24,11 +25,11 @@ export class RmNgStatusComponent extends SiSelectComponent<Status> implements On
 
   constructor(private redmine: RedmineService) {
     super();
+    this.isAsync = true;
   }
 
-  ngOnInit() {
-    this.availableOptionsObservable = this.redmine.status.getAvailableStatus(this.tracker_id, this.status ? this.status.id : null);
-    super.ngOnInit();
+  load(): Observable<Status[]> {
+    return this.redmine.status.getAvailableStatus(this.tracker_id, this.status ? this.status.id : null);
   }
 
 }
