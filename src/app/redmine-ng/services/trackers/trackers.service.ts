@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Tracker} from '../beans';
+import {Status, Tracker} from '../beans';
 import {AbstractRedmineService} from '../abstract.redmine.service';
 import {HttpClient} from '@angular/common/http';
 import {SettingsService} from '../../../services/settings.service';

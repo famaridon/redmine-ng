@@ -32,16 +32,6 @@ export class IssuesService extends AbstractRedmineService<Issue> {
     });
   }
 
-  public getAvailableStatus(id: number): Observable<Status[]> {
-    return this.get(`/issues/${id}/status`).map((data: any) => {
-      const statusList = new Array<Status>();
-      for (let i = 0; i < data.status.length; i++) {
-        statusList.push(new Status(data.status[i]));
-      }
-      return statusList;
-    });
-  }
-
   private caster(element): Observable<Issue> {
     return this.asObservable(element.id, new Issue(element));
   }

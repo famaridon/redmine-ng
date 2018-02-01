@@ -27,7 +27,7 @@ export class RmNgStatusComponent extends SiSelectComponent<Status> implements On
   }
 
   ngOnInit() {
-    this.availableOptionsObservable = this.redmine.status.findStatusByTracker(this.tracker_id);
+    this.availableOptionsObservable = this.redmine.status.getAvailableStatus(this.tracker_id, this.status ? this.status.id : null);
     super.ngOnInit();
   }
 

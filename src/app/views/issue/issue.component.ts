@@ -13,7 +13,6 @@ import {Observable} from "rxjs/Observable";
 export class IssueComponent implements OnInit, OnDestroy {
 
   public issue: Issue = null;
-  public availableStatus: Status[] = [];
   public subscription: Subscription;
 
 
@@ -27,9 +26,6 @@ export class IssueComponent implements OnInit, OnDestroy {
           return;
         }
         this.issue = issue;
-        this.redmine.issues.getAvailableStatus(this.issue.id).subscribe((status) => {
-          this.availableStatus = status;
-        });
       });
     });
   }
