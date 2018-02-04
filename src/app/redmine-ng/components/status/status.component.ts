@@ -29,7 +29,7 @@ export class RmNgStatusComponent extends SiSelectComponent<Status> implements On
   }
 
   load(): Observable<Status[]> {
-    return this.redmine.status.getAvailableStatus(this.tracker_id, this.status ? this.status.id : null);
+    return this.redmine.status.getAvailableStatus(this.tracker_id, this.value ? this.value.id : null).map((page) => { return page.elements; });
   }
 
 }

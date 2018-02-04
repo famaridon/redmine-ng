@@ -30,16 +30,9 @@ export class RmNgTrackerComponent extends SiSelectComponent<Tracker> implements 
     this.isAsync = true;
   }
 
-  ngOnInit() {
-    if (this.project) {
-      this.availableOptions = [];
-      this.isAsync = false;
-    }
-    super.ngOnInit();
-  }
-
-
   load(): Observable<Tracker[]> {
-    return this.redmine.trackers.findTrackerByProject(this.project);
+    return this.redmine.projects.find(this.project).map((project) => {
+      return project.trackers;
+    });
   }
 }

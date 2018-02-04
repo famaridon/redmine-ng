@@ -2,9 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SettingsService} from '../../../services/settings.service';
 import {AbstractRedmineService} from '../abstract.redmine.service';
-import {Issue, Paginable, Project, Status} from '../beans';
+import {Paginable, Status} from '../beans';
 import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class StatusService extends AbstractRedmineService<Status> {
@@ -13,15 +12,14 @@ export class StatusService extends AbstractRedmineService<Status> {
     super(http, settings);
   }
 
-  public getAvailableStatus(trackerId: number, statusId?: number): Observable<Status[]> {
+  public getAvailableStatus(trackerId: number, statusId?: number): Observable<Paginable<Status>> {
     let path = `${this.getRootPath()}/tracker/${trackerId}`;
-    if(statusId) {
+    if (statusId) {
       path += `/status/${statusId}`
     }
     path += `/available`;
     return this.get(path).map((data: any) => {
-      const paginable = new Paginable<Status>(data, this.mapper.bind(this));
-      return paginable.elements;
+      return new Paginable<Status>(data, this.mapper.bind(this));
     });
   }
 

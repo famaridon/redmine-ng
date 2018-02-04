@@ -17,7 +17,6 @@ import {RmNgStatusComponent} from './components/status/status.component';
 import {RmNgPriorityComponent} from './components/priority/priority.component';
 import {MomentModule} from 'angular2-moment';
 import { RmNgTrackerComponent } from './components/tracker/tracker.component';
-import {TrackersService} from './services/trackers/trackers.service';
 import {PrioritiesService} from './services/priorities/priorities.service';
 import { RmNgUserComponent } from './components/user/user.component';
 import { RmNgIssueTreeTableRowComponent } from './components/issue/issue-tree-table-row/issue-tree-table-row.component';
@@ -47,7 +46,6 @@ import {StatusService} from './services/status/status.service';
     IssuesService,
     ProjectsService,
     QueriesService,
-    TrackersService,
     PrioritiesService,
     UsersService,
     SettingsService,

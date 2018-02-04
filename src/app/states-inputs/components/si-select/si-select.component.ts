@@ -52,6 +52,9 @@ export class SiSelectComponent<T extends IOption> extends AbstractSIComponent<T>
   private setAsyncAvailableOptions() {
     this.availableOptionsObservable.subscribe((availableOptions) => {
       this.availableOptions = availableOptions;
+      if (this.availableOptions.findIndex((element) => {return element.getComparableValue() === this.innerValue.getComparableValue();}) < 0) {
+        this.availableOptions.push(this.innerValue);
+      }
       this.isLoaded = true;
     });
   }

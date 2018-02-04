@@ -28,6 +28,6 @@ export class RmNgPriorityComponent extends SiSelectComponent<Priority> implement
   }
 
   load(): Observable<Priority[]> {
-    return this.redmine.priorities.findAll();
+    return this.redmine.priorities.findAll().map((page) => { return page.elements; });
   }
 }

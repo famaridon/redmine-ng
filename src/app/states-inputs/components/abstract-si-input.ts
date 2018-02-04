@@ -10,11 +10,11 @@ export abstract class AbstractSIComponent<T> implements OnInit, ControlValueAcce
   /**
    * The internal data model
    */
-  private innerValue: T;
+  protected innerValue: T;
   /**
    * hold the last value
    */
-  private nextValue: T;
+  protected nextValue: T;
 
   @Input()
   public mode: 'read' | 'write' = 'read';
