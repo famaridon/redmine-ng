@@ -11,9 +11,11 @@ export class Paginable<T> {
     this.total_count = json.total_count;
     this.offset = json.offset;
     this.limit = json.limit;
-    json.elements.forEach((element) => {
-      this.elements.push(caster(element));
-    });
+    if (json.elements) {
+      json.elements.forEach((element) => {
+        this.elements.push(caster(element));
+      });
+    }
   }
 }
 
