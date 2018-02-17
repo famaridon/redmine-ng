@@ -16,49 +16,51 @@ import {FormsModule} from '@angular/forms';
 import {RmNgStatusComponent} from './components/status/status.component';
 import {RmNgPriorityComponent} from './components/priority/priority.component';
 import {MomentModule} from 'angular2-moment';
-import { RmNgTrackerComponent } from './components/tracker/tracker.component';
+import {RmNgTrackerComponent} from './components/tracker/tracker.component';
 import {PrioritiesService} from './services/priorities/priorities.service';
-import { RmNgUserComponent } from './components/user/user.component';
-import { RmNgIssueTreeTableRowComponent } from './components/issue/issue-tree-table-row/issue-tree-table-row.component';
+import {RmNgUserComponent} from './components/user/user.component';
+import {RmNgIssueTreeTableRowComponent} from './components/issue/issue-tree-table-row/issue-tree-table-row.component';
 import {StatusService} from './services/status/status.service';
+import {RealtimeService} from './services/realtime/realtime.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    MomentModule,
-    StatesInputsModule,
-    FormsModule
-  ],
-  declarations: [
-    RmNgProjectComponent,
-    RmNgQueryComponent,
-    RmNgIssueComponent,
-    RmNgIssueIdComponent,
-    RmNgStatusComponent,
-    RmNgPriorityComponent,
-    RmNgTrackerComponent,
-    RmNgUserComponent,
-    RmNgIssueTreeTableRowComponent
-  ],
-  providers: [
-    RedmineService,
-    IssuesService,
-    ProjectsService,
-    QueriesService,
-    PrioritiesService,
-    UsersService,
-    SettingsService,
-    StatusService
-  ],
-  entryComponents: [
-    RmNgIssueTreeTableRowComponent
-  ],
-  exports: [
-    RmNgIssueComponent,
-    RmNgProjectComponent,
-    RmNgQueryComponent
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        MomentModule,
+        StatesInputsModule,
+        FormsModule
+    ],
+    declarations: [
+        RmNgProjectComponent,
+        RmNgQueryComponent,
+        RmNgIssueComponent,
+        RmNgIssueIdComponent,
+        RmNgStatusComponent,
+        RmNgPriorityComponent,
+        RmNgTrackerComponent,
+        RmNgUserComponent,
+        RmNgIssueTreeTableRowComponent
+    ],
+    providers: [
+        RedmineService,
+        IssuesService,
+        ProjectsService,
+        QueriesService,
+        PrioritiesService,
+        UsersService,
+        SettingsService,
+        StatusService,
+        RealtimeService
+    ],
+    entryComponents: [
+        RmNgIssueTreeTableRowComponent
+    ],
+    exports: [
+        RmNgIssueComponent,
+        RmNgProjectComponent,
+        RmNgQueryComponent
+    ]
 })
 export class RedmineNgModule {
 }

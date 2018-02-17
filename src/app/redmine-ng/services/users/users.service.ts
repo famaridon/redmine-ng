@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../beans';
 import {SettingsService} from '../../../services/settings.service';
+import {RealtimeService} from '../realtime/realtime.service';
 
 @Injectable()
 export class UsersService extends AbstractRedmineService<User> {
@@ -11,8 +12,9 @@ export class UsersService extends AbstractRedmineService<User> {
   private static readonly CURRENT_USER_ID = -255;
   private userCache: Map<number, Observable<User>> = new Map();
 
-  constructor(http: HttpClient, settings: SettingsService) {
+  constructor(http: HttpClient, settings: SettingsService, private rtService: RealtimeService ) {
     super(http, settings);
+
   }
 
   public findCurrent(): Observable<User> {

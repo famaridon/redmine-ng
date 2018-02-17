@@ -36,7 +36,7 @@ export abstract class AbstractRedmineService<T extends AbstractRedmineBean> {
     protected get(path: string): Observable<any> {
         const subject = new Subject<any>();
         const subscription = this.settings.subscribe((settings) => {
-            this.http.get(settings.server + path).subscribe((data) => {
+            this.http.get(settings.server + '/v1' + path).subscribe((data) => {
 
                 subscription.unsubscribe();
                 subject.next(data);
