@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../services/beans';
 import {RedmineService} from '../../services/redmine.service';
+import {RealtimeService} from "../../services/realtime/realtime.service";
 
 @Component({
   selector: 'rm-ng-user',
