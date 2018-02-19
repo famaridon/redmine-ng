@@ -22,6 +22,7 @@ import {RmNgUserComponent} from './components/user/user.component';
 import {RmNgIssueTreeTableRowComponent} from './components/issue/issue-tree-table-row/issue-tree-table-row.component';
 import {StatusService} from './services/status/status.service';
 import {RealtimeService} from './services/realtime/realtime.service';
+import { RmNgIssueModalComponent } from './components/issue/issue-modal/issue-modal.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import {RealtimeService} from './services/realtime/realtime.service';
         RmNgPriorityComponent,
         RmNgTrackerComponent,
         RmNgUserComponent,
-        RmNgIssueTreeTableRowComponent
+        RmNgIssueTreeTableRowComponent,
+        RmNgIssueModalComponent
     ],
     providers: [
         RedmineService,
@@ -54,7 +56,9 @@ import {RealtimeService} from './services/realtime/realtime.service';
         RealtimeService
     ],
     entryComponents: [
-        RmNgIssueTreeTableRowComponent
+        RmNgIssueTreeTableRowComponent,
+        RmNgIssueComponent,
+        RmNgIssueModalComponent
     ],
     exports: [
         RmNgIssueComponent,
