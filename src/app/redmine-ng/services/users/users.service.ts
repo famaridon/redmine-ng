@@ -12,11 +12,20 @@ export class UsersService extends AbstractRedmineService<User> implements Realti
 
     private static readonly CURRENT_USER_ID = -255;
     private userCache: Map<number, Observable<User>> = new Map();
-    private connectedUsers: BehaviorSubject<number[]>;
+    private connectedUsers: BehaviorSubject<Paginable<number>>;
 
     constructor(http: HttpClient, settings: SettingsService, private realtimeService: RealtimeService) {
         super(http, settings);
-        this.connectedUsers = new BehaviorSubject<number[]>([]);
+        const empty = new Paginable<number>(
+            {
+                total_count: 0,
+                offset: 0,
+                limit: 0,
+                elements: []
+            }, (element: any) => {
+                return <number>element;
+            });
+        this.connectedUsers = new BehaviorSubject<Paginable<number>>(empty);
         this.realtimeService.registerListener(this);
     }
 
@@ -43,39 +52,40 @@ export class UsersService extends AbstractRedmineService<User> implements Realti
     }
 
     findConnected(): Observable<Paginable<number>> {
-        return this.get(`/users/connected`).map((data: any) => {
-            const page = new Paginable<number>(data, (element: any) => {
-                return <number>element;
-            });
-            return page;
-        });
+        return this.connectedUsers.asObservable();
     }
 
     onOpen() {
-        this.findConnected().subscribe((page) => {
-            this.connectedUsers.next(page.elements);
+        this.get(`/users/connected`).map((data: any) => {
+            const page = this.connectedUsers.getValue();
+            page.offset = data.offset;
+            page.total_count = data.total_count;
+            page.limit = data.limit;
+            page.elements = data.elements;
+            return page;
+        }).subscribe((page) => {
+            this.connectedUsers.next(page);
         });
     }
 
     onMessage(message: RealtimeMessage) {
         if (message.channel === 'userStatusChannel') {
             if (message.body === UserStatus.JOIN) {
-                const users = this.connectedUsers.getValue();
-                users.push(message.sender)
-                this.connectedUsers.next(users);
+                const page = this.connectedUsers.getValue();
+                page.elements.push(message.sender)
+                this.connectedUsers.next(page);
             } else if (message.body === UserStatus.LEAVE) {
-                const users = this.connectedUsers.getValue();
-                if (users.indexOf(message.sender) > -1) {
-                    users.splice(users.indexOf(message.sender), 1)
+                const page = this.connectedUsers.getValue();
+                if (page.elements.indexOf(message.sender) > -1) {
+                    page.elements.splice(page.elements.indexOf(message.sender), 1);
+                    this.connectedUsers.next(page);
                 }
-                this.connectedUsers.next(users);
             }
             console.dir(this.connectedUsers.getValue());
         }
     }
 
     onClose() {
-        this.connectedUsers.next([]);
     }
 
     getRootPath(): string {

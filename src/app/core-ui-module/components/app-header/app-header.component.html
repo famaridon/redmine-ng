@@ -13,8 +13,8 @@
   </div>
 
   <!-- the avatar -->
-  <div class="avatar">
-    <img *ngIf="loggedOnUser;else anonymous;" class="rounded-circle d-none d-md-inline" [src]="loggedOnUser.gravatar">
+  <div>
+    <rm-ng-user-avatar *ngIf="loggedOnUser;else anonymous;" [user]="loggedOnUser"></rm-ng-user-avatar>
     <ng-template #anonymous>
       <img #anonymous class="rounded-circle d-none d-md-inline" src="http://random-octodex.herokuapp.com/random">
     </ng-template>

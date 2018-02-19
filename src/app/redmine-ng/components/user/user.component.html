@@ -1,5 +1,5 @@
 <span *ngIf="user && user.gravatar ;else nobody;">
-  <img class="rounded-circle d-none d-md-inline avatar" [src]="user.gravatar">
+  <rm-ng-user-avatar [user]="user"></rm-ng-user-avatar>
 </span>
 
 <ng-template #nobody>
