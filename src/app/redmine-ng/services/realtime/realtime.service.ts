@@ -51,7 +51,7 @@ export class RealtimeService {
 
     private onMessage(ev: MessageEvent) {
         this.listeners.forEach((l) => {
-            l.onMessage(ev.data);
+            l.onMessage(JSON.parse(ev.data));
         });
     }
 
@@ -66,7 +66,9 @@ export class RealtimeService {
             l.onClose();
         });
         // Try to reconnect in 5 seconds
-        setTimeout(() => {this.reconnect()}, 5000);
+        setTimeout(() => {
+            this.reconnect()
+        }, 5000);
 
     }
 
@@ -85,33 +87,33 @@ export class RealtimeService {
 export interface RealtimeListener {
     onOpen();
 
-    onMessage(message: Message);
+    onMessage(message: RealtimeMessage);
 
     onClose();
 }
 
-export class Message {
-    public author: number;
-    public channel: string;
+export class RealtimeMessage {
+    public sender: number;
+    public channel: Channel;
     public body: any;
 }
 
 export class StatusListener implements RealtimeListener {
 
-    private status: Status = Status.DISCONECTED;
+    private status: UserStatus = UserStatus.DISCONNECTED;
 
     onOpen() {
-        this.status = Status.CONNECTED;
+        this.status = UserStatus.CONNECTED;
     }
 
-    onMessage(message: Message) {
+    onMessage(message: RealtimeMessage) {
     }
 
     onClose() {
-        this.status = Status.DISCONECTED;
+        this.status = UserStatus.DISCONNECTED;
     }
 
-    public getStatus(): Status {
+    public getStatus(): UserStatus {
         return this.status;
     }
 
@@ -119,27 +121,23 @@ export class StatusListener implements RealtimeListener {
 
 export class LogListener implements RealtimeListener {
 
-    private status: Status = Status.DISCONECTED;
-
     onOpen() {
         console.debug('ws connected');
     }
 
-    onMessage(message: Message) {
+    onMessage(message: RealtimeMessage) {
         console.debug(`message ${message}`);
     }
 
     onClose() {
         console.debug('ws disconnected');
     }
-
-    public getStatus(): Status {
-        return this.status;
-    }
-
 }
 
-enum Status {
-    CONNECTED,
-    DISCONECTED
+type Channel = 'userStatusChannel' | 'issues';
+export enum UserStatus {
+    JOIN = 'JOIN',
+    LEAVE = 'LEAVE',
+    CONNECTED = 'CONNECTED',
+    DISCONNECTED = 'DISCONNECTED'
 }

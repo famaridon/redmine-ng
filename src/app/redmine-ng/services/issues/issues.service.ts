@@ -5,13 +5,12 @@ import {HttpClient} from '@angular/common/http';
 import {Issue, Paginable, Status} from '../beans';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+import {RealtimeService} from "../realtime/realtime.service";
 
 @Injectable()
 export class IssuesService extends AbstractRedmineService<Issue> {
 
-  protected loadedIssues: Map<number, Subject<Issue>> = new Map();
-
-  constructor(http: HttpClient, settings: SettingsService) {
+  constructor(http: HttpClient, settings: SettingsService, private realtimeService: RealtimeService) {
     super(http, settings);
   }
 
