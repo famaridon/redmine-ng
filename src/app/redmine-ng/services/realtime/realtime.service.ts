@@ -15,6 +15,10 @@ export class RealtimeService {
     constructor(protected settingsService: SettingsService) {
         this.registerListener(this.statusListener);
         this.registerListener(new LogListener());
+        this.reconnect();
+    }
+
+    private reconnect() {
         this.settingsService.getSettings().subscribe((settings) => {
             if (settings.isValide()) {
                 this.connect(settings);
@@ -35,6 +39,8 @@ export class RealtimeService {
         } else if (settings.server.indexOf('http') >= 0) {
             wsurl = settings.server.replace('http', 'ws');
         }
+
+        console.debug(`ws try to  connect to ${wsurl}`);
 
         this.ws = new WebSocket(`${wsurl}/ws?${this.X_REDMINE_API_KEY}=${settings.api_key}`);
         this.ws.onmessage = this.onMessage.bind(this);
@@ -59,12 +65,13 @@ export class RealtimeService {
         this.listeners.forEach((l) => {
             l.onClose();
         });
+        // Try to reconnect in 5 seconds
+        setTimeout(() => {this.reconnect()}, 5000);
 
     }
 
     private onError(ev: ErrorEvent) {
-        console.error(`onError (${ev})`);
-
+        console.debug(`onError (${ev})`);
     }
 
     private disconnect() {
