@@ -16,7 +16,9 @@
   <div>
     <rm-ng-user-avatar *ngIf="loggedOnUser;else anonymous;" [user]="loggedOnUser"></rm-ng-user-avatar>
     <ng-template #anonymous>
-      <img #anonymous class="rounded-circle d-none d-md-inline" src="http://random-octodex.herokuapp.com/random">
+      <div class="avatar">
+        <img #anonymous class="rounded-circle d-none d-md-inline" src="http://random-octodex.herokuapp.com/random">
+      </div>
     </ng-template>
   </div>
 
