@@ -21,7 +21,9 @@ export class RmNgVersionComponent extends SiSelectComponent<Version> implements 
     public project_id: number;
 
     @Input()
-    public version: Version;
+    set version(version: Version){
+        this.value = version;
+    }
 
     constructor(private redmine: RedmineService) {
         super();

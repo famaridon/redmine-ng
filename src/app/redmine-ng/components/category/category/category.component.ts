@@ -21,7 +21,9 @@ export class RmNgCategoryComponent extends SiSelectComponent<Category> implement
     public project_id: number;
 
     @Input()
-    public category: Category;
+    set category(category: Category) {
+        this.value = category;
+    }
 
     constructor(private redmine: RedmineService) {
         super();
