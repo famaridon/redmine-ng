@@ -24,6 +24,8 @@ import {StatusService} from './services/status/status.service';
 import {RealtimeService} from './services/realtime/realtime.service';
 import { RmNgIssueModalComponent } from './components/issue/issue-modal/issue-modal.component';
 import { RmNgUserAvatarComponent } from './components/user/avatar/user-avatar/user-avatar.component';
+import { RmNgVersionComponent } from './components/version/version/version.component';
+import {VersionsService} from "./services/versions/versions.service";
 
 @NgModule({
     imports: [
@@ -44,7 +46,8 @@ import { RmNgUserAvatarComponent } from './components/user/avatar/user-avatar/us
         RmNgUserComponent,
         RmNgIssueTreeTableRowComponent,
         RmNgIssueModalComponent,
-        RmNgUserAvatarComponent
+        RmNgUserAvatarComponent,
+        RmNgVersionComponent
     ],
     providers: [
         RedmineService,
@@ -55,6 +58,7 @@ import { RmNgUserAvatarComponent } from './components/user/avatar/user-avatar/us
         UsersService,
         SettingsService,
         StatusService,
+        VersionsService,
         RealtimeService
     ],
     entryComponents: [
