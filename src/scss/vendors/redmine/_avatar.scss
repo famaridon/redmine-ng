@@ -1,9 +1,25 @@
-img.avatar {
-  width: 28px;
-  height: 28px;
-  box-shadow: 0px 0px 10px $gray-600;
-  &.connected {
-    border: 2px solid $green;
-    box-shadow: 0px 0px 10px $green;
+.avatar {
+  img {
+    width: 28px;
+    height: 28px;
+  }
+  .status {
+    position: absolute;
+    top: 28px - 7.5px;
+    left: 28px - 7.5px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    -moz-border-radius: 7.5px;
+    -webkit-border-radius: 7.5px;
+    border-radius: 7.5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $gray-400;
+    background-color: transparent;
+    transition: background-color 1s;
+  }
+  &.connected .status {
+    background-color: $green;
   }
 }

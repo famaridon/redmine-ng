@@ -1,1 +1,4 @@
-<img class="avatar rounded-circle d-none d-md-inline" [class.connected]="isConnected() | async" [src]="_user.gravatar">
+<div class="avatar d-md-inline-block rounded-circle" [class.connected]="isConnected() | async">
+	<img class="rounded-circle d-md-inline" [title]="_user.firstname + ' ' + _user.lastname" [src]="_user.gravatar">
+	<div class="status rounded-circle" ></div>
+</div>
