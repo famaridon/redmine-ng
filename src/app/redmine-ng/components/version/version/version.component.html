@@ -12,7 +12,7 @@
     <span *ngIf="value; else empty_value" (click)="switchMode()" class="rm-version">{{value.getDisplayLabel()}}</span>
 
     <ng-template #empty_value>
-      <span class="si-empty-value"></span>
+      <span class="si-empty-value" (click)="switchMode()"></span>
     </ng-template>
 
   </ng-container>

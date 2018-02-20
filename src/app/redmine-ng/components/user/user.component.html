@@ -1,10 +1,20 @@
-<span *ngIf="user && user.gravatar ;else nobody;">
-  <rm-ng-user-avatar [user]="user"></rm-ng-user-avatar>
-</span>
+<span [ngSwitch]="mode" class="si-select">
 
-<ng-template #nobody>
-  <div class="avatar d-md-inline-block rounded-circle">
-    <i class="fa fa-2 fa-user-circle align-self-center text-secondary"></i>
-    <div class="status rounded-circle" ></div>
-  </div>
-</ng-template>
+  <ng-container *ngSwitchCase="'write'">
+    <select [(ngModel)]="nextValue" siAutoFocus (keyup.enter)="validateChanges()" (keyup.esc)="undoChanges()" [compareWith]="compareFn">
+      <option *ngFor="let option of availableOptions" [ngValue]="option">{{option.getDisplayLabel()}}</option>
+    </select>
+    <button type="button" (click)="validateChanges()" class="btn btn-link btn-sm"><i class="fa fa-check"></i></button>
+    <button type="button" (click)="undoChanges()" class="btn btn-link btn-sm"><i class="fa fa-undo"></i></button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'read'">
+    <span *ngIf="value; else empty_value" (click)="switchMode()"><rm-ng-user-avatar [user]="value"></rm-ng-user-avatar></span>
+    <ng-template #empty_value>
+      <div class="avatar d-md-inline-block rounded-circle" (click)="switchMode()">
+        <i class="fa fa-2 fa-user-circle align-self-center text-secondary"></i>
+        <div class="status rounded-circle" ></div>
+      </div>
+    </ng-template>
+  </ng-container>
+</span>
