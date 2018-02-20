@@ -1,27 +1,27 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {SiSelectComponent} from '../../../../states-inputs/components/si-select/si-select.component';
-import {Status, Version} from '../../../services/beans';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Category, Version} from '../../../services/beans';
 import {RedmineService} from '../../../services/redmine.service';
 import {Observable} from 'rxjs/Observable';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
-    selector: 'rm-ng-version',
-    templateUrl: './version.component.html',
-    styleUrls: ['./version.component.css'],
+    selector: 'rm-ng-category',
+    templateUrl: './category.component.html',
+    styleUrls: ['./category.component.css'],
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => RmNgVersionComponent),
+        useExisting: forwardRef(() => RmNgCategoryComponent),
         multi: true
     }]
 })
-export class RmNgVersionComponent extends SiSelectComponent<Version> implements OnInit {
+export class RmNgCategoryComponent extends SiSelectComponent<Category> implements OnInit {
 
     @Input()
     public project_id: number;
 
     @Input()
-    public version: Version;
+    public category: Category;
 
     constructor(private redmine: RedmineService) {
         super();
@@ -29,9 +29,8 @@ export class RmNgVersionComponent extends SiSelectComponent<Version> implements 
     }
 
     load(): Observable<Version[]> {
-        return this.redmine.versions.findByProject(this.project_id).map((page) => {
-            return page.elements;
+        return this.redmine.projects.find(this.project_id).map((project) => {
+            return project.issue_categories;
         });
     }
-
 }

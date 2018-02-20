@@ -26,6 +26,7 @@ import { RmNgIssueModalComponent } from './components/issue/issue-modal/issue-mo
 import { RmNgUserAvatarComponent } from './components/user/avatar/user-avatar/user-avatar.component';
 import { RmNgVersionComponent } from './components/version/version/version.component';
 import {VersionsService} from "./services/versions/versions.service";
+import { RmNgCategoryComponent } from './components/category/category/category.component';
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import {VersionsService} from "./services/versions/versions.service";
         RmNgIssueTreeTableRowComponent,
         RmNgIssueModalComponent,
         RmNgUserAvatarComponent,
-        RmNgVersionComponent
+        RmNgVersionComponent,
+        RmNgCategoryComponent
     ],
     providers: [
         RedmineService,
