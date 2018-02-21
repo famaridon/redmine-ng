@@ -14,7 +14,7 @@ export class VersionsService extends AbstractRedmineService<Version> {
 
     findByProject(projectId: number): Observable<Paginable<Version>> {
         return this.get(`${this.getRootPath()}/project/${projectId}`).map((data: any) => {
-            return new Paginable<Status>(data, this.mapper.bind(this));
+            return new Paginable<Version>(data, this.mapper.bind(this));
         });
     }
 

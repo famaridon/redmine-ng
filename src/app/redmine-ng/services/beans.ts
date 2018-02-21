@@ -255,7 +255,27 @@ export class Category extends AbstractRedmineBean {
 }
 
 export class Version extends AbstractRedmineBean {
-
+    public project: Project;
+    public description: string;
+    public status: string;
+    public due_date: number;
+    public sharing: string;
+    public created_on: number;
+    public updated_on: number;
+    constructor(json?: any) {
+        super(json);
+        if (json) {
+            if (json.project) {
+                this.project = new Project(json.project);
+            }
+            this.description = json.description;
+            this.status = json.status;
+            this.due_date = json.due_date;
+            this.sharing = json.sharing;
+            this.created_on = json.created_on;
+            this.updated_on = json.updated_on;
+        }
+    }
 }
 
 export class Membership extends AbstractRedmineBean {

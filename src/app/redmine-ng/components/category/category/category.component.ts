@@ -30,7 +30,7 @@ export class RmNgCategoryComponent extends SiSelectComponent<Category> implement
         this.isAsync = true;
     }
 
-    load(): Observable<Version[]> {
+    load(): Observable<Category[]> {
         return this.redmine.projects.find(this.project_id).map((project) => {
             return project.issue_categories;
         });

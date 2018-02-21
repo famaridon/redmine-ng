@@ -1,77 +1,77 @@
 <div class="card">
-  <div class="card-body">
-    <h6 class="card-subtitle mb-2">
-      <rm-ng-tracker [ngModel]="_issue.tracker" [project]="_issue.project.id"></rm-ng-tracker>
-    </h6>
-    <h4 class="card-title">
-      <rm-ng-issue-id [issue]="_issue"></rm-ng-issue-id>
-      <si-text [ngModel]="_issue.subject" (ngModelChange)="updateSubject($event)"></si-text>
-    </h4>
-    <form>
-      <div class="form-group row">
-        <label for="status" class="col-sm-2 col-form-label">Status</label>
-        <div class="col-sm-10">
-          <rm-ng-status name="status" [ngModel]="_issue.status" [tracker_id]="_issue.tracker.id"></rm-ng-status>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="priority" class="col-sm-2 col-form-label">Priority</label>
-        <div class="col-sm-10">
-          <rm-ng-priority name="priority" [ngModel]="_issue.priority"></rm-ng-priority>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="assignee" class="col-sm-2 col-form-label">Assignee</label>
-        <div class="col-sm-10">
-          <rm-ng-user [user]="_issue.assigned_to" [project_id]="_issue.project.id"></rm-ng-user>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="category" class="col-sm-2 col-form-label">Category</label>
-        <div class="col-sm-10">
-          <rm-ng-category name="category" [ngModel]="_issue.category" [project_id]="_issue.project.id"></rm-ng-category>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="fixed_version" class="col-sm-2 col-form-label">Target version</label>
-        <div class="col-sm-10">
-          <rm-ng-version name="fixed_version" [ngModel]="_issue.fixed_version" [project_id]="_issue.project.id"></rm-ng-version>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="start_date" class="col-sm-2 col-form-label">Start date</label>
-        <div class="col-sm-10">
-          <span *ngIf="_issue.start_date" name="start_date" >{{_issue.start_date | amCalendar}}</span>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="due_date" class="col-sm-2 col-form-label">Due date</label>
-        <div class="col-sm-10">
-          <span *ngIf="_issue.due_date" name="due_date" >{{_issue.due_date | amCalendar}}</span>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="done_ratio" class="col-sm-2 col-form-label">% Done</label>
-        <div class="col-sm-10">
-          <span *ngIf="_issue.done_ratio" name="done_ratio" >{{_issue.done_ratio}}</span>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="description" class="col-sm-2 col-form-label">Description</label>
-        <div class="col-sm-10">
-          <si-textarea name="description" [ngModel]="_issue.description"></si-textarea>
-        </div>
-      </div>
-    </form>
-    <div class="d-none">
-      Spent time:
-      24.00 h
-      Autre ID:
-      Business Value (0 à100):
-      40.00
-      Charges (Pts):
-      40
-      Critères d'acceptation:
-    </div>
-  </div>
+	<div class="card-body">
+		<h6 class="card-subtitle mb-2">
+			<rm-ng-tracker [ngModel]="_issue.tracker" [project]="_issue.project.id"></rm-ng-tracker>
+		</h6>
+		<h4 class="card-title">
+			<rm-ng-issue-id [issue]="_issue"></rm-ng-issue-id>
+			<si-text [ngModel]="_issue.subject" (ngModelChange)="updateSubject($event)"></si-text>
+		</h4>
+		<form>
+			<div class="form-group row">
+				<label for="status" class="col-sm-2 col-form-label">Status</label>
+				<div class="col-sm-10">
+					<rm-ng-status name="status" [ngModel]="_issue.status" [tracker_id]="_issue.tracker.id"></rm-ng-status>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="priority" class="col-sm-2 col-form-label">Priority</label>
+				<div class="col-sm-10">
+					<rm-ng-priority name="priority" [ngModel]="_issue.priority"></rm-ng-priority>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="assignee" class="col-sm-2 col-form-label">Assignee</label>
+				<div class="col-sm-10">
+					<rm-ng-user [user]="_issue.assigned_to" [project_id]="_issue.project.id"></rm-ng-user>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="category" class="col-sm-2 col-form-label">Category</label>
+				<div class="col-sm-10">
+					<rm-ng-category name="category" [ngModel]="_issue.category" [project_id]="_issue.project.id"></rm-ng-category>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="fixed_version" class="col-sm-2 col-form-label">Target version</label>
+				<div class="col-sm-10">
+					<rm-ng-version name="fixed_version" [ngModel]="_issue.fixed_version" [project_id]="_issue.project.id"></rm-ng-version>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="start_date" class="col-sm-2 col-form-label">Start date</label>
+				<div class="col-sm-10">
+					<span *ngIf="_issue.start_date" name="start_date">{{_issue.start_date | amCalendar}}</span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="due_date" class="col-sm-2 col-form-label">Due date</label>
+				<div class="col-sm-10">
+					<span *ngIf="_issue.due_date" name="due_date">{{_issue.due_date | amCalendar}}</span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="done_ratio" class="col-sm-2 col-form-label">% Done</label>
+				<div class="col-sm-10">
+					<input type="range" name="done_ratio" [ngModel]="_issue.done_ratio" max="100" min="0" step="10">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="description" class="col-sm-2 col-form-label">Description</label>
+				<div class="col-sm-10">
+					<si-textarea name="description" [ngModel]="_issue.description"></si-textarea>
+				</div>
+			</div>
+		</form>
+		<div class="d-none">
+			Spent time:
+			24.00 h
+			Autre ID:
+			Business Value (0 à100):
+			40.00
+			Charges (Pts):
+			40
+			Critères d'acceptation:
+		</div>
+	</div>
 </div>

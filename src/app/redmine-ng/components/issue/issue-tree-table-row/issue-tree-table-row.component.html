@@ -7,7 +7,7 @@
       <si-text [ngModel]="_issue.subject" (ngModelChange)="updateSubject($event)"></si-text>
     </div>
     <ul class="pl-0">
-      <li class="d-inline "><rm-ng-user [user]="_issue.assigned_to" ></rm-ng-user></li>
+      <li class="d-inline "><rm-ng-user [user]="_issue.assigned_to" [project_id]="_issue.project.id"></rm-ng-user></li>
       <li class="d-inline "><rm-ng-status [status]="_issue.status" [tracker_id]="_issue.tracker.id"></rm-ng-status></li>
       <li class="d-inline "><rm-ng-priority [priority]="_issue.priority"></rm-ng-priority></li>
       <li class="d-inline badge badge-pill badge-light">{{_issue.updated_on | amTimeAgo}}</li>

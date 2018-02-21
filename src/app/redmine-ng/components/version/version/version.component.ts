@@ -1,6 +1,6 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {SiSelectComponent} from '../../../../states-inputs/components/si-select/si-select.component';
-import {Status, Version} from '../../../services/beans';
+import {Version} from '../../../services/beans';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {RedmineService} from '../../../services/redmine.service';
 import {Observable} from 'rxjs/Observable';
@@ -21,7 +21,7 @@ export class RmNgVersionComponent extends SiSelectComponent<Version> implements 
     public project_id: number;
 
     @Input()
-    set version(version: Version){
+    set version(version: Version) {
         this.value = version;
     }
 
@@ -32,7 +32,11 @@ export class RmNgVersionComponent extends SiSelectComponent<Version> implements 
 
     load(): Observable<Version[]> {
         return this.redmine.versions.findByProject(this.project_id).map((page) => {
-            return page.elements;
+            return page.elements.filter((version) => {
+                return version.status === 'open'
+            }).sort((v1, v2) => {
+                return v1.due_date < v2.due_date ? -1 : 1;
+            });
         });
     }
 
