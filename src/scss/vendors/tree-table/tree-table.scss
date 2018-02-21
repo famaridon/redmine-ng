@@ -23,4 +23,13 @@
       border-left-style: none;
     }
   }
+
+  .tt-quick-edit {
+    > li {
+      display: inline-block;
+    }
+    li:last-child {
+      min-width: 77px;
+    }
+  }
 }

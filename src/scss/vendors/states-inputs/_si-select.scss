@@ -4,6 +4,7 @@
     border-bottom-width: 1px;
     border-bottom-style: solid;
     border-bottom-color: $gray-400;
+    cursor: pointer;
     &:hover{
       border-bottom-color: $gray-800;
     }

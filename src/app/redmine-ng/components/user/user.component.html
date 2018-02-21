@@ -9,7 +9,7 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="'read'">
-    <span *ngIf="value; else empty_value" (click)="switchMode()"><rm-ng-user-avatar [user]="value"></rm-ng-user-avatar></span>
+    <span *ngIf="value; else empty_value" (click)="switchMode()" class="border-0"><rm-ng-user-avatar [user]="value"></rm-ng-user-avatar></span>
     <ng-template #empty_value>
       <div class="avatar d-md-inline-block rounded-circle" (click)="switchMode()">
         <i class="fa fa-2 fa-user-circle align-self-center text-secondary"></i>
