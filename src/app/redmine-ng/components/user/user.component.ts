@@ -1,15 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {User} from '../../services/beans';
 import {RedmineService} from '../../services/redmine.service';
 import {SiSelectComponent} from '../../../states-inputs/components/si-select/si-select.component';
 import {Observable} from 'rxjs/Observable';
 import {zip} from 'rxjs/observable/zip';
 import {Subject} from 'rxjs/Subject';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
     selector: 'rm-ng-user',
     templateUrl: './user.component.html',
-    styleUrls: ['./user.component.css']
+    styleUrls: ['./user.component.css'],
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => RmNgUserComponent),
+        multi: true
+    }]
 })
 export class RmNgUserComponent extends SiSelectComponent<User> implements OnInit {
 
@@ -18,7 +24,13 @@ export class RmNgUserComponent extends SiSelectComponent<User> implements OnInit
 
     @Input()
     set user(user: User) {
-        this.value = user;
+        if (user) {
+            this.redmine.users.find(user.id).subscribe((u) => {
+                this.value = u;
+            });
+        } else {
+            this.value = null;
+        }
     };
 
     constructor(private redmine: RedmineService) {
