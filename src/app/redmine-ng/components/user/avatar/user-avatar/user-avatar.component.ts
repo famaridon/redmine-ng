@@ -20,7 +20,13 @@ export class RmNgUserAvatarComponent implements OnInit {
 
     @Input()
     set user(user: User) {
-        this._user = user;
+        if (user) {
+            this.redmine.users.find(user.id).subscribe((u) => {
+                this._user = u;
+            });
+        } else {
+            this._user = null;
+        }
     }
 
     isConnected(): Observable<boolean> {

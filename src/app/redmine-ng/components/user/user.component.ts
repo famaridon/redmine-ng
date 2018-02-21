@@ -24,13 +24,7 @@ export class RmNgUserComponent extends SiSelectComponent<User> implements OnInit
 
     @Input()
     set user(user: User) {
-        if (user) {
-            this.redmine.users.find(user.id).subscribe((u) => {
-                this.value = u;
-            });
-        } else {
-            this.value = null;
-        }
+        this.value = user;
     };
 
     constructor(private redmine: RedmineService) {
