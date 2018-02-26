@@ -1,4 +1,8 @@
-<div class="avatar d-md-inline-block rounded-circle" [class.connected]="isConnected() | async">
-	<img class="rounded-circle d-md-inline" [title]="_user.firstname + ' ' + _user.lastname" [src]="_user.gravatar">
-	<div class="status rounded-circle" ></div>
-</div>
+<ng-container *ngIf="_user ">
+	<div class="avatar d-md-inline-block rounded-circle" [class.connected]="isConnected() | async" [class.small]="withFullName">
+		<img class="rounded-circle d-md-inline" [title]="title" [src]="_user.gravatar">
+		<div class="status rounded-circle" [class.d-none]="withFullName" ></div>
+	</div>
+	<span [class.d-none]="!withFullName">{{_user.getDisplayLabel()}}</span>
+</ng-container>
+
